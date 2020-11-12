@@ -1,0 +1,5 @@
+git add .
+git commit
+git push -u origin master
+
+# git filter-branch --tree-filter 'rm -rf igel-auswildern.mp4' HEAD --all
