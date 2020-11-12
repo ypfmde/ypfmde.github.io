@@ -1,0 +1,61 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+        "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+<TITLE>Vorlesung 2008/09</TITLE>
+</head>
+<body>
+<H1><U>Kodierungstheorie</U>, <small>Wintersemester 2008/09</small></H1>
+<H3>Vorlesung: Do 11:45-13:15, S 107</H3>
+<H3>&Uuml;bungen: 2-st&uuml;ndig nach Vereinbarung</H3>
+<P>
+Der praktische Zweck der Codierungstheorie ist die &Uuml;bertragung
+von Nachrichten mit eingebauter Redundanz, so dass man
+&Uuml;bertragungsfehler erkennen, oder noch besser, sogar korrigieren
+kann. Ein typisches Vorgehen k&ouml;nnte das folgende sein: Man
+w&auml;hlt W&ouml;rter der L&auml;nge n mit Buchstaben 0 und 1, und
+verlangt, dass sich je zwei W&ouml;rter an mindestens 3 Stellen
+unterscheiden. Auf diese Weise kann man, wenn h&ouml;chstens ein
+&Uuml;bertragungsfehler aufgetreten war, das korrekte Wort eindeutig
+identifizieren. Es ist nat&uuml;rlich w&uuml;nschenswert,
+m&ouml;glichst viele W&ouml;rter einer L&auml;nge zur Verf&uuml;gung
+zu haben. Die Codierungstheorie besteht im wesentlichen aus drei
+Aspekten:<br>
+1. Die Konstruktion m&ouml;glichst guter Codes. Hierf&uuml;r
+werden zahlreiche Methoden der Zahlentheorie, Kombinatorik, und
+algebraischen Geometrie verwendet.<br>
+2. S&auml;tze, die die
+Qualit&auml;t von Codes nach oben beschr&auml;nken. Im obigem Beispiel
+sieht man sofort, dass man nicht mehr als 2^n/(n+1) W&ouml;rter haben
+kann, da es zu jedem Wort n+1 W&ouml;rter gibt, die sich an
+h&ouml;chstens einer Stelle vom Codewort unterscheiden, und diese
+(n+1)-elementigen Mengen disjunkt sind. Mit feineren oder auch
+v&ouml;llig anderen Methoden lassen sich bessere Schranken zeigen.<br>
+3. Algorithmen zur Codierung und Decodierung.<br>
+Die Aspekte 1. und 2. bilden den Schwerpunkt der Vorlesung. Ob auch
+Codes behandelt werden, die Kenntnisse in algebraischer Geometrie
+voraussetzen (Goppa Codes), wird vom Vorwissen der Zuh&ouml;rer
+abh&auml;ngig gemacht.
+</P>
+<H3>Literatur</H3>
+<UL>
+<LI>J.H. van Lint: Introduction to Coding Theory. Springer, mehrere
+Auflagen.
+<LI>F.J. MacWilliams, N.J.A. Sloane: The Theory of Error-correcting
+Codes. North Holland 1977.
+<LI>W. Willems: Codierungstheorie. De Gruyter 1999.
+<LI>W. Willems: Codierungstheorie und Kryptographie. Birkh&auml;user 2008.
+</UL>
+<HR>
+<H3>&Uuml;bungsbl&auml;tter</H3>
+<B>Blatt 1</B> (siehe Vorlesung), 
+<A HREF="KT_WS2008/u2.pdf"><B>Blatt 2</B></A>, 
+<A HREF="KT_WS2008/u3.pdf"><B>Blatt 3</B></A>, 
+<A HREF="KT_WS2008/u4.pdf"><B>Blatt 4</B></A>,
+<A HREF="KT_WS2008/u5.pdf"><B>Blatt 5</B></A>
+<A HREF="KT_WS2008/u6.pdf"><B>Blatt 6</B></A>
+<HR>
+<A HREF="index.html"><B>Back</B></A><B> to Homepage.</B>
+</body>
+</html>
+

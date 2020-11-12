@@ -1,0 +1,79 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+        "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html lang="de">
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html;
+charset=UTF-8">
+<TITLE>Vorlesung 2012/13</TITLE>
+</head>
+<body>
+<H1><U>Einführung in die Algebra</U>, <small>Wintersemester
+    2012/13</small></H1>
+<H3>Vorlesung: Mo 16:15-17:45, Do 8:15-9:45, HS 2</H3>
+<H3>Übungen: in Gruppen, 2 St., Mo 14-16, S0.106; Di, Mi 8-10, S0.103; Do 14-16, S1.101</H3>
+<H3>Übungsassistent: <a
+        href="http://www.mathematik.uni-wuerzburg.de/~koenig/">Joachim
+        König</A></H3>
+<H3>Übungsblätter und weitere Details zur Vorlesung: <a
+        href="http://www.mathematik.uni-wuerzburg.de/~koenig/algws1213/index.html">hier</a></H3>
+<P>
+Die Algebra hat ihre Wurzeln in der Geometrie und Zahlentheorie.
+<H4>Klassische Beispiele</H4>
+<UL>
+<LI> Kann man mit Zirkel und Lineal beliebige Winkel dritteln, oder
+  W&uuml;rfel verdoppeln?
+<LI> Kann man die Nullstellen von Polynomen stets durch Wurzeln und die
+  vier Grundrechenarten ausdr&uuml;cken?
+<LI> Kann man f&uuml;r Funktionen wie <I>exp(-x^2)</I> explizite
+Stammfunktionen angeben?
+<LI> Wie findet man rationale oder ganzzahlige L&ouml;sungen von Sytemen
+  von Polynomen in mehreren Ver&auml;nderlichen, z.B. (f&uuml;r festes
+  <I>n</I>) 
+  <I>X^n+Y^n=Z^n</I> mit <I>X,Y,Z</I> ganzzahlig (Fermat-Problem)?
+</UL>
+<H4>Moderne Beispiele</H4>
+<UL>
+<LI> Wie &uuml;bertr&auml;gt man digitale Daten, bei deren &Uuml;bertragung
+Fehler auftreten k&ouml;nnen, durch Einbau von m&ouml;glichst wenig Redundanz,
+aber mit m&ouml;glichst guter Fehlererkennungs- und
+-korrekturm&ouml;glichkeit? Dies f&uuml;hrt zur Kodierungstheorie.
+<LI> Wie &uuml;bertr&auml;gt man verschl&uuml;sselte Daten &ouml;ffentlich, so
+dass nur der vorgesehene Empf&auml;nger sie entschl&uuml;sseln kann? Das geht
+sogar, ohne dass Sender und Empf&auml;nger vorher geheime Schl&uuml;ssel
+austauschen m&uuml;ssen, selbst die d&uuml;rfen &ouml;ffentlich mitgeteilt
+werden (public key cryptography)! Dies f&uuml;hrt zur Kryptographie.
+</UL>
+In der Algebra haben sich wichtige Strukturen herauskristallisiert, n&auml;mlich
+<em>Gruppen, Ringe</em> und <em>K&ouml;rper</em>, die in der Vorlesung
+einf&uuml;hrend behandelt werden. Ein weiteres Them der Vorlesung ist die
+Galoistheorie, eine reizvolle Kombination aus Gruppen- und K&ouml;rpertheorie.
+</P>
+<H3>Literatur</H3>
+<UL>
+<LI>Artin, M.: <I>Algebra</I>, Birkh&auml;user.</LI>
+<LI>Bourbaki, N.: <I>Algebre</I>, mehrere B&auml;nde (umfassend, aber
+  trocken!).</LI>
+<LI>Fischer, G.: <I>Lehrbuch der Algebra</I>, Vieweg.</LI>
+<LI>Herstein, I. N.: <I>Topics in Algebra</I>, Blaisdell.</LI>
+<LI>Jacobson, N.: <I>Basic Algebra I, II</I>, Freeman.</LI>
+<LI>Karpfinger, C., Meyberg, K.: <I>Algebra</I>, Spektrum.</LI>
+<LI>Lang, S.: <I>Algebra</I>, Addison-Wesley und neuerdings Springer.</LI>
+<LI>Lorenz, F., Lemmermeyer F.: <I>Algebra 1</I>, Elsevier.</LI>
+<LI>Meyberg, K.: <I>Algebra I, II</I>, Carl Hanser.</LI>
+<LI>Schulze-Pillot, R.: <I>Elementare Algebra und Zahlentheorie</I>, Springer.</LI>
+<LI>Stroth, G.: <I>Algebra. Einf&uuml;hrung in die Galoistheorie</I>, de
+Gruyter.</LI>
+<LI>van der Waerden, B.L.: <I>Algebra I, II</I>. Springer.</LI>
+<LI>Wolfart, J.:<I>Einf&uuml;hrung in die Zahlentheorie und
+    Algebra</I>, Vieweg.</LI>
+<LI>W&uuml;stholz, G.: <I>Algebra</I>, Vieweg.</LI>
+</UL>
+<H3>Skript</H3>
+Eine rohe Version eines Skripts zur Vorlesung findet man <A
+HREF="algebra.pdf">hier</A>. F&uuml;r Hinweise auf Fehler oder
+Verbesserungsvorschl&auml;ge bin ich dankbar.
+<HR>
+<A HREF="../index.html"><B>Back</B></A><B> to Homepage.</B>
+</body>
+</html>
+

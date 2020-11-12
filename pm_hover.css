@@ -1,0 +1,44 @@
+body { font-size:1.2em}
+/* table { font-size:1.2em} */
+a:link,a:active {text-decoration: none}
+a:visited {color:purple; text-decoration: none}
+a:hover { background: aqua; text-decoration: none }
+/* .both {background-image: url(svg-tux.jpg); background-repeat: repeat} */
+/* .garden {background-image: url(iris_pale2.jpg); background-repeat: repeat} */
+.cellright { text-align: right; }
+
+#pub h2 {color: black}
+#pub p {color: black}
+#pub p > a {color: crimson}
+#pub {background: white;
+      background-image: none}
+#pub ul {list-style-type: none}
+#pub ul li {padding: 0.1em 0.4em 0.1em 0.4em;
+	    margin: 0.5em 1.5em 0em 0em}
+#pub li > a {font-weight: bold;
+	     text-decoration: none}
+#pub span.title_no_link {font-weight: bold;
+			 text-decoration: none;
+			 color: black}
+
+#pub1 ul li {background: #BDFFDE;
+	    position:relative}
+#pub1 span.title {font-weight: bold;
+		  text-decoration: none;
+		  color: blue}
+#pub1 ul ul li {display: none}
+#pub1 li:hover ul {position:absolute;
+		   background:#BDFFDE;
+		   bottom:0;
+		   left:0;
+		   right:0}
+#pub1 li:hover ul li {display:inline;
+		      border: none;
+		      padding:0}
+#pub1 li:hover ul li a {background: lime;
+			font-weight: normal}
+#pub1 li:hover ul li a:hover {background: aqua}
+
+#pub2 ul li {background: #FFE4C4}
+
+#pub3 ul li {background: #D8BFD8}

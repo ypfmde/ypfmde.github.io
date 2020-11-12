@@ -1,0 +1,94 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="de">
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>Vorlesung 2016</TITLE>
+<link rel="stylesheet" type="text/css" media="all" href="../../pm.css">
+</head>
+<body class="both">
+<!--
+Lüroth nach Schinzel
+Dichtigkeitssatz von Frobenius nach Janusz?
+Davenport?
+-->
+<H1>K&ouml;rperarithmetik (10-M=VKAR)</H1>
+<H2>Sommersemester 2016</H2>
+<H3>Vorlesung: Di 16:00-17:30 in SE 30, Do 10:15-11:45 in S0.107</H3>
+<H3>&Uuml;bungen: Fr 14:15-15:45 in SE 30</H3>
+<H3>&Uuml;bungsbl&auml;tter:
+<a href="blatt1.pdf">Blatt 1, <a href="blatt2.pdf">Blatt 2</a>
+<!--
+Blatt 1</a>, <a href="blatt2.pdf">Blatt 2</a>, <a href="blatt3.pdf">Blatt 3
+-->
+</a></H3>
+Die K&ouml;rperarithmetik (englisch: Field Arithmetic) ist ein Teil
+der Algebra, in dem unter Einsatz der Galoistheorie, Gruppentheorie
+und algebraischen Geometrie versucht wird, zahlentheoretische Aussagen
+zu beweisen, oder k&ouml;rpertheoretische Eigenschaften zu studieren.
+<p>
+Hierbei spielt auch die Theorie endlicher K&ouml;rper oftmals eine
+wichtige Rolle.
+<p>
+Typische Beispiele, die wir in der Vorlesung behandeln wollen,
+sind:
+<ul>
+<li><h4>Weiterführende Themen der Galoistheorie</h4>
+Satz von Dedekind über Galoisgruppen von ganzzahlichen Polynomen
+  modulo Primzahlen, weitere Methoden zur Berechnung von
+  Galoisgruppen, formale Potenzreihen und lokale Galoisgruppen.
+<li><h4>Der Hilbertsche Irreduzibilit&auml;tssatz</h4>
+Ist <i>f(t,X)&isin;Q[t,X]</i> ein irreduzibles Polynom in den
+  Variablen <i>t</i> und <i>X</i> mit rationalen Koeffizienten, dann
+  ist f&uuml;r unendlich viele ganzzahlige <i>a&isin;Z</i> auch das
+  spezialisierte Polynom <i>f(a,X)</i> immer noch irreduzibel.
+<li><h4>Ein Problem von Issai Schur</h4>
+Sei <i>f(X)&isin;Z[X]</i> ein Polynom mit ganzzahligen
+  Koeffizienten. F&uuml;r unendlich viele Primzahlen <i>p</i> sei die
+  Selbstabbildung <i>a&rarr;f(a)</i> des endlichen
+  K&ouml;rpers <i>F<sub>p</sub></i> bijektiv. Was kann man
+  &uuml;ber <i>f(X)</i> sagen? Wir geben die vollst&auml;ndige
+  L&ouml;sung dieses Problems nach Fried/Turnwald.
+
+Hierbei werden unter anderem zwei S&auml;tze &uuml;ber
+  Permutationsgruppen von Burnside und Schur eine zentrale Rolle
+  spielen.
+<li><h4>Die Carlitz-Wan-Vermutung</h4>
+Sei <i>F<sub>q</sub></i> ein endlicher K&ouml;rper mit <i>q</i>
+  Elementen. Ein Polynom <i>f(X)&isin;F<sub>q</sub>[X]</i> ist ein
+  Permutationspolynom auf <i>F<sub>q</sub></i>, wenn die
+  Abbildung <i>a&rarr;f(a)</i> bijektiv ist. Ist
+  etwa <i>f(X)=X<sup>n</sup></i>, dann sieht man leicht,
+  dass <i>f(X)</i> genau dann ein Permutationspolynom ist,
+  wenn <i>n</i> und <i>q-1</i> teilerfremd sind.
+<p>
+Die Carlitz-Wan-Vermutung besagt: Ist <i>f(X)</i> vom Grad <i>n</i>
+  ein Permutationspolynom auf <i>F<sub>q</sub></i>, und ist <i>q</i>
+  gro&szlig; im Vergleich zu <i>n</i> (z.B. <i>q&gt;n<sup>4</sup></i>),
+  dann sind <i>n</i> und <i>q-1</i> teilerfremd. Dies wurde in den
+  90er Jahren von H. Lenstra bewiesen. Wir geben einen elementareren
+  Beweis von Cohen/Fried.
+</ul>
+<H3>Literatur</H3>
+<UL>
+<LI>S. D. Cohen, M. Fried: <i>Lenstra's proof of the Carlitz-Wan
+  conjecture on exceptional polynomials: An elementary version</i>,
+  Finite Fields Appl. 1 (1995), 372-375.
+<LI>M. Fried, M. Jarden: <i>Field Arithmetic</i>, dritte Auflage, Springer.
+<LI>R. Lidl, G. L. Mullen, G. Turnwald: <i>Dickson Polynomials</i>,
+  Longman, Pitman Monographs and Surveys in Pure and Applied
+  Mathematics.
+<LI>P. Müller: Ergänzungskapitel
+  von <a href="../algebra.pdf"><i>Einführung in die Algebra</i></a>.
+<LI>G. Turnwald: <i>On Schur's conjecture</i>,
+  J. Austral. Math. Soc. Ser. A 58 (1995), 312--357.
+<LI>H. V&ouml;lklein: <i>Groups as Galois Groups, An Introduction</i>,
+Cambridge University Press.
+</UL>
+<HR>
+<A HREF="../index.html"><B>Back</B></A><B> to Homepage.</B>
+<HR>
+<p>
+<a href="../impressum.html">Impressum + Datenschutz</a></p>
+</body>
+</html>

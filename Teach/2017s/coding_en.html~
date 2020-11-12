@@ -1,0 +1,78 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>Coding Theory</TITLE>
+<link rel="stylesheet" type="text/css" media="all" href="../../pm.css">
+</HEAD>
+<BODY CLASS="both">
+  <p><a href="coding.html">[Deutsche Version]</a></p>
+<H1>Coding Theory</H1>
+<H2>(Module M=AALGin <em>Topics in Algebra</em>)</H2>
+<H2>Summer Semester 2017</H2>
+<H3>Class: Tue 14:15-15:45, Thu 10:15-11:45, SE 30</H3>
+<H3>Exercises: Wed 8:30-10:00, SE 30</H3>
+  <P>
+The practical purpose of coding theory is the transmission of messages
+with built-in redundancy, which allows to recognize transmission
+errors, or even better, to correct them. A typical approach is the
+following: Select a set of words of length <i>n</i> using the
+letters <i>0</i> and <i>1</i> such that any two of these words differ
+in at least three places. Use these words for transmitting data. If at
+most one error occurred in the transmission of a word, then the
+correct word can be unambiguously identified. It is, of course,
+desirable to have as many words of length <i>n</i> as possible.
+Coding theory is about these aspects:
+    <ul>
+<LI> The construction of codes with best possible parameters. Numerous
+methods of number theory, combinatorics, and algebraic geometry are
+  used for this purpose.
+<LI> Theorems which show the limits of the quality of codes. In the
+example above we see immediately that we cannot have more
+than <i>2<sup>n</sup>/(n+1)</i> words, since for each code word there
+are exactly <i>n+1</i> words differing in at most one position from this
+code word, and these sets of <i>n+1</i> words are pairwise
+disjoint. With finer or even completely different methods better
+  bounds can be shown.
+<LI>Algorithms for coding and decoding.
+</ul>
+<p>
+The lecture will focus on the first two aspects.
+</p>
+<H3>Literature</H3>
+<UL>
+<LI>D. Joyner, J.-L. Kim: <i>Selected Unsolved Problems in Coding
+    Theory.</i> Springer
+    2011 <a href="https://link.springer.com/book/10.1007/978-0-8176-8256-9">(available
+    from uni-wuerzburg.de domain).</a>
+<LI>J.H. van Lint: <i>Introduction to Coding Theory.</i> Springer
+  (several editions).
+<LI>B. Külshammer: <i>Codierungstheorie.</i> <a href="../kuelshammer___codierungstheorie.pdf">Manuscript
+  2014</a>.
+<LI>F.J. MacWilliams, N.J.A. Sloane: <i>The Theory of Error-correcting
+Codes.</i> North Holland 1977.
+<LI>P. Müller: <i>Coding
+  Theory.</i> <a href="../coding.pdf">Incomplete manuscript
+  2017</a>.
+<LI>W. Willems: <i>Codierungstheorie.</i> De Gruyter 1999.
+<LI>W. Willems: <i>Codierungstheorie und Kryptographie.</i>
+Birkh&auml;user 2008.
+</UL>
+<HR>
+<H3>Homework sheets</H3>
+<A HREF="blatt1.pdf"><B>Sheet 1</B></A>,
+<A HREF="blatt2.pdf"><B>Sheet 2</B></A>,
+<A HREF="blatt3.pdf"><B>Sheet 3</B></A>,
+<A HREF="blatt4.pdf"><B>Sheet 4</B></A>,
+<A HREF="blatt5.pdf"><B>Sheet 5</B></A>,
+<A HREF="blatt6.pdf"><B>Sheet 6</B></A><!--,,
+-->
+<HR>
+<A HREF="../index.html"><B>Back</B></A><B> to Homepage.</B>
+<HR>
+<p>
+<a href="../../impressum.html">Impressum + Datenschutz</a></p>
+</body>
+</html>
+

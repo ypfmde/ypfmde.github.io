@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="de">
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>Pflanzen</TITLE>
+<link rel="stylesheet" type="text/css" media="all" href="../../pm.css">
+</HEAD>
+<BODY CLASS="garden">
+<H1>G&auml;rtnern und Z&uuml;chten</H1>
+<!--
+<H2><font color="red">Aktuell: </font><a href="ausstellung.html">17. Lilienausstellung
+    der Europ&auml;ischen Liliengesellschaft in Gerbrunn</a></H2>
+-->
+<H2>Gartenseite von Peter und Teodora M&uuml;ller aus Gerbrunn</H2>
+<p>Wir verbringen viel Freizeit in unserem Garten. Vor allem die
+z&uuml;chterische Besch&auml;ftigung mit Lilien und Taglilien macht uns viel
+Freude.
+<H2>Mehr &uuml;ber unsere Lieblingspflanzen:</H2>
+<table cellspacing=10>
+<tr>
+<td>
+<a href="lilies.html"><IMG SRC="Pictures/pumilum.jpg" height=300 width=225 alt="Bild Lilie"><BR>Lilien</a>
+<td>
+<A HREF="hem.html"><IMG SRC="Pictures/ht00-7.jpg" height=300 width=225 alt="Bild Hemerocallis"><BR>Taglilien</a>
+<td>
+<A HREF="iris.html"><IMG SRC="Pictures/dunkler_wein.jpg"height=300 width=225 alt="Bild Iris"><BR>Iris</a>
+<td>
+<A HREF="peonies.html"><IMG SRC="Pictures/suffro.jpg" height=300 width=225 alt="Bild Paeonie"><BR>P&auml;onien</a>
+</table>
+<H2>Allgemeine Verweise:</H2>
+<UL>
+<LI><A HREF="http://www.gds-staudenfreunde.de/">Gesellschaft der
+    Staudenfreunde</A>
+<LI><A HREF="http://www.wvv.de/de/home/verwertung_und_kompostierung/verwertung_privatkunden/verwertung_p_angebot/erdenmarkt_intro.jsp">Erdenmarkt
+    Würzburg</A>
+<LI><A HREF="http://ccdb.tau.ac.il/home/">Chromosome Counts Database</A>
+</UL>
+<HR>
+<p>
+Zur <A HREF="http://www.mathematik.uni-wuerzburg.de/~mueller/">beruflichen
+    Seite</A>
+</p>
+<HR>
+<p>
+<a href="../impressum.html">Impressum + Datenschutz</a></p>
+</body>
+</html>

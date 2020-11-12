@@ -1,0 +1,75 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>Representation Theory</TITLE>
+<link rel="stylesheet" type="text/css" media="all" href="../../pm.css">
+</HEAD>
+<BODY CLASS="both">
+  <p><a href="darst.html">[Deutsche Version]</a></p>
+<H1>Representation Theory of Finite Groups</H1>
+<H2>(Module 10-M=VGDS)</H2>
+<H2>Winter Semester 2016/17</H2>
+<H3>Class: Tue, Wed 10:15-11:45 in SE 40</H3>
+<H3>Exercises: Mon 16:15-17:45 in SE 40</H3>
+Representation theory uses methods from linear algebra and number
+theory to study finite groups. Let <I>G</I> be a group and <I>V</I> be
+a finite-dimensional vector space. A <em>representation</em> is a
+group homomorphism <I>G&rarr;GL(V)</I>.
+
+Representations arise naturally in finite groups (often in a geometric
+context), or can be used as external tools to prove theorems about
+abstract finite groups. Numerical invariants of the irreducible
+representations sometimes allow to study complicated and huge groups.
+
+Some classical examples, which we cover among other things, are
+<UL>
+<LI> <em>Burnside's <I>p<sup>a</sup>q<sup>b</sup></I>-Theorem:</em> A
+  finite group whose order has only two different prime divisors is solvable.
+<LI> <em>Frobenius' Theorem about Frobenius groups:</em> If every
+  element (except for the identity) of a finite transitive permutation
+  has at most one fixed point, then the set of the fixed point free
+  elements, together with the identity, is a subgroup. For this we
+  present a recent new proof by Knapp and Schmid which hasn't yet
+  entered the textbooks.
+<LI> <em>Brauer's Theorem about fields of definition:</em>
+  Let <i>G</i> be a finite subgroup
+  of <i>GL<sub>n</sub>(&#8450;)</i>. Let <i>m</i> be the exponent
+  of <i>G</i> and <i>K</i> be the <i>m</i>-th cyclotomic field. Then
+  <i>G</i> is conjugate to a subgroup of <i>GL<sub>n</sub>(K)</i>.
+</UL>
+<H3>Books</H3>
+<UL>
+<LI>M.J. Collins: Representations and Characters of Finite Groups,
+  1990, Cambr. Univ. Press.
+<LI>M. Geck:
+  <a href="https://www.buchhandel.de/buch/Algebra-Gruppen-Ringe-Koerper-9783936413151">
+     Algebra: Gruppen, Ringe, Körper; mit einer Einführung in die
+     Darstellungstheorie endlicher Gruppen, </a>edition delkhofen.
+<LI>B. Huppert: Character Theory of Finite Groups, 1998, de Gruyter.
+<LI>I. M. Isaacs: Character Theory of Finite Groups, 1976, Academic
+Press.
+<LI>G. James, M. Liebeck: Representations and Characters of Groups,
+  2001, Cambr. Univ. Press.
+<LI>P. Müller: <a href="../char.pdf">Darstellungstheorie endlicher
+    Gruppen</a>, unvollständiges Skript.
+<LI>J.-P. Serre: Linear Representations of Finite Groups, 1977,
+Springer.
+</UL>
+<HR>
+<H3>Homework sheets</H3>
+<A HREF="blatt1.pdf"><B>Sheet 1</B></A>,
+<A HREF="blatt2.pdf"><B>Blatt 2</B></A>,
+<A HREF="blatt3.pdf"><B>Blatt 3</B></A>,
+<A HREF="blatt4.pdf"><B>Blatt 4</B></A>,
+<A HREF="blatt5.pdf"><B>Blatt 5</B></A>,
+<A HREF="blatt6.pdf"><B>Blatt 6</B></A><!--,
+-->
+<HR>
+<A HREF="../../index.html"><B>Back</B></A><B> to Homepage.</B>
+<HR>
+<p>
+<a href="../../impressum.html">Impressum + Datenschutz</a></p>
+</body>
+</html>

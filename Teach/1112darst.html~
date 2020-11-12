@@ -1,0 +1,47 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+        "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+<TITLE>Vorlesung 2011/12</TITLE>
+</head>
+<body>
+<H1><U>Gruppen und ihre Darstellungen</U>, <small>Wintersemester
+    2011/12</small></H1>
+<H3>Vorlesung: Mo 12:15-13:45, Mi 8:15-9:45, SE 30</H3>
+<H3>&Uuml;bungen: 2st. nach Vereinbarung</H3>
+F&uuml;r eine endliche Gruppe <I>G</I> und einen K&ouml;rper <I>K</I>
+ist eine Darstellung ein Homomorphismus von <I>G</I> nach
+<I>GL(V)</I>, wobei <I>V</I> ein endlich-dimensionaler Vektorraum
+&uuml;ber <I>K</I> ist. Einerseits treten Darstellungen oft auf
+nat&uuml;rliche Weise auf, andererseits lassen sich Darstellungen
+h&auml;ufig dazu benutzen, S&auml;tze &uuml;ber abstrakte endliche
+Gruppen zu beweisen. Numerische Invarianten der irreduziblen
+Darstellungen erlauben es manchmal, Fragen &uuml;ber ansonsten sehr
+komplizierte Gruppen zu bearbeiten.
+
+Zwei klassische Beispiele, die wir unter anderem in der Vorlesung behandeln
+werden, sind die folgenden beiden S&auml;tze:
+<UL>
+<LI> Burnsides <I>p<sup>a</sup>q<sup>b</sup></I>-Theorem: Eine endliche
+Gruppe, deren Ordnung nur durch zwei Primzahlen teilbar ist, ist
+aufl&ouml;sbar.
+<LI> Satz von Frobenius &uuml;ber Frobeniusgruppen: Hat jedes Element einer
+  transitiven endlichen Permutationsgruppe h&ouml;chstens einen Fixpunkt, dann
+  bildet die Menge der fixpunktfreien Elemente (zusammen mit dem Einselement)
+  eine Untergruppe. Hierf&uuml;r geben wir einen aktuellen Beweis von
+  Knapp/Schmid, der in Lehrb&uuml;chern noch nicht zu finden ist.
+</UL>
+<H3>Literatur</H3>
+<UL>
+<LI>M.J. Collins: Representations and Characters of Finite Groups,
+1990, Cambr. Univ. Press.
+<LI>B. Huppert: Character Theory of Finite Groups, 1998, de Gruyter.
+<LI> I. M. Isaacs: Character Theory of Finite Groups, 1976, Academic
+Press.
+<LI>J.-P. Serre: Linear Representations of Finite Groups, 1977,
+Springer.
+</UL>
+<HR>
+<A HREF="index.html"><B>Back</B></A><B> to Homepage.</B>
+</body>
+</html>

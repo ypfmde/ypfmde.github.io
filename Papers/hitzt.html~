@@ -1,0 +1,34 @@
+<HTML>
+<HEAD>
+<TITLE>Finiteness results for Hilbert's irreducibility theorem</TITLE>
+</HEAD>
+<BODY>
+<H1>Finiteness results for Hilbert's irreducibility theorem</H1>
+
+<P> Let <I>k</I> be a number field, <I>O</I> its ring of integers, and
+<I>f(t,X)</I> an irreducible polynomial in <I>k(t)[X]</I>. Hilbert's
+irreducibility theorem gives infinitely many integral specializations
+of <I>t</I> to values <I>a</I> in <I>O</I> such that <I>f(a,X)</I> is
+still irreducible. In this paper we study the set <I>Red(O)</I> of
+those <I>a</I> in <I>O</I> with <I>f(a,X)</I> reducible. We show that
+<I>Red(O)</I> is a finite set under rather weak assumptions. In
+particular, several results of K. Langmann, obtained by Diophantine
+approximation techniques, appear as special cases of some of our
+results.</P>
+
+<P>Our method is completely different. We use elementary group theory,
+valuation theory, and Siegel's theorem about integral points on
+algebraic curves. Indeed, using the Siegel-Lang extension of
+Siegel's theorem, most of our results hold over more general fields.
+</P>
+<H2>Download:</H2>
+<UL>
+<LI><A HREF="hitzt.pdf">pdf</A>
+<LI><A HREF="hitzt.dvi">dvi</A>
+</UL>
+<HR>
+<P>
+<A HREF="../index.html">Back</A> to Homepage.
+</P>
+</BODY>
+</HTML>

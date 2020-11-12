@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="de">
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>Darstellungstheorie</TITLE>
+<link rel="stylesheet" type="text/css" media="all" href="../../pm.css">
+</HEAD>
+<BODY CLASS="both">
+<H1>Darstellungstheorie endlicher Gruppen</H1>
+<H2>(im Rahmen des Moduls <em>Gruppen und ihre
+    Darstellungen</em>)</H2>
+<H2>Wintersemester 2014/15</H2>
+<H3>Vorlesung: Mo 12:15-13:45 in SE 40, Mi 14:15-15:45 in SE 30</H3>
+<H3>&Uuml;bungen: Do 14:15-15:45 in SE 40</H3>
+F&uuml;r eine endliche Gruppe <I>G</I> und einen K&ouml;rper <I>K</I>
+ist eine Darstellung ein Homomorphismus von <I>G</I> nach
+<I>GL(V)</I>, wobei <I>V</I> ein endlich-dimensionaler Vektorraum
+&uuml;ber <I>K</I> ist. Einerseits treten Darstellungen oft auf
+nat&uuml;rliche Weise auf, andererseits lassen sich Darstellungen
+h&auml;ufig dazu benutzen, S&auml;tze &uuml;ber abstrakte endliche
+Gruppen zu beweisen. Numerische Invarianten der irreduziblen
+Darstellungen erlauben es manchmal, Fragen &uuml;ber ansonsten sehr
+komplizierte Gruppen zu bearbeiten.
+
+Zwei klassische Beispiele, die wir unter anderem in der Vorlesung behandeln
+werden, sind die folgenden beiden S&auml;tze:
+<UL>
+<LI> <em>Burnsides <I>p<sup>a</sup>q<sup>b</sup></I>-Theorem:</em> Eine endliche
+Gruppe, deren Ordnung nur durch zwei Primzahlen teilbar ist, ist
+aufl&ouml;sbar.
+<LI> <em>Satz von Frobenius &uuml;ber Frobeniusgruppen:</em> Hat jedes
+  Element einer transitiven endlichen Permutationsgruppe
+  h&ouml;chstens einen Fixpunkt, dann bildet die Menge der
+  fixpunktfreien Elemente (zusammen mit dem Einselement) eine
+  Untergruppe. Hierf&uuml;r geben wir einen aktuellen Beweis von
+  Knapp/Schmid, der in Lehrb&uuml;chern noch nicht zu finden ist.
+</UL>
+<H3>Literatur</H3>
+<UL>
+<LI>M.J. Collins: Representations and Characters of Finite Groups,
+1990, Cambr. Univ. Press.
+<LI>B. Huppert: Character Theory of Finite Groups, 1998, de Gruyter.
+<LI>I. M. Isaacs: Character Theory of Finite Groups, 1976, Academic
+Press.
+<LI>G. James, M. Liebeck: Representations and Characters of Groups,
+  2001, Cambr. Univ. Press.
+<LI>P. Müller: <a href="../char.pdf">Darstellungstheorie endlicher
+    Gruppen</a>, unvollständiges Skript.
+<LI>J.-P. Serre: Linear Representations of Finite Groups, 1977,
+Springer.
+</UL>
+<HR>
+<H3>Übungsblätter</H3>
+<A HREF="blatt1.pdf"><B>Blatt 1</B></A>,
+<A HREF="blatt2.pdf"><B>Blatt 2</B></A>,
+<A HREF="blatt3.pdf"><B>Blatt 3</B></A><!--,
+<A HREF="blatt4.pdf"><B>Blatt 4</B></A>,
+<A HREF="blatt5.pdf"><B>Blatt 5</B></A>
+<A HREF="KT_WS2008/u5.pdf"><B>Blatt 5</B></A>
+<A HREF="KT_WS2008/u6.pdf"><B>Blatt 6</B></A>
+-->
+<HR>
+<A HREF="../../index.html"><B>Back</B></A><B> to Homepage.</B>
+<HR>
+<p>
+<a href="../../impressum.html">Impressum + Datenschutz</a></p>
+</body>
+</html>

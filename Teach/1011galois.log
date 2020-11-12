@@ -1,0 +1,36 @@
+This is pdfTeX, Version 3.1415926-1.40.10 (TeX Live 2009/Debian) (format=latex 2010.6.10)  28 JUL 2010 16:43
+entering extended mode
+ restricted \write18 enabled.
+ %&-line parsing enabled.
+**1011galois.html
+(./1011galois.html
+LaTeX2e <2009/09/24>
+Babel <v3.8l> and hyphenation patterns for english, usenglishmax, dumylang, noh
+yphenation, ngerman, german, german-x-2009-06-19, ngerman-x-2009-06-19, loaded.
+
+
+! LaTeX Error: Missing \begin{document}.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.1 <
+     !DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+? 
+! Interruption.
+\GenericError  ...                                
+                                                  \endgroup 
+l.1 <
+     !DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+? x
+ 
+Here is how much of TeX's memory you used:
+ 6 strings out of 495022
+ 152 string characters out of 1181058
+ 45235 words of memory out of 3000000
+ 3297 multiletter control sequences out of 15000+50000
+ 3640 words of font info for 14 fonts, out of 3000000 for 9000
+ 28 hyphenation exceptions out of 8191
+ 5i,0n,4p,68b,14s stack positions out of 5000i,500n,10000p,200000b,50000s
+No pages of output.

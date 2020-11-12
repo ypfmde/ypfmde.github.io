@@ -1,0 +1,48 @@
+body { 
+    font-size:1.2em
+}
+/* table { font-size:1.2em} */
+a:link,a:active {
+	   text-decoration: none
+       }
+a:hover { 
+    /*background: aqua; */
+    text-decoration: underline
+}
+
+a:visited {
+    color:purple; 
+    text-decoration: none
+}
+.cellright { text-align: right; }
+
+#pub h2 {
+    color: black
+}
+#pub {
+    color: black;
+    background: white;
+    background-image: none
+}
+#pub ul {
+    list-style-type: none
+}
+#pub ul li {
+    padding: 0.1em 0.4em 0.1em 0.4em;
+    margin: 0.5em 1.5em 0em 0em;
+    background: #DCDCDC;
+    position:relative
+}
+#pub li > a {
+    /*font-weight: bold;*/
+    /*text-decoration: none*/
+}
+#pub ul ul li {
+    display: none
+}
+#pub span.title {
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    font-size: larger
+}

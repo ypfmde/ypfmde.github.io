@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+        "http://www.w3.org/TR/REC-html40/strict.dtd">
+<HTML>
+<HEAD>
+<TITLE>Lang's Theorem</TITLE>
+</HEAD>
+<BODY>
+<H1>Algebraic groups over finite fields, a quick proof of Lang's
+theorem</H1>
+
+<P>
+
+We give an easy proof of Lang's theorem about the surjectivity of the
+Lang map <I>g --> g<SUP>-1</SUP>F(g)</I> on a linear algebraic group defined
+over a finite field, where <I>F</I> is a Frobenius endomorphism.
+
+</P>
+<H2>Download:</H2>
+<UL>
+<LI><A HREF="lang.pdf">pdf</A>
+<LI><A HREF="lang.dvi">dvi</A>
+</UL>
+<HR>
+<P>
+<A HREF="../index.html">Back</A> to Homepage.
+</P>
+</BODY>
+</HTML>

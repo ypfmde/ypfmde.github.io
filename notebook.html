@@ -1,0 +1,1125 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html lang="en">
+<HEAD>
+<TITLE>SuSE 8.2 auf Asus L3500D</TITLE>
+</HEAD>
+<BODY>
+<H1>SuSE 8.2 auf Asus L3500D</H1>
+<p>Im April kaufte ich mir das Asus L3500D Notebook, ausgestattet mit einem
+Mobile Athlon XP 2000 Prozessor, SiS 740 Chipsatz, 40G Platte mit ultra DMA
+100 Unterst&uuml;tzung, Combo DVD-CDRW Laufwerk, Floppy, und eine ganze Menge
+Schnittstellen. Siehe auch das <a href="#lspci">lspci Listing</a>. Das
+Notebook kam ohne Betriebssystem, f&uuml;r MS-Windows habe ich weder
+eine Verwendung noch Sympathie ...</p>
+
+<p>Zur technischen Qualit&auml;t des Notebooks kann ich nichts sagen, da mir
+Vergleiche fehlen. Allerdings bin ich bisher sehr damit zufrieden.</p>
+
+<H2>Wie kommt man ins BIOS?</H2>
+<p>Die Zufriedenheit mit dem Notebook bezieht sich nicht auf das
+ziemlich armselige Heftchen, das mit dem Notebook kam. Beim
+Einschalten des Notebooks wird nicht (oder zu kurz) angezeigt, wie man ins BIOS
+kommt. Der Blick in die Anleitung -- siehe obiger Kommentar dazu --
+hilft nat&uuml;rlich auch nicht weiter, die entsprechende Passage
+enth&auml;lt einen Druckfehler, der es nicht erm&ouml;glicht zu
+erraten, was man nun dr&uuml;cken soll. Experimentieren ergab, dass
+die <b>F2</b>-Taste die L&ouml;sung ist. Das ist wichtig zu wissen,
+denn um von CD zu booten, musste man bei mir erst mal die
+Bootreihenfolge &auml;ndern.</p>
+<H2>Erste Tests</H2>
+<p>Ein erster Test mit Knoppix 3.1 zeigte, dass die wichtigsten Sachen
+funktionieren w&uuml;rden. Ein Versuch mit SuSE 8.1 sah so aus, als ob die
+Installation einige Handarbeit erfordern w&uuml;rde. Da SuSE 8.2 noch nicht
+raus war, gab ich Mandrake 9.1 einen Versuch. Sah alles ganz gut aus, nur das
+Gebl&auml;se lief alle paar Minuten lautstark an. Ich ging nicht auf
+Ursachensuche, sondern wartete noch die paar Tage auf SuSE 8.2.</p>
+
+<H2>Installation von SuSE 8.2</H2>
+<p>Gleich vorweg, die Dinge, die mir am wichtigsten sind,
+funktionierten nach einer einfachen Installation und Konfiguration mit
+Yast2 schnell und ohne manuelles Rumbasteln. Die einzige Ausnahme war
+der Betrieb des X-Servers, siehe unten. Das oben erw&auml;hnte Problem
+mit dem Gebl&auml;se unter Mandrake tritt nicht auf. Es l&auml;uft nur
+gelegentlich an, und auch dann nicht besonders laut. Allerdings
+scheint der Akku beim Laden so viel Hitze zu produzieren, dass es dann
+&ouml;fter angeht.</p>
+<p>Das folgende ist vielleicht nur von beschr&auml;nktem
+Nutzen, da ich viele der technischen M&ouml;glichkeiten meines
+Notebooks bisher nicht probiert habe.</p> Hier die wichtigsten Punkte
+der Installation, soweit ich mich noch erinnern kann.
+<H3>Graphik</H3>
+
+<p>SaX2 verwendet nach der korrekten Hardware-Erkennung den SIS
+Treiber. Nach einem Neustart des X-Servers blieb bei mir alles
+schwarz. Auch die Textkonsole war davon betroffen, auch sie war
+schwarz. Dieser Effekt blieb auch bei einem Neustart, sobald der
+X-Server startete. Im log-File des X-Servers konnte ich allerdings
+keine Fehlermeldungen finden. Die Hardware war dabei &uuml;brigens nie
+eingefroren, ich konnte mich stets auf einer Textkonsole blind als
+root einloggen und den Rechner runterfahren.</p>
+
+<p>Booten mit Knoppix und ein Blick in die von Knoppix erzeugte XF86Config-4
+Datei gab mir Hinweise, wie ich XF86Config editieren kann, um ein
+funktionierendes X zu erhalten. Knoppix verwendet statt des sis Treibers den
+fbdev Treiber. Mit den entsprechenden &Auml;nderungen konnte ich X
+starten. Dann verwendete ich Sax2 zur erneuten Konfiguration, allerdings mit
+der &Auml;nderung, dass nicht der empfohlene sis Treiber, sondern der vesa
+Treiber verwendet wird. Siehe <a href="#xf86vesa">XF86Config f&uuml;r vesa</a>
+f&uuml;r eine Beispieldatei (abzulegen in /etc/X11/XF86Config).</p>
+
+<p>Mittlerweile habe ich den aktuellen sis Treiber f&uuml;r X von der Homepage
+http://www.winischhofer.net/ des Treiberautors Thomas Winischhofer
+heruntergeladen und probiert, damit funktioniert alles. Auch hierf&uuml;r eine,
+sicher sehr unprofesionelle, <a href="#xf86sis">XF86Config Datei</a>.</p>
+
+<p>Der SIS Treiber von Winischhofer unterst&uuml;tzt keine 3D
+Harwarebeschleunigung, und die fbdev und vesa Treiber nat&uuml;rlich auch
+nicht. Auf Tuxracer oder sowas muss man also verzichten ...</p>
+
+<p>VGA-Ausgang und Viedeoausgang habe ich nicht probiert.</p>
+
+<H3>Tastatur</H3>
+<p>Wird, wenn ich mich recht entsinne, wurde sie von SaX2 korrekt
+installiert. Auf jeden Fall funktioniert sie, wenn in XF86Config die
+ensprechende Passage</p>
+<pre>
+Section "InputDevice"
+ Driver "Keyboard"
+ Identifier "Keyboard[0]"
+ Option "MapName" "Standard Keyboard [ pc105 ]"
+ Option "Protocol" "Standard"
+ Option "XkbLayout" "de"
+ Option "XkbModel" "pc105"
+ Option "XkbRules" "xfree86"
+ Option "XkbVariant" "nodeadkeys"
+EndSection
+</pre>
+<p>lautet.</p>
+
+<H3>Maus</H3>
+<p>Die mitgelieferte optische USB-Maus wird korrekt installiert, sogar
+das R&auml;dchen funktioniert.</p>
+
+<H3>Touchpad</H3>
+<p>Auch das wird korrekt installiert. Habe es bei mir allerdings
+deaktiviert, da ich stets die Maus verwende. Siehe die <a
+href="#xf86sis">XF86Config Datei</a> (Abschnitte "InputDevice" und
+"ServerLayout") f&uuml;r eine m&ouml;gliche Konfiguration.</p>
+
+<H3>Combo-Laufwerk</H3>
+<p>Lesen und Brennen von CDs funktionieren ohne zus&auml;tzliche
+Konfigurationsschritte. Auch DVDs werden gelesen, und SuSE 8.2 bootet von der
+DVD.</p>
+
+<H3>Floppy</H3>
+<P>Funktioniert nat&uuml;rlich auch ohne weitere Konfiguration.</p>
+
+<H3>Sound</H3>
+<p>Wird korrekt erkannt und konfiguriert. Auch das interne Mikrofon
+funktioniert. Externe Lautsprecher und Mikrofone funktionieren ebenso.</p>
+
+<H3>Infrarot</H3>
+<p>Infrarot funktioniert. Dazu muss man vorher im Bios die
+Infrarotschnittstelle aktivieren, und danach als root mit ``rcirda start''
+die Kommunikation starten. Standardm&auml;ssig ist das wegen des
+Stromverbrauchs abgeschaltet. Der schnelle Modus FIR wird anscheinend
+nicht ohne weiteres von Linux unterst&uuml;tzt.
+
+Mehr dazu siehe auf der <a
+href="http://tuxmobil.org/howtos.html">Tuxmobil-HOWTO Seite</a>.</p>
+
+<H3>PCMCIA</H3>
+<p>Nicht getestet.</p>
+
+<H3>Firewire</H3>
+<p>Nicht getestet.</p>
+
+<H3>Ethernet</H3>
+<p>Karte wird korrekt erkannt. Hostname, IP-Nummer, nameserver, router
+etc. mittels YAST2 eintragen, und schon klappt das LAN.</p>
+
+<H3>Modem</H3>
+<p>Da ich ein externes Modem besitze, welches ich &uuml;ber die
+serielle Schnittstelle benutze, habe ich mich nicht n&auml;her mit dem
+internen Modem befasst. Allerdings schrieb mir Daniel John
+(dj&#64;daniel-john.de): ``Das Modem l&auml;uft mit dem Treiber
+slmdm-2.7.10.tar.gz (Download auf
+http://linmodems.technion.ac.il/packages/smartlink/ ). Mit den
+Informationen in der README-Datei sollte der Treiber problemlos zu
+installieren sein''.</p>
+
+<H3>Parallel-Port</H3>
+<p>Drucker (HP Lasterjet2) und Scanner (UMAX Astra 2000P mit sanebackend von
+sourceforge) funktionieren einwandfrei.</p>
+
+<H3>USB</H3>
+<p>USB-Maus und Drucker (hp deskjet 5550) funktionieren problemlos.</p>
+
+<H3>APM/ACPI</H3>
+<p>Gem&auml;ss Anleitung und BIOS gibt es keine APM-Unterst&uuml;tzung. Die
+ACPI-Unterst&uuml;tzung in Linux ist wohl noch kaum vorhanden. Wenn ich den
+Kernel mit ACPI-Unterst&uuml;tzung verwende, kann ich den Akkustand, Temperatur
+und sowas mit acpi -V bekommen. (Dazu m&uuml;ssen die entsprechenden Module
+battery, processor, ac und thermal geladen werden.)</p>
+
+<p>ABER! - Die ACPI-Unterst&uuml;tzung deaktiviert die Funktionstasten. Das
+          st&ouml;rt mich besonders bei den Helligkeitstasten. Deshalb starte
+          ich oft auch mit der Kerneloption acpi=off.</p>
+
+<H3>Prozessorgeschwindigkeit</H3>
+<p>Mit SuSE 8.2 l&auml;sst sich die CPU-Geschwindigkeit nicht
+regeln. Allerdings hat das Notebook eine Besonderheit: Schaltet man es
+ohne Netzanschluss an, so halbiert das BIOS die Frequenz. Das
+l&auml;sst sich anscheinend dann im laufenden Betrieb mit dem SuSE
+2.20 Kernel nicht mehr r&uuml;ckg&auml;ngig machen.
+
+<H2>Feedback</H2>
+<p>An Erg&auml;nzungen und Korrekturen bin ich nat&uuml;rlich
+interessiert. Bitte email an &#80;eter.Mueller&#64;iwr.uni-heidelberg.de.</p>
+
+<H2>Links</H2>
+<p>Auf der <a
+href="http://tuxmobil.org/asus.html">Tuxmobil-Asus-Seite</a> findet
+man weitere Erfahrungsberichte zur Linux-Installation auf dem Asus
+L3500D oder dem im wesentlichen baugleichen L3400D.</p>
+<p>Zwei Seiten, die man auch schon vor dem Kauf eines Notebooks
+besuchen sollte, stellen vielf&auml;ltige Informationen und Links zum
+Thema Linux auf dem Notebook bereit:</p>
+<p><a href="http://tuxmobil.org/">UniX with Mobile Computers</a></p>
+<p><a href="http://www.linux-on-laptops.com/">Linux on Laptops</a></p>
+
+<H2>Dateien</H2>
+<p>Hier findet man die folgenden, eventuell hilfreichen Dateien
+(einige leicht edititiert, um HTML-Fehler zu vermeiden):</p>
+<p><a href="#lspci">lspci Listing</a></p>
+<p><a href="#lsmod">lsmod Listing</a></p>
+<p><a href="#bootmsg">Boot message</a></p>
+<p><a href="#xf86vesa">XF86Config f&uuml;r vesa</a></p>
+<p><a href="#xf86sis">XF86Config f&uuml;r sis</a></p>
+
+<a name="lspci"></a>
+<H2>lspci Listing</H2>
+lspci -v produziert folgenden output:
+
+<pre>
+00:00.0 Host bridge: Silicon Integrated Systems [SiS] 740 Host (rev 01)
+        Flags: bus master, medium devsel, latency 32
+        Memory at e8000000 (32-bit, non-prefetchable) [size=64M]
+        Capabilities: [c0] AGP version 2.0
+
+00:01.0 PCI bridge: Silicon Integrated Systems [SiS] SiS 530 Virtual PCI-to-PCI bridge (AGP) (prog-if 00 [Normal decode])
+        Flags: bus master, fast devsel, latency 0
+        Bus: primary=00, secondary=01, subordinate=01, sec-latency=0
+        I/O behind bridge: 0000d000-0000dfff
+        Memory behind bridge: e7800000-e7ffffff
+        Prefetchable memory behind bridge: f0000000-febfffff
+
+00:02.0 ISA bridge: Silicon Integrated Systems [SiS] 85C503/5513 (rev 04)
+        Flags: bus master, medium devsel, latency 0
+
+00:02.5 IDE interface: Silicon Integrated Systems [SiS] 5513 [IDE] (prog-if 80 [Master])
+        Subsystem: Asustek Computer, Inc.: Unknown device 1658
+        Flags: bus master, medium devsel, latency 32
+        I/O ports at b800 [size=16]
+        Capabilities: [58] Power Management version 2
+
+00:02.6 Modem: Silicon Integrated Systems [SiS] Intel 537 [56k Winmodem] (rev a0) (prog-if 00 [Generic])
+        Subsystem: Asustek Computer, Inc.: Unknown device 1696
+        Flags: bus master, medium devsel, latency 32, IRQ 5
+        I/O ports at b400 [size=256]
+        I/O ports at b000 [size=128]
+        Capabilities: [48] Power Management version 2
+
+00:02.7 Multimedia audio controller: Silicon Integrated Systems [SiS] SiS7012 PCI Audio Accelerator (rev a0)
+        Subsystem: Asustek Computer, Inc.: Unknown device 1653
+        Flags: bus master, medium devsel, latency 32, IRQ 5
+        I/O ports at a800 [size=256]
+        I/O ports at a400 [size=128]
+        Capabilities: [48] Power Management version 2
+
+00:03.0 USB Controller: Silicon Integrated Systems [SiS] SiS7001 USB Controller (rev 0f) (prog-if 10 [OHCI])
+        Subsystem: Asustek Computer, Inc.: Unknown device 1659
+        Flags: bus master, medium devsel, latency 32, IRQ 9
+        Memory at e7000000 (32-bit, non-prefetchable) [size=4K]
+        Capabilities: [dc] Power Management version 2
+
+00:03.1 USB Controller: Silicon Integrated Systems [SiS] SiS7001 USB Controller (rev 0f) (prog-if 10 [OHCI])
+        Subsystem: Asustek Computer, Inc.: Unknown device 1659
+        Flags: bus master, medium devsel, latency 32, IRQ 9
+        Memory at e6800000 (32-bit, non-prefetchable) [size=4K]
+        Capabilities: [dc] Power Management version 2
+
+00:03.2 USB Controller: Silicon Integrated Systems [SiS] SiS7001 USB Controller (rev 0f) (prog-if 10 [OHCI])
+        Subsystem: Asustek Computer, Inc.: Unknown device 1659
+        Flags: bus master, medium devsel, latency 32, IRQ 9
+        Memory at e6000000 (32-bit, non-prefetchable) [size=4K]
+        Capabilities: [dc] Power Management version 2
+
+00:03.3 USB Controller: Silicon Integrated Systems [SiS] SiS7002 USB 2.0 (prog-if 20 [EHCI])
+        Subsystem: Asustek Computer, Inc.: Unknown device 165a
+        Flags: bus master, medium devsel, latency 32, IRQ 9
+        Memory at e5800000 (32-bit, non-prefetchable) [size=4K]
+        Capabilities: [50] Power Management version 2
+
+00:04.0 Ethernet controller: Silicon Integrated Systems [SiS] SiS900 10/100 Ethernet (rev 90)
+        Subsystem: Asustek Computer, Inc.: Unknown device 1455
+        Flags: bus master, medium devsel, latency 32, IRQ 11
+        I/O ports at a000 [size=256]
+        Memory at e5000000 (32-bit, non-prefetchable) [size=4K]
+        Expansion ROM at unassigned [disabled] [size=128K]
+        Capabilities: [40] Power Management version 2
+
+00:0a.0 CardBus bridge: Ricoh Co Ltd RL5c476 II (rev aa)
+        Subsystem: Asustek Computer, Inc.: Unknown device 1654
+        Flags: bus master, medium devsel, latency 168, IRQ 3
+        Memory at e4800000 (32-bit, non-prefetchable) [size=4K]
+        Bus: primary=00, secondary=02, subordinate=05, sec-latency=176
+        Memory window 0: 10000000-103ff000 (prefetchable)
+        Memory window 1: 10400000-107ff000
+        I/O window 0: 00004000-000040ff
+        I/O window 1: 00004400-000044ff
+        16-bit legacy interface ports at 0001
+
+00:0a.1 CardBus bridge: Ricoh Co Ltd RL5c476 II (rev aa)
+        Subsystem: Asustek Computer, Inc.: Unknown device 1654
+        Flags: bus master, medium devsel, latency 168, IRQ 5
+        Memory at e2800000 (32-bit, non-prefetchable) [size=4K]
+        Bus: primary=00, secondary=06, subordinate=09, sec-latency=176
+        Memory window 0: 10800000-10bff000 (prefetchable)
+        Memory window 1: 10c00000-10fff000
+        I/O window 0: 00004800-000048ff
+        I/O window 1: 00004c00-00004cff
+        16-bit legacy interface ports at 0001
+
+00:0a.2 FireWire (IEEE 1394): Ricoh Co Ltd R5C552 IEEE 1394 Controller (rev 02) (prog-if 10 [OHCI])
+        Subsystem: Asustek Computer, Inc.: Unknown device 1657
+        Flags: bus master, medium devsel, latency 32, IRQ 11
+        Memory at e0800000 (32-bit, non-prefetchable) [size=2K]
+        Capabilities: [dc] Power Management version 2
+
+01:00.0 VGA compatible controller: Silicon Integrated Systems [SiS] SiS650/651/M650/740 PCI/AGP VGA Display Adapter (prog-if 00 [VGA])
+        Subsystem: Asustek Computer, Inc.: Unknown device 1612
+        Flags: 66Mhz, medium devsel
+        BIST result: 00
+        Memory at f0000000 (32-bit, prefetchable) [size=128M]
+        Memory at e7800000 (32-bit, non-prefetchable) [size=128K]
+        I/O ports at d800 [size=128]
+        Capabilities: [40] Power Management version 2
+        Capabilities: [50] AGP version 2.0
+</pre>
+
+<a name="lsmod"></a>
+<H2>lsmod Listing</H2>
+lsmod produziert folgenden output:
+<pre>
+Module                  Size  Used by    Not tainted
+ppp_deflate             3384   0  (autoclean)
+zlib_deflate           18648   0  (autoclean) [ppp_deflate]
+bsd_comp                4216   0  (autoclean)
+ppp_async               6816   0  (autoclean)
+ppp_generic            17212   0  (autoclean) [ppp_deflate bsd_comp ppp_async]
+slhc                    5104   0  (autoclean) [ppp_generic]
+snd-pcm-oss            50144   0  (autoclean)
+snd-mixer-oss          15704   0  (autoclean) [snd-pcm-oss]
+videodev                6176   0  (autoclean)
+isa-pnp                31560   0  (unused)
+usbserial              19580   0  (autoclean) (unused)
+parport_pc             28200   1  (autoclean)
+lp                      6400   0  (autoclean)
+parport                25352   1  (autoclean) [parport_pc lp]
+ipv6                  144980  -1  (autoclean)
+printer                 7104   0 
+snd-intel8x0           22244   0 
+snd-pcm                71168   0  [snd-pcm-oss snd-intel8x0]
+snd-timer              13376   0  [snd-pcm]
+snd-ac97-codec         35696   0  [snd-intel8x0]
+snd-mpu401-uart         3840   0  [snd-intel8x0]
+snd-rawmidi            15584   0  [snd-mpu401-uart]
+snd-seq-device          4512   0  [snd-rawmidi]
+snd                    40900   0  [snd-pcm-oss snd-mixer-oss snd-intel8x0 snd-pcm snd-timer snd-ac97-codec snd-mpu401-uart snd-rawmidi snd-seq-device]
+soundcore               3748   0  [snd]
+keybdev                 2124   0  (unused)
+hid                    19428   0  (unused)
+ds                      7052   2 
+yenta_socket           10656   2 
+pcmcia_core            45504   0  [ds yenta_socket]
+st                     29716   0  (autoclean) (unused)
+sr_mod                 13720   0  (autoclean)
+sg                     27804   0  (autoclean)
+mousedev                4372   1 
+joydev                  5792   0  (unused)
+evdev                   4192   0  (unused)
+input                   3264   0  [keybdev hid mousedev joydev evdev]
+usb-ohci               19720   0  (unused)
+ehci-hcd               17612   0  (unused)
+usbcore                63116   1  [usbserial printer hid usb-ohci ehci-hcd]
+raw1394                15828   0  (unused)
+ohci1394               17716   0  (unused)
+ieee1394               36496   0  [raw1394 ohci1394]
+thermal                 6084   0  (unused)
+processor               8216   0  [thermal]
+ac                      1696   0  (unused)
+battery                 5600   0  (unused)
+ide-scsi               10384   0 
+ide-cd                 31964   0 
+cdrom                  30304   0  [sr_mod ide-cd]
+lvm-mod                67812   0  (autoclean)
+ext3                   85928   4 
+jbd                    50896   4  [ext3]
+</pre>
+
+<a name="bootmsg"></a>
+<H2>Boot message</H2>
+Die Datei /var/log/boot.msg
+<pre>
+Inspecting /boot/System.map-2.4.20-4GB-athlon
+Loaded 20849 symbols from /boot/System.map-2.4.20-4GB-athlon.
+Symbols match kernel version 2.4.20.
+Loaded 151 symbols from 10 modules.
+klogd 1.4.1, log source = ksyslog started.
+<4>Linux version 2.4.20-4GB-athlon (root@Athlon.suse.de) (gcc version 3.3 20030226 (prerelease) (SuSE Linux)) #1 Mon Mar 17 17:56:47 UTC 2003
+<6>BIOS-provided physical RAM map:
+<4> BIOS-e820: 0000000000000000 - 000000000009fc00 (usable)
+<4> BIOS-e820: 000000000009fc00 - 00000000000a0000 (reserved)
+<4> BIOS-e820: 00000000000f0000 - 0000000000100000 (reserved)
+<4> BIOS-e820: 0000000000100000 - 000000000bfea000 (usable)
+<4> BIOS-e820: 000000000bfea000 - 000000000bfef000 (ACPI data)
+<4> BIOS-e820: 000000000bfef000 - 000000000bfff000 (reserved)
+<4> BIOS-e820: 000000000bfff000 - 000000000c000000 (ACPI NVS)
+<4> BIOS-e820: 00000000ffff0000 - 0000000100000000 (reserved)
+<5>0MB HIGHMEM available.
+<5>191MB LOWMEM available.
+<7>ACPI: have wakeup address 0xc0001000
+<4>On node 0 totalpages: 49130
+<4>zone(0): 4096 pages.
+<4>zone(1): 45034 pages.
+<4>zone(2): 0 pages.
+<4>Building zonelist for node : 0
+<4>Kernel command line: root=/dev/hda2 vga=0x317  hdc=ide-scsi hdclun=0 splash=verbose splash=verbose acpi=off PROFILE=home
+<6>ide_setup: hdc=ide-scsi
+<6>ide_setup: hdclun=0
+<6>bootsplash: verbose mode.
+<6>bootsplash: verbose mode.
+<6>Initializing CPU#0
+<4>Detected 803.421 MHz processor.
+<4>Console: colour dummy device 80x25
+<4>Calibrating delay loop... 1602.35 BogoMIPS
+<6>Memory: 190428k/196520k available (1696k kernel code, 5704k reserved, 572k data, 172k init, 0k highmem)
+<6>Dentry cache hash table entries: 32768 (order: 6, 262144 bytes)
+<6>Inode cache hash table entries: 16384 (order: 5, 131072 bytes)
+<6>Mount cache hash table entries: 512 (order: 0, 4096 bytes)
+<4>Buffer-cache hash table entries: 8192 (order: 3, 32768 bytes)
+<4>Page-cache hash table entries: 65536 (order: 6, 262144 bytes)
+<6>CPU: L1 I Cache: 64K (64 bytes/line), D cache 64K (64 bytes/line)
+<6>CPU: L2 Cache: 256K (64 bytes/line)
+<6>Intel machine check architecture supported.
+<6>Intel machine check reporting enabled on CPU#0.
+<7>CPU:     After generic, caps: 0383f9ff c1cbf9ff 00000000 00000000
+<7>CPU:             Common caps: 0383f9ff c1cbf9ff 00000000 00000000
+<4>CPU: AMD mobile AMD Athlon(tm) XP-M 2000+ stepping 01
+<6>Enabling fast FPU save and restore... done.
+<6>Enabling unmasked SIMD FPU exception support... done.
+<6>Checking 'hlt' instruction... OK.
+<4>POSIX conformance testing by UNIFIX
+<4>mtrr: v1.40 (20010327) Richard Gooch (rgooch@atnf.csiro.au)
+<4>mtrr: detected mtrr type: Intel
+<6>ACPI: Subsystem revision 20030228
+<6>ACPI: Disabled via command line (acpi=off)
+<6>PCI: PCI BIOS revision 2.10 entry at 0xf1050, last bus=1
+<6>PCI: Probing PCI hardware
+<4>PCI: ACPI tables contain no PCI IRQ routing entries
+<4>PCI: Probing PCI hardware (bus 00)
+<6>PCI: Using IRQ router SIS [1039/0008] at 00:02.0
+<6>Linux NET4.0 for Linux 2.4
+<6>Based upon Swansea University Computer Society NET3.039
+<4>Initializing RT netlink socket
+<6>apm: BIOS not found.
+<4>Starting kswapd
+<4>bigpage subsystem: allocated 0 bigpages (=0MB).
+<4>kinoded started
+<5>VFS: Disk quotas vdquot_6.5.1
+<5>aio_setup: num_physpages = 12282
+<5>aio_setup: sizeof(struct page) = 48
+<6>vesafb: framebuffer at 0xf0000000, mapped to 0xcc80d000, size 65472k
+<6>vesafb: mode is 1024x768x16, linelength=2048, pages=4
+<6>vesafb: protected mode interface info at cbc7:0004
+<6>vesafb: scrolling: redraw
+<6>vesafb: directcolor: size=0:5:6:5, shift=0:11:5:0
+<6>Looking for splash picture... no good signature found.
+<4>Console: switching to colour frame buffer device 128x48
+<6>fb0: VESA VGA frame buffer device
+<4>pty: 256 Unix98 ptys configured
+<6>Serial driver version 5.05c (2001-07-08) with HUB-6 MANY_PORTS MULTIPORT SHARE_IRQ SERIAL_PCI enabled
+<6>ttyS00 at 0x03f8 (irq = 4) is a 16550A
+<6>PCI: Found IRQ 5 for device 00:02.6
+<6>PCI: Sharing IRQ 5 with 00:02.7
+<6>PCI: Sharing IRQ 5 with 00:0a.1
+<6>Real Time Clock Driver v1.10e
+<6>Floppy drive(s): fd0 is 1.44M
+<6>FDC 0 is a National Semiconductor PC87306
+<4>RAMDISK driver initialized: 16 RAM disks of 64000K size 1024 blocksize
+<6>loop: loaded (max 16 devices)
+<6>Uniform Multi-Platform E-IDE driver Revision: 7.00beta-2.4
+<6>ide: Assuming 33MHz system bus speed for PIO modes; override with idebus=xx
+<6>SIS5513: IDE controller at PCI slot 00:02.5
+<6>SIS5513: chipset revision 0
+<6>SIS5513: not 100%% native mode: will probe irqs later
+<4>SiS740    ATA 100 controller
+<6>    ide0: BM-DMA at 0xb800-0xb807, BIOS settings: hda:DMA, hdb:pio
+<6>    ide1: BM-DMA at 0xb808-0xb80f, BIOS settings: hdc:DMA, hdd:pio
+<4>hda: IC25N040ATCS04-0, ATA DISK drive
+<4>blk: queue c03caa40, I/O limit 4095Mb (mask 0xffffffff)
+<4>hdc: TOSHIBA DVD-ROM SD-R2312, ATAPI CD/DVD-ROM drive
+<4>ide0 at 0x1f0-0x1f7,0x3f6 on irq 14
+<4>ide1 at 0x170-0x177,0x376 on irq 15
+<4>hda: attached ide-disk driver.
+<4>hda: host protected area => 1
+<6>hda: 78140160 sectors (40008 MB) w/1768KiB Cache, CHS=4864/255/63, UDMA(100)
+<4>ide-floppy driver 0.99.newide
+<6>Partition check:
+<6> hda: hda1 hda2 hda3 < hda5 hda6 hda7 >
+<4>ide-floppy driver 0.99.newide
+<6>SCSI subsystem driver Revision: 1.00
+<3>kmod: failed to exec /sbin/modprobe -s -k scsi_hostadapter, errno = 2
+<6>md: md driver 0.90.0 MAX_MD_DEVS=256, MD_SB_DISKS=27
+<6>md: Autodetecting RAID arrays.
+<6>md: autorun ...
+<6>md: ... autorun DONE.
+<6>NET4: Linux TCP/IP 1.0 for NET4.0
+<6>IP Protocols: ICMP, UDP, TCP, IGMP
+<6>IP: routing cache hash table of 1024 buckets, 8Kbytes
+<6>TCP: Hash tables configured (established 16384 bind 32768)
+<6>Linux IP multicast router 0.06 plus PIM-SM
+<6>NET4: Unix domain sockets 1.0/SMP for Linux NET4.0.
+<5>RAMDISK: Compressed image found at block 0
+<6>Freeing initrd memory: 391k freed
+<4>VFS: Mounted root (ext2 filesystem).
+<6>Journalled Block Device driver loaded
+<6>kjournald starting.  Commit interval 5 seconds
+<6>EXT3-fs: mounted filesystem with ordered data mode.
+<4>VFS: Mounted root (ext3 filesystem) readonly.
+<5>Trying to move old root to /initrd ... failed
+<5>Unmounting old root
+<5>Trying to free ramdisk memory ... okay
+<6>Freeing unused kernel memory: 172k freed
+<6>md: Autodetecting RAID arrays.
+<6>md: autorun ...
+<6>md: ... autorun DONE.
+<6>EXT3 FS 2.4-0.9.19, 19 August 2002 on ide0(3,2), internal journal
+<6>LVM version 1.0.5+(mp-v6a)(22/07/2002) module loaded
+<6>Adding Swap: 530104k swap-space (priority 42)
+<6>EXT3 FS 2.4-0.9.19, 19 August 2002 on ide0(3,2), internal journal
+<6>kjournald starting.  Commit interval 5 seconds
+<6>EXT3 FS 2.4-0.9.19, 19 August 2002 on ide0(3,6), internal journal
+<6>EXT3-fs: mounted filesystem with ordered data mode.
+<6>kjournald starting.  Commit interval 5 seconds
+<6>EXT3 FS 2.4-0.9.19, 19 August 2002 on ide0(3,5), internal journal
+<6>EXT3-fs: mounted filesystem with ordered data mode.
+<6>kjournald starting.  Commit interval 5 seconds
+<6>EXT3 FS 2.4-0.9.19, 19 August 2002 on ide0(3,7), internal journal
+<6>EXT3-fs: mounted filesystem with ordered data mode.
+<4>hdc: attached ide-scsi driver.
+<6>scsi0 : SCSI host adapter emulation for IDE ATAPI devices
+<4>  Vendor: TOSHIBA   Model: DVD-ROM SD-R2312  Rev: 1708
+<4>  Type:   CD-ROM                             ANSI SCSI revision: 02
+Kernel logging (ksyslog) stopped.
+Kernel log daemon terminating.
+
+Boot logging started on /dev/tty1(/dev/console) at Mon May 19 19:06:41 2003
+
+Run file system check on root for LVM activation
+
+fsck 1.28 (31-Aug-2002)
+
+/dev/hda2: clean, 192056/656000 files, 879273/1311305 blocks
+
+
+doneRemounting root file system (/) read/write for vgscan...
+
+Scanning for LVM volume groups...
+
+vgscan -- reading all physical volumes (this may take a while...)
+
+vgscan -- "/etc/lvmtab" and "/etc/lvmtab.d" successfully created
+
+vgscan -- WARNING: This program does not do a VGDA backup of your volume group
+
+
+
+Activating LVM volume groups...
+
+vgchange -- no volume groups found
+
+
+
+
+done
+
+Activating swap-devices in /etc/fstab...
+
+
+doneChecking file systems...
+
+fsck 1.28 (31-Aug-2002)
+
+/dev/hda2: clean, 192056/656000 files, 879273/1311305 blocks
+
+/dev/hda6: clean, 72438/1311552 files, 783573/2622603 blocks
+
+/dev/hda5: clean, 23166/656000 files, 443139/1311297 blocks
+
+/dev/hda7: clean, 6175/1392640 files, 1763425/2785261 blocks
+
+
+doneMounting local file systems...
+
+proc on /proc type proc (rw)
+
+devpts on /dev/pts type devpts (rw,mode=0620,gid=5)
+
+/dev/hda6 on /home type ext3 (rw)
+
+/dev/hda5 on /usr/local type ext3 (rw)
+
+/dev/hda7 on /usr/local/ext type ext3 (rw)
+
+
+doneLoading required kernel modules
+
+
+doneRestoring profile home
+done
+
+Restore device permissions
+done
+
+Activating remaining swap-devices in /etc/fstab...
+
+
+doneMounting shared memory FS on /dev/shm
+done
+
+Setting up the CMOS clock
+done
+
+Setting up timezone data
+done
+
+Setting up hostname 'mazsola'
+done
+
+Setting up loopback interface 
+done
+
+Enabling syn flood protection
+done
+
+Enabling IP forwarding
+done
+
+Creating /var/log/boot.msg
+
+
+done_notice_killproc: kill(30,29)
+Running /etc/init.d/boot.local
+
+
+Boot logging started on /dev/tty1(/dev/console) at Mon May 19 19:07:05 2003
+
+Master Resource Control: previous runlevel: N, switching to runlevel: 
+5
+
+Initializing random number generator
+done_notice_killproc: kill(30,3)
+
+INIT: Entering runlevel: 5
+
+
+_notice_/etc/init.d/rc5.d/S01random start
+
+done
+
+_notice_'/etc/init.d/rc5.d/S01random start' exits with status 0
+_notice_/etc/init.d/rc5.d/S05network start
+Setting up network interfaces:
+
+    lo        
+done
+
+    ppp0      
+manual
+
+_notice_'/etc/init.d/rc5.d/S05network start' exits with status 0
+_notice_/etc/init.d/rc5.d/S06syslog start
+Starting syslog services_notice_startproc: execve (/sbin/syslogd) [ /sbin/syslogd ], [ CONSOLE=/dev/console TERM=linux SHELL=/bin/sh PROFILE=home progress=19 INIT_VERSION=sysvinit-2.82 REDIRECT=/dev/tty1 COLUMNS=128 PATH=/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin vga=0x317 RUNLEVEL=5 PWD=/ PREVLEVEL=N LINES=48 HOME=/ SHLVL=2 splash=verbose sscripts=38 _=/sbin/startproc DAEMON=/sbin/syslogd ]
+_notice_
+done
+
+startproc: execve (/sbin/klogd) [ /sbin/klogd -c 1 -2 ], [ CONSOLE=/dev/console TERM=linux SHELL=/bin/sh PROFILE=home progress=19 INIT_VERSION=sysvinit-2.82 REDIRECT=/dev/tty1 COLUMNS=128 PATH=/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin vga=0x317 RUNLEVEL=5 PWD=/ PREVLEVEL=N LINES=48 HOME=/ SHLVL=2 splash=verbose sscripts=38 _=/sbin/startproc DAEMON=/sbin/klogd ]
+_notice_'/etc/init.d/rc5.d/S06syslog start' exits with status 0
+_notice_/etc/init.d/rc5.d/S07hotplug start
+Starting hotplugging services [ ieee1394 net pci usb ...... ]
+done
+
+_notice_'/etc/init.d/rc5.d/S07hotplug start' exits with status 0
+_notice_/etc/init.d/rc5.d/S08pcmcia start
+Starting kernel PCMCIA _notice_startproc: execve (/sbin/cardmgr) [ /sbin/cardmgr -m /lib/modules/2.4.20-4GB-athlon/ -n pcmcia ], [ CONSOLE=/dev/console TERM=linux SHELL=/bin/sh PROFILE=home progress=21 INIT_VERSION=sysvinit-2.82 REDIRECT=/dev/tty1 COLUMNS=128 PATH=/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin vga=0x317 RUNLEVEL=5 PWD=/ PREVLEVEL=N LINES=48 HOME=/ SHLVL=2 splash=verbose sscripts=38 _=/sbin/startproc DAEMON=/sbin/cardmgr ]
+
+done
+
+_notice_'/etc/init.d/rc5.d/S08pcmcia start' exits with status 0
+_notice_/etc/init.d/rc5.d/S08resmgr start
+Starting resource manager_notice_startproc: execve (/sbin/resmgrd) [ /sbin/resmgrd ], [ CONSOLE=/dev/console TERM=linux SHELL=/bin/sh PROFILE=home progress=22 INIT_VERSION=sysvinit-2.82 REDIRECT=/dev/tty1 COLUMNS=128 PATH=/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin vga=0x317 RUNLEVEL=5 PWD=/ PREVLEVEL=N LINES=48 HOME=/ SHLVL=2 splash=verbose sscripts=38 _=/sbin/startproc DAEMON=/sbin/resmgrd ]
+
+done
+
+_notice_'/etc/init.d/rc5.d/S08resmgr start' exits with status 0
+_notice_/etc/init.d/rc5.d/S10portmap start
+Starting RPC portmap daemon_notice_startproc: execve (/sbin/portmap) [ /sbin/portmap ], [ CONSOLE=/dev/console TERM=linux SHELL=/bin/sh PROFILE=home progress=23 INIT_VERSION=sysvinit-2.82 REDIRECT=/dev/tty1 COLUMNS=128 PATH=/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin vga=0x317 RUNLEVEL=5 PWD=/ PREVLEVEL=N LINES=48 HOME=/ SHLVL=2 splash=verbose sscripts=38 _=/sbin/startproc DAEMON=/sbin/portmap ]
+
+done
+
+_notice_'/etc/init.d/rc5.d/S10portmap start' exits with status 0
+^G_notice_/etc/init.d/rc5.d/S10splash_early start
+_notice_'/etc/init.d/rc5.d/S10splash_early start' exits with status 0
+_notice_/etc/init.d/rc5.d/S11postfix start
+Starting mail service (Postfix)
+done
+
+_notice_'/etc/init.d/rc5.d/S11postfix start' exits with status 0
+_notice_/etc/init.d/rc5.d/S14alsasound start
+Starting sound driver:  intel8x0^G
+done
+
+Restoring the previous sound setting
+done
+
+_notice_'/etc/init.d/rc5.d/S14alsasound start' exits with status 0
+_notice_/etc/init.d/rc5.d/S14atd start
+Starting service at daemon
+done
+
+_notice_startproc: execve (/usr/sbin/atd) [ /usr/sbin/atd ], [ CONSOLE=/dev/console TERM=linux SHELL=/bin/sh PROFILE=home progress=27 INIT_VERSION=sysvinit-2.82 REDIRECT=/dev/tty1 COLUMNS=128 PATH=/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin vga=0x317 RUNLEVEL=5 PWD=/ PREVLEVEL=N LINES=48 HOME=/ SHLVL=2 splash=verbose sscripts=38 _=/sbin/startproc DAEMON=/usr/sbin/atd ]
+_notice_'/etc/init.d/rc5.d/S14atd start' exits with status 0
+_notice_/etc/init.d/rc5.d/S14cron start
+Starting CRON daemon_notice_startproc: execve (/usr/sbin/cron) [ /usr/sbin/cron ], [ CONSOLE=/dev/console TERM=linux SHELL=/bin/sh PROFILE=home progress=28 INIT_VERSION=sysvinit-2.82 REDIRECT=/dev/tty1 COLUMNS=128 PATH=/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin vga=0x317 RUNLEVEL=5 PWD=/ PREVLEVEL=N LINES=48 HOME=/ SHLVL=2 splash=verbose sscripts=38 _=/sbin/startproc DAEMON=/usr/sbin/cron ]
+
+done
+
+_notice_'/etc/init.d/rc5.d/S14cron start' exits with status 0
+_notice_/etc/init.d/rc5.d/S14cups start
+Starting cupsd_notice_startproc: execve (/usr/sbin/cupsd) [ /usr/sbin/cupsd ], [ CONSOLE=/dev/console TERM=linux SHELL=/bin/sh PROFILE=home progress=29 INIT_VERSION=sysvinit-2.82 REDIRECT=/dev/tty1 COLUMNS=128 PATH=/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin vga=0x317 RUNLEVEL=5 PWD=/ PREVLEVEL=N LINES=48 HOME=/ SHLVL=2 splash=verbose sscripts=38 _=/sbin/startproc DAEMON=/usr/sbin/cupsd ]
+
+done
+
+_notice_'/etc/init.d/rc5.d/S14cups start' exits with status 0
+_notice_/etc/init.d/rc5.d/S14fbset start
+_notice_'/etc/init.d/rc5.d/S14fbset start' exits with status 0
+Starting Name Service Cache Daemon_notice_/etc/init.d/rc5.d/S14nscd start
+
+done
+
+_notice_startproc: execve (/usr/sbin/nscd) [ /usr/sbin/nscd ], [ CONSOLE=/dev/console TERM=linux SHELL=/bin/sh PROFILE=home progress=31 INIT_VERSION=sysvinit-2.82 REDIRECT=/dev/tty1 COLUMNS=128 PATH=/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin vga=0x317 RUNLEVEL=5 PWD=/ PREVLEVEL=N LINES=48 HOME=/ SHLVL=2 splash=verbose sscripts=38 _=/sbin/startproc DAEMON=/usr/sbin/nscd ]
+_notice_'/etc/init.d/rc5.d/S14nscd start' exits with status 0
+_notice_/etc/init.d/rc5.d/S14rpmconfigcheck start
+_notice_'/etc/init.d/rc5.d/S14rpmconfigcheck start' exits with status 0
+Starting SMPPPD_notice_/etc/init.d/rc5.d/S14smpppd start
+_notice_startproc: execve (/usr/sbin/smpppd) [ /usr/sbin/smpppd ], [ CONSOLE=/dev/console TERM=linux SHELL=/bin/sh PROFILE=home progress=33 INIT_VERSION=sysvinit-2.82 REDIRECT=/dev/tty1 COLUMNS=128 PATH=/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin vga=0x317 RUNLEVEL=5 PWD=/ PREVLEVEL=N LINES=48 HOME=/ SHLVL=2 splash=verbose sscripts=38 _=/sbin/startproc DAEMON=/usr/sbin/smpppd ]
+
+done
+
+_notice_'/etc/init.d/rc5.d/S14smpppd start' exits with status 0
+_notice_/etc/init.d/rc5.d/S14sshd start
+Starting SSH daemon_notice_startproc: execve (/usr/sbin/sshd) [ /usr/sbin/sshd -o PidFile=/var/run/sshd.init.pid ], [ CONSOLE=/dev/console TERM=linux SHELL=/bin/sh PROFILE=home progress=34 INIT_VERSION=sysvinit-2.82 REDIRECT=/dev/tty1 COLUMNS=128 PATH=/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin vga=0x317 RUNLEVEL=5 PWD=/ PREVLEVEL=N LINES=48 HOME=/ SHLVL=2 splash=verbose sscripts=38 _=/sbin/startproc DAEMON=/usr/sbin/sshd ]
+
+done
+
+_notice_'/etc/init.d/rc5.d/S14sshd start' exits with status 0
+_notice_/etc/init.d/rc5.d/S15kbd start
+Loading keymap qwertz/de-latin1-nodeadkeys.map.gz
+
+
+doneLoading compose table latin1.add
+done
+
+Loading console font lat1-16.psfu
+
+
+doneLoading screenmap none
+
+
+doneSetting up console ttys
+
+
+done_notice_'/etc/init.d/rc5.d/S15kbd start' exits with status 0
+_notice_/etc/init.d/rc5.d/S15splash start
+_notice_'/etc/init.d/rc5.d/S15splash start' exits with status 0
+_notice_/etc/init.d/rc5.d/S15splash_late start
+_notice_'/etc/init.d/rc5.d/S15splash_late start' exits with status 0
+_notice_/etc/init.d/rc5.d/S16hwscan start
+Starting hardware scan on boot_notice_'/etc/init.d/rc5.d/S16hwscan start' exits with status 0
+_notice_/etc/init.d/rc5.d/S17xdm start
+Starting service kdm_notice_startproc: execve (/opt/kde3/bin/kdm) [ /opt/kde3/bin/kdm ], [ LC_MONETARY= CONSOLE=/dev/console TERM=linux SHELL=/bin/sh PROFILE=home LC_NUMERIC= QTDIR=/usr/lib/qt3 LC_ALL= progress=39 INIT_VERSION=sysvinit-2.82 KDEROOTHOME=/root/.kdm REDIRECT=/dev/tty1 COLUMNS=128 PATH=/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin LC_MESSAGES= vga=0x317 RUNLEVEL=5 LC_COLLATE=POSIX PWD=/ LANG=en_US PREVLEVEL=N LINES=48 HOME=/ SHLVL=2 no_proxy=localhost RC_LC_COLLATE=POSIX WINDOWMANAGER=/usr/bin/X11/kde PRINTER=lp RC_LANG=en_US LC_CTYPE=en_US splash=verbose sscripts=38 LC_TIME= _=/sbin/startproc DAEMON=/opt/kde3/bin/kdm ]
+
+done
+
+Master Resource Control: runlevel 5 has been 
+reached
+
+_notice_'/etc/init.d/rc5.d/S17xdm start' exits with status 0
+_notice_killproc: kill(863,3)
+</pre>
+
+<a name="xf86vesa"></a>
+<H2>XF86Config f&uuml;r vesa Treiber</H2>
+<pre>
+Section "Files"
+  FontPath	"/usr/X11R6/lib/X11/fonts/truetype/"
+  FontPath	"/usr/X11R6/lib/X11/fonts/URW/"
+  FontPath	"/usr/X11R6/lib/X11/fonts/uni/"
+  FontPath	"/usr/X11R6/lib/X11/fonts/misc/"
+  FontPath     "/usr/X11R6/lib/X11/fonts/misc:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/local"
+  FontPath     "/usr/X11R6/lib/X11/fonts/75dpi:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/100dpi:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/Type1"
+  FontPath     "/usr/X11R6/lib/X11/fonts/URW"
+  FontPath     "/usr/X11R6/lib/X11/fonts/Speedo"
+  FontPath     "/usr/X11R6/lib/X11/fonts/PEX"
+  FontPath     "/usr/X11R6/lib/X11/fonts/cyrillic"
+  FontPath     "/usr/X11R6/lib/X11/fonts/latin2/misc:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/latin2/75dpi:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/latin2/100dpi:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/latin2/Type1"
+  FontPath     "/usr/X11R6/lib/X11/fonts/latin7/75dpi:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/baekmuk:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/japanese:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/kwintv"
+  FontPath     "/usr/X11R6/lib/X11/fonts/truetype"
+  FontPath     "/usr/X11R6/lib/X11/fonts/uni:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/CID"
+  FontPath     "/usr/X11R6/lib/X11/fonts/ucs/misc:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/ucs/75dpi:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/ucs/100dpi:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/hellas/misc:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/hellas/75dpi:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/hellas/100dpi:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/hellas/Type1"
+  FontPath     "/usr/X11R6/lib/X11/fonts/misc/sgi:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/xtest"
+  ModulePath	"/usr/X11R6/lib/modules"
+  RgbPath	"/usr/X11R6/lib/X11/rgb"
+  InputDevices	"/dev/ttyS0"
+  InputDevices	"/dev/ttyS1"
+  InputDevices	"/dev/ttyS2"
+  InputDevices	"/dev/ttyS3"
+  InputDevices	"/dev/ttyS4"
+  InputDevices	"/dev/ttyS5"
+  InputDevices	"/dev/ttyS6"
+  InputDevices	"/dev/ttyS7"
+  InputDevices	"/dev/ttyS8"
+  InputDevices	"/dev/psaux"
+  InputDevices	"/dev/logibm"
+  InputDevices	"/dev/sunmouse"
+  InputDevices	"/dev/atibm"
+  InputDevices	"/dev/amigamouse"
+  InputDevices	"/dev/atarimouse"
+  InputDevices	"/dev/inportbm"
+  InputDevices	"/dev/gpmdata"
+  InputDevices	"/dev/usbmouse"
+  InputDevices	"/dev/adbmouse"
+  InputDevices	"/dev/input/mice"
+  InputDevices	"/dev/input/event0"
+EndSection
+
+Section "ServerFlags"
+  Option	"AllowMouseOpenFail"
+  Option	"BlankTime"	"0"
+EndSection
+
+Section "Module"
+    Load "dbe" # Double-Buffering Extension
+    Load "v4l" # Video for Linux
+    Load "extmod"
+    Load "type1"
+    Load "freetype"
+    Load "glx" # 3D layer
+EndSection
+
+Section "InputDevice"
+    Driver       "Keyboard"
+    Identifier   "Keyboard[0]"
+    Option       "MapName" "Standard Keyboard [ pc105 ]"
+    Option       "Protocol" "Standard"
+    Option       "XkbLayout" "de"
+    Option       "XkbModel" "pc105"
+    Option       "XkbRules" "xfree86"
+    Option       "XkbVariant" "nodeadkeys"
+EndSection
+
+Section "InputDevice"
+  Driver     "mouse"
+  Identifier "Mouse[1]"
+  Option     "Protocol" "imps/2"
+  Option     "Device"   "/dev/mouse"
+  Option     "ZAxisMapping" "4 5"
+EndSection
+
+Section "InputDevice"
+    Identifier "Mouse[2]"
+    Driver "mouse"
+    Option "Protocol" "PS/2"
+    Option "Device" "/dev/psaux"
+    Option "Emulate3Buttons"
+    Option "Emulate3Timeout" "50"
+EndSection
+
+Section "Monitor"
+    Identifier "monitor1"
+    VendorName "Generic"
+    ModelName "Flat Panel 1024x768"
+    HorizSync 31.5-48.5
+    VertRefresh 40-70
+    
+    # Sony Vaio C1(X,XS,VE,VN)?
+    # 1024x480 @ 85.6 Hz, 48 kHz hsync
+    ModeLine "1024x480"    65.00 1024 1032 1176 1344   480  488  494  563 -hsync -vsync
+    
+    # TV fullscreen mode or DVD fullscreen output.
+    # 768x576 @ 79 Hz, 50 kHz hsync
+    ModeLine "768x576"     50.00  768  832  846 1000   576  590  595  630
+    
+    # 768x576 @ 100 Hz, 61.6 kHz hsync
+    ModeLine "768x576"     63.07  768  800  960 1024   576  578  590  616
+EndSection
+
+Section "Device"
+    Identifier "device1"
+    Driver "vesa"
+    Option "DPMS"
+EndSection
+
+Section "Screen"
+    Identifier "screen1"
+    Device "device1"
+    Monitor "monitor1"
+    DefaultColorDepth 24
+    
+    Subsection "Display"
+        Depth 8
+        Modes "1024x768" "800x600" "640x480"
+    EndSubsection
+    
+    Subsection "Display"
+        Depth 15
+        Modes "1024x768" "800x600" "640x480"
+    EndSubsection
+    
+    Subsection "Display"
+        Depth 16
+        Modes "1024x768" "800x600" "640x480"
+    EndSubsection
+    
+    Subsection "Display"
+        Depth 24
+        Modes "1024x768" "800x600" "640x480"
+    EndSubsection
+EndSection
+
+Section "ServerLayout"
+  Identifier	"Layout[all]"
+  InputDevice	"Keyboard[0]"	"CoreKeyboard"
+  InputDevice	"Mouse[1]"	"CorePointer"
+  InputDevice   "Mouse[2]"      "SendCoreEvents"
+  Option	"Xinerama"	"off"
+  Screen	"screen1"
+EndSection
+</pre>
+
+<a name="xf86sis"></a>
+<H2>XF86Config f&uuml;r sis Treiber</H2>
+<pre>
+Section "Files"
+  FontPath     "/usr/X11R6/lib/X11/fonts/misc:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/local"
+  FontPath     "/usr/X11R6/lib/X11/fonts/75dpi:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/100dpi:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/Type1"
+  FontPath     "/usr/X11R6/lib/X11/fonts/URW"
+  FontPath     "/usr/X11R6/lib/X11/fonts/Speedo"
+  FontPath     "/usr/X11R6/lib/X11/fonts/PEX"
+  FontPath     "/usr/X11R6/lib/X11/fonts/cyrillic"
+  FontPath     "/usr/X11R6/lib/X11/fonts/latin2/misc:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/latin2/75dpi:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/latin2/100dpi:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/latin2/Type1"
+  FontPath     "/usr/X11R6/lib/X11/fonts/latin7/75dpi:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/baekmuk:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/japanese:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/kwintv"
+  FontPath     "/usr/X11R6/lib/X11/fonts/truetype"
+  FontPath     "/usr/X11R6/lib/X11/fonts/uni:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/CID"
+  FontPath     "/usr/X11R6/lib/X11/fonts/ucs/misc:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/ucs/75dpi:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/ucs/100dpi:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/hellas/misc:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/hellas/75dpi:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/hellas/100dpi:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/hellas/Type1"
+  FontPath     "/usr/X11R6/lib/X11/fonts/misc/sgi:unscaled"
+  FontPath     "/usr/X11R6/lib/X11/fonts/xtest"
+  InputDevices "/dev/ttyS0"
+  InputDevices "/dev/ttyS1"
+  InputDevices "/dev/ttyS2"
+  InputDevices "/dev/ttyS3"
+  InputDevices "/dev/ttyS4"
+  InputDevices "/dev/ttyS5"
+  InputDevices "/dev/ttyS6"
+  InputDevices "/dev/ttyS7"
+  InputDevices "/dev/ttyS8"
+  InputDevices "/dev/psaux"
+  InputDevices "/dev/logibm"
+  InputDevices "/dev/sunmouse"
+  InputDevices "/dev/atibm"
+  InputDevices "/dev/amigamouse"
+  InputDevices "/dev/atarimouse"
+  InputDevices "/dev/inportbm"
+  InputDevices "/dev/gpmdata"
+  InputDevices "/dev/mouse"
+  InputDevices "/dev/usbmouse"
+  InputDevices "/dev/adbmouse"
+  InputDevices "/dev/input/mice"
+  InputDevices "/dev/input/event0"
+  InputDevices "/dev/pointer0"
+  InputDevices "/dev/pointer1"
+  InputDevices "/dev/pointer2"
+  InputDevices "/dev/pointer3"
+EndSection
+
+Section "ServerFlags"
+  Option       "AllowMouseOpenFail"
+  Option       "RandR" "on"
+EndSection
+
+Section "Module"
+  Load         "dbe"
+  Load         "type1"
+  Load         "speedo"
+  Load         "freetype"
+  Load         "extmod"
+  Load         "glx"
+  Load         "v4l"
+EndSection
+
+Section "InputDevice"
+  Driver       "Keyboard"
+  Identifier   "Keyboard[0]"
+  Option       "MapName" "Standard Keyboard [ pc105 ]"
+  Option       "Protocol" "Standard"
+  Option       "XkbLayout" "de"
+  Option       "XkbModel" "pc105"
+  Option       "XkbRules" "xfree86"
+  Option       "XkbVariant" "nodeadkeys"
+EndSection
+
+
+Section "InputDevice"
+  Driver       "mouse"
+  Identifier   "Mouse[1]"
+  Option       "Device" "/dev/pointer1"
+  Option       "Emulate3Buttons" "on"
+  Option       "Name" "Autodetection"
+  Option       "Protocol" "ps/2"
+  Option       "Vendor" "Sysp"
+EndSection
+
+Section "InputDevice"
+  Driver       "mouse"
+  Identifier   "Mouse[3]"
+  Option       "ButtonNumber" "5"
+  Option       "Device" "/dev/pointer0"
+  Option       "Name" "Autodetection"
+  Option       "Protocol" "imps/2"
+  Option       "Vendor" "Sysp"
+  Option       "ZAxisMapping" "4 5"
+EndSection
+
+
+Section "Monitor"
+  Option       "CalcAlgorithm" "CheckDesktopGeometry"
+  HorizSync    27-60
+  Identifier   "Monitor[0]"
+  ModelName    "1024X768@60HZ"
+  Option       "DPMS"
+  VendorName   "--> LCD"
+  VertRefresh  40-60
+  UseModes     "Modes[0]"
+EndSection
+
+
+Section "Modes"
+  Identifier   "Modes[0]"
+  Modeline 	"1024x768" 61.19 1024 1040 1216 1400 768 768 777 802
+  Modeline 	"800x600" 37.44 800 816 928 1072 600 600 609 626
+  Modeline 	"640x480" 23.96 640 656 720 864 480 480 489 501
+  Modeline 	"1024x768" 65.0 1024 1048 1184 1344 768 771 777 806 -hsync -vsync
+EndSection
+
+
+Section "Screen"
+  DefaultDepth 24
+  SubSection "Display"
+    Depth      15
+    Modes      "1024x768" 
+  EndSubSection
+  SubSection "Display"
+    Depth      16
+    Modes      "1024x768" 
+  EndSubSection
+  SubSection "Display"
+    Depth      24
+    Modes      "1024x768" "800x600" "640x480" 
+  EndSubSection
+  SubSection "Display"
+    Depth      32
+    Modes      "1024x768" 
+  EndSubSection
+  SubSection "Display"
+    Depth      8
+    Modes      "1024x768" 
+  EndSubSection
+  Device       "Device[0]"
+  Identifier   "Screen[0]"
+  Monitor      "Monitor[0]"
+EndSection
+
+
+Section "Device"
+  BoardName    "SiS650"
+  BusID        "1:0:0"
+  Driver       "sis"
+  Identifier   "Device[0]"
+  Screen       0
+  Option       "Rotate" "off"
+  VendorName   "SiS"
+EndSection
+
+
+Section "ServerLayout"
+  Identifier   "Layout[all]"
+  InputDevice  "Keyboard[0]" "CoreKeyboard"
+#  InputDevice  "Mouse[1]" "CorePointer"
+#  InputDevice  "Mouse[3]" "SendCoreEvents"
+  InputDevice  "Mouse[3]" "CorePointer"
+  Option       "Clone" "off"
+  Option       "Xinerama" "off"
+  Screen       "Screen[0]"
+EndSection
+</pre>
+
+<HR>
+<p>
+<a href="impressum.html">Impressum + Datenschutz</a></p>
+</body>
+</HTML>

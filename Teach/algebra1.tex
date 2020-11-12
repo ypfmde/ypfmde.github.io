@@ -1,0 +1,2776 @@
+% modulo fr''uher eunf''uhren, Eisenstein, ABC, Elementarteilersatz
+
+\documentclass[12pt,a4paper,twoside]{article}
+\usepackage{amssymb,amsthm,amsmath,ngerman,makeidx,color,pb-diagram,verbatim}
+\usepackage[dvips]{graphicx}
+\makeindex
+\input{latams}
+\newcommand{\ei}[1]{\emph{#1}\index{#1}}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\ggT}{ggT}
+\DeclareMathOperator{\grad}{grad}
+\begin{document}
+\title{Algebra I}
+\author{Vorlesung Wintersemester 2004/05\\
+Peter M\"uller}
+\maketitle
+\tableofcontents
+\section{Einf"uhrung}
+Die Algebra hat ihre Wurzeln in der Geometrie und Zahlentheorie.
+\paragraph{Klassische Beispiele}
+\begin{itemize}
+\item Kann man mit Zirkel und Lineal beliebige Winkel dritteln, oder
+  W\"urfel verdoppeln?
+\item Kann man die Nullstellen von Polynomen stets durch Wurzeln und die
+  vier Grundrechenarten ausdr\"ucken?
+\item Kann man f\"ur Funktionen wie $e^{-x^2}$ explizite Stammfunktionen
+  angeben?
+\item Wie findet man rationale oder ganzzahlige L\"osungen von Systemen
+  von Polynomen in mehreren Ver\"anderlichen, z.B.\ (f\"ur festes $n\in\NNN$)
+  $X^n+Y^n=Z^n$ mit $X,Y,Z\in\ZZZ$ (Fermat-Problem)?
+\end{itemize}
+\paragraph{Moderne Beispiele}
+\begin{itemize}
+\item Wie \"ubertr\"agt man digitale Daten, bei deren \"Ubertragung Fehler
+  auftreten k\"onnen, durch Einbau von m\"oglichst wenig Redundanz, aber mit
+  m\"oglichst guter Fehlererkennungs- und -korrekturm\"oglichkeit? Dies
+  f\"uhrt zur Kodierungstheorie.
+\item Wie \"ubertr\"agt man verschl\"usselte Daten \"offentlich, so dass nur
+  der vorgesehene Empf\"anger sie entschl\"usseln kann? Das geht sogar, ohne
+  dass Sender und Empf\"anger vorher geheime Schl\"ussel austauschen m\"ussen,
+  selbst die d\"urfen \"offentlich mitgeteilt werden (public key
+  cryptography)! Dies f\"uhrt zur Kryptographie.
+\end{itemize}
+In der Algebra haben sich wichtige Begriffe herauskristallisiert, n\"amlich
+Gruppen, Ringe, Moduln (der Spezialfall der Vektorr\"aume ist aus der Linearen
+Algebra bekannt) und K\"orper. Diesen vier Begriffen ist die Vorlesung Algebra
+I gewidmet.
+
+Die Algebra II wird mit der Galoistheorie, einer reizvollen Kombination aus
+Gruppen- und K\"orpertheorie, beginnen. Danach \dots?
+\section{Gruppen}
+\subsection{Definitionen, Beispiele}
+\begin{Definition}
+  Eine Menge $G$ mit einer zweistelligen Verkn\"upfung $G\times G\to G$,
+  $(x,y)\mapsto x\cdot y$, hei\ss t \ei{Halbgruppe}, wenn das
+  \ei{Assoziativgesetz} gilt, d.h.\ $(x\cdot y)\cdot z=x\cdot(y\cdot z)$ f\"ur
+  alle $x,y,z\in G$. H\"aufig schreibt man $xy$ statt $x\cdot y$.
+\end{Definition}
+\paragraph{Beispiele von Halbgruppen}
+\begin{itemize}
+\item $(\NNN,+)$, $(\NNN,\cdot)$, $(\ZZZ,+)$, $(\ZZZ,\cdot)$.
+\item $\text{Abb}(X,X)=$ Menge der Abbildungen von $X$ auf sich. Das Produkt
+  $f\cdot g$ f\"ur $f,g\in\text{Abb}(X,X)$ ist als die Komposition definiert,
+  also $(f\cdot g)(x)=f(g(x))$ f\"ur $x\in X$. In der Gruppentheorie werden
+  wir h\"aufig $x^f$ statt $f(x)$ schreiben.
+\item Sei $G$ die Potenzmenge einer Menge. Dann sind $(G,\cap)$ und $(G,\cup)$
+  Halbgruppen.
+\end{itemize}
+\begin{Definition}
+  Eine Halbgruppe hei\ss t \ei{abelsch} oder \ei{kommutativ}, wenn $xy=yx$
+  f\"ur alle $x,y\in G$ gilt.
+\end{Definition}
+\begin{Definition}
+  Die Halbgruppe $G$ ist ein \ei{Monoid}, wenn es ein \ei{Einselement} $e$
+  (oder auch \ei{neutrales Element} genannt) gibt, d.h.\ es gilt $ex=xe=x$
+  f\"ur alle $x\in G$. Man schreibt dann $x^0=e$.
+\end{Definition}
+\begin{Beispiel*}
+  Die Halbgruppe $(\NNN,+)$ ist kein Monoid, $(\NNN,\cdot)$ aber schon.
+\end{Beispiel*}
+Wir kommen nun zum zentralen Begriff dieses Kapitels.
+\begin{Definition}
+  Ein Monoid $G$ hei\ss t \ei{Gruppe}, wenn es f\"ur alle $x\in G$ ein $y\in
+  G$ gibt mit $xy=yx=e$.
+\end{Definition}
+\begin{Bemerkung*}
+  In der Definition ist $y$ eindeutig. Denn aus $y'x=xy'=e$ folgt
+  $y'=y'e=y'(xy)=(y'x)y=ey=y$.
+
+Man schreibt $x^{-1}$ f\"ur $y$, und $x^{-n}:=(x^{-1})^n$ f\"ur
+$n\in\NNN$. Mit diesen Festsetzungen gilt dann $x^mx^n=x^{m+n}$ und
+$(x^m)^n=x^{mn}$ f\"ur alle $m,n\in\ZZZ$.
+\end{Bemerkung*}
+\paragraph{Einfache Folgerungen f\"ur eine Gruppe $G$}
+\begin{itemize}
+\item Seien $a,b\in G$. Dann sind die Gleichungen $ax=b$ und $ya=b$ eindeutig
+  durch $x=a^{-1}b$ und $y=ba^{-1}$ l\"osbar. Im allgemeinen gilt $x\ne y$, so
+  dass eine Bruchschreibweise $\frac{b}{a}$ nur f\"ur abelsche Gruppen
+  sinnvoll ist.
+\item Es gelten K\"urzungsregeln: Aus $ax=ay$ (oder $xa=ya$) folgt $x=y$.
+\item $(ab)^{-1}=b^{-1}a^{-1}$.
+\end{itemize}
+\paragraph{Beispiele von Gruppen}
+\begin{itemize}
+\item $(V,+)$ mit Vektorraum $V$.
+\item $(K\setminus\{0\},\cdot)$ mit K\"orper $K$.
+\item $S_X=$ Teilmenge der Bijektionen aus $\text{Abb}(X,X)$, wieder mit
+  Komposition als Verkn\"upfung. F\"ur $X=\{1,2,\dots,n\}$ schreibt man $S_n$
+  statt $S_X$. Man nennt $S_n$ die \ei{symmetrische Gruppe} vom Grad $n$.
+\item $\GL_n(K)=\{A\in M_n(K)|\;\det A\ne 0\}$, $K$ K\"orper.
+\item $\SL_n(\ZZZ)=\{A\in M_n(\ZZZ)|\;\det A=1\}$.
+\end{itemize}
+\begin{Bemerkung*}
+  H\"aufig schreibt man $1$ f\"ur das neutrale Element $e$. Ist die Gruppe
+  abelsch, so verwendet man oft eine additive Notation, also $a+b$ und $-a$
+  statt $a\cdot b$ und $a^{-1}$. Nat\"urlich verwendet man dennoch z.B.\ f\"ur
+  multiplikative Gruppen von K\"orpern die multiplikative Notation.
+\end{Bemerkung*}
+\subsection{Untergruppen und zyklische Gruppen}
+\begin{Definition}
+  Eine nichtleere Teilmenge $U$ einer Gruppe $G$ hei\ss t \ei{Untergruppe} von
+  $G$, wenn aus $a,b\in U$ schon $a\cdot b\in U$ und $a^{-1}\in U$ folgt. (In
+  diesem Fall ist $(U,\cdot)$ eine Gruppe.) Man schreibt $U\le G$.
+\end{Definition}
+Es folgt sehr einfach, dass Untergruppen von Untergruppen wieder Untergruppen
+sind. Auch Schnitte von Untergruppen sind wieder Untergruppen. (Was ist mit
+Vereinigungen?)
+\paragraph{Beispiele}
+\begin{itemize}
+\item $G=\ZZZ$, $U=2\ZZZ=\{2m|\;m\in\ZZZ\}$
+\item $G=S_5$, $U=\{g\in G|\;g(5)=5\}=S_4$
+\item $G=\GL_n(K)$, $U=\SL_n(K)$
+\end{itemize}
+\begin{Definition}
+  Sei $M\subseteq G$ eine Teilmenge der Gruppe $G$. Die von $M$ \ei{erzeugte
+  Untergruppe} $\gen{M}$ ist die kleinste $M$ enthaltende Untergruppe von $G$.
+\end{Definition}
+Wichtige Beispiele von (Unter)gruppen sind solche, die von einem Element
+erzeugt werden.
+\begin{Definition}
+  Eine \ei{zyklische Gruppe} ist eine von einem Element erzeugte Gruppe.
+\end{Definition}
+\paragraph{Beispiele zyklischer Gruppen}
+\begin{itemize}
+\item $G=\ZZZ=\gen{1}$
+\item $G=\{e^{\frac{2\pi ik}{n}}|\;k=0,1,\dots,n-1\}=\gen{e^{\frac{2\pi
+        i}{n}}}$ f\"ur $n\in\NNN$
+\item $G=\ZZZ/n\ZZZ=\gen{1+n\ZZZ}$ f\"ur $n\in\NNN$
+\end{itemize}
+\begin{Definition}
+Ist $G$ eine Gruppe, dann hei\ss t $\abs{G}\in\NNN\cup\{\infty\}$ die
+\ei{Ordnung} von $G$.
+
+F\"ur $a\in G$ hei\ss t $\ord(a)=\abs{\gen{a}}\in\NNN\cup\{\infty\}$ die
+\ei{Ordnung} von $a$.
+\end{Definition}
+\begin{Lemma}
+  Ist $\ord(a)=n\in\NNN$, dann ist $n$ die kleinste nat\"urliche Zahl $m$ mit
+  $a^m=e$. Ferner gilt $\gen{a}=\{e=a^0,a^1,\dots,a^{n-1}\}$, und $a^i=a^j$
+  ist \"aquivalent zu $i\equiv j\pmod{n}$.
+\end{Lemma}
+\begin{proof}[Beweis]
+Zun\"achst m\"ussen wir sehen, dass es \"uberhaupt eine nat\"urliche Zahl $m$
+  gibt $a^m=e$. Das folgende Argument unter Verwendung des Schubfachprinzips
+  wird uns in vielen Varianten noch \"ofters begegnen: Unter den $n+1$
+  Elementen $\{a^0,a^1,\dots,a^n\}$ muss es zwei gleiche geben, da die Menge
+  eine Teilmenge einer $n$-Elementigen Menge ist. Sei etwa $a^i=a^j$ mit $0\le
+  i<j\le n$. Dann gilt $j-i\in\NNN$ und $a^{j-i}=e$.
+  
+  Sei nun $m\in\NNN$ minimal mit $a^m=e$. Dann gilt
+  $\gen{a}=\{a^0,a^1,\dots,a^{m-1}\}$. Ferner gilt $a^i\ne a^j$ f\"ur $0\le
+  i<j\le m-1$, denn andernfalls folgte $a^{j-i}=e$, im Widerspruch zur
+  Minimalit\"at von $m$. Es folgt $m=n$ und der Rest der Behauptung.
+\end{proof}
+\begin{Definition}
+  Ein Element der Ordnung $2$ nennt man \ei{Involution}.
+\end{Definition}
+Wir werden sp\"ater sehen, dass die Struktur der Untergruppen selbst in
+endlichen Gruppen sehr kompliziert sein kann. \"Ubersichtlich ist das hingegen
+in zyklischen Gruppen.
+\begin{Satz}
+  Die Gruppe $G$ sei zyklisch. Dann ist jede Untergruppe von $G$ zyklisch.
+  Hat $G$ endliche Ordnung $n$, dann hat $G$ f\"ur jeden Teiler $r$ von $n$
+  genau eine Untergruppe der Ordnung $r$. (Ferner ist die Ordnung jeder
+  Untergruppe ein Teiler von $n$.)
+\end{Satz}
+\begin{proof}[Beweis]
+  Sei $U$ eine Untergruppe von $G=\gen{a}$. W\"ahle $s\in\NNN$ minimal mit
+  $a^s\in U$. Wir behaupten $U=\gen{a^s}$. Dazu sei $m\in\ZZZ$ mit $a^m\in
+  U$. Schreibe $m=us+v$ mit $0\le v\le s-1$ (Division mit Rest). Wegen
+  $(a^s)^ua^v=a^m\in U$ und $a^s\in U$ folgt $a^v\in U$, also $v=0$ wegen der
+  Minimalit\"at von $s$. Aber $a^m=a^{us}\in\gen{a^s}$. Hieraus folgt der
+  erste Teil der Behauptung.
+
+Sei nun $n\in\NNN$ die Ordnung von $a$. Wegen $a^n=e\in U$ folgt wie eben,
+dass $s$ ein Teiler von $n$ ist, also $n=rs$ mit $r\in\NNN$. Offenbar gilt
+$\gen{a^s}=\{a^0,a^s,a^{2s},\dots,a^{(r-1)s}\}$, also
+$\abs{U}=\ord(a^s)=r$. Umgekehrt ist f\"ur jeden Teiler $r$ von $n$ die Menge
+$\gen{a^s}=\{a^0,a^s,a^{2s},\dots,a^{(r-1)s}\}$ mit $s=n/r$ eine Untergruppe
+der Ordnung $r$.
+\end{proof}
+\subsection{Nebenklassen}\index{Nebenklassen}
+Sei $U$ eine Untergruppe der Gruppe $G$. F\"ur $g\in G$ nennt man die Menge
+$Ug:=\{ug|\;u\in U\}$ eine \ei{Rechtsnebenklasse}. Analog ist $gU$ eine
+\ei{Linksnebenklasse}. Die Menge der Rechts- bzw.\ Linksnebenklassen
+bezeichnen wir mit $U\backslash G$ bzw.\ $G/U$.
+
+In diesem Abschnitt verstehen wir unter Nebenklassen, wenn nichts anderes
+gesagt wird, Rechtsnebenklassen. Mit entsprechenden Modifikationen gelten die
+folgenden Aussagen auch f\"ur Linksnebenklassen.
+
+\begin{Lemma}
+  F\"ur zwei Nebenklassen $Ug$ und $Uh$ gilt entweder $Ug=Uh$, oder $Ug\cap
+  Uh=\emptyset$.
+\end{Lemma}
+\begin{proof}[Beweis]
+  Sei $x\in Ug\cap Uh$, also $x=u_1g=u_2h$ f\"ur $u_1,u_2\in U$. Es folgt
+  $g=u_3h$ mit $u_3=u_1^{-1}u_2\in U$, also $Ug=Uu_3h=Uh$.
+\end{proof}
+Da die Inversenabbildung $g\mapsto g^{-1}$ eine Bijektion von $G$ ist, ist
+auch die Abbildung $Ug\mapsto (Ug)^{-1}=g^{-1}U^{-1}=g^{-1}U$ eine Bijektion
+zwischen $U\backslash G$ und $G/U$. Insbesondere gilt
+$\abs{G/U}=\abs{U\backslash G}$. Man nennt $[G:U]:=\abs{U\backslash G}$ den
+\ei{Index} von $U$ in $G$.
+\begin{Definition}
+  Aus obigem Lemma gewinnt man eine disjunkte Zerlegung $G=\biguplus_i Ug_i$
+  f\"ur geeignete $g_i\in G$, die \ei{Nebenklassenzerlegung}. Die Menge der
+  $g_i$ nennt man \ei{Rechtstransversale} oder \ei{Vertretersystem} von
+  $U\backslash G$.
+\end{Definition}
+\begin{Bemerkung*}
+  Eine Rechtstransversale ist im allgemeinen keine Linkstransversale. Dennoch
+  kann man z.B.\ f\"ur endliche Gruppen $G$ zeigen, dass es zu jeder
+  Untergruppe $U$ eine simultane Rechts- und Linkstransversale gibt.
+\end{Bemerkung*}
+F\"ur alle $g\in G$ gilt $\abs{Ug}=\abs{U}$; zusammen mit der
+Nebenklassenzerlegung folgt der fundamentale Satz von Lagrange:
+\begin{Satz}[Lagrange]
+  Sei $U$ eine Untergruppe der Gruppe $G$. Dann gilt $\abs{G}=[G:U]\abs{U}$.
+  Insbesondere ist (falls $\abs{G}<\infty$) $\abs{U}$ ein Teiler von
+  $\abs{G}$.
+\end{Satz}
+\begin{Bemerkung*}
+  Die Umkehrung des Satzes von Lagrange gilt im allgemeinen nicht, es muss
+  nicht f\"ur jeden Teiler $r$ von $\abs{G}$ eine Untergruppe der Ordnung $r$
+  existieren. Ist hingegen $r$ eine Primpotenz, so werden wir sp\"ater sehen,
+  dass es stets Untergruppen der Ordnung $r$ gibt.
+\end{Bemerkung*}
+Der Satz von Lagrange hat einige bemerkenswerte Folgen:
+\begin{Korollar}
+  Sei $G$ eine endliche Gruppe. F\"ur alle $g\in G$ ist $\ord(g)$ ein Teiler
+  von $\abs{G}$.
+\end{Korollar}
+\begin{proof}[Beweis]
+  Klar, da $\gen{g}$ eine Untergruppe der Ordnung $\ord(g)$ ist.
+\end{proof}
+\begin{Korollar}[Kleiner Satz von Fermat]
+  $a\in\ZZZ$ sei nicht durch die Primzahl $p$ teilbar. Dann ist $a^{p-1}-1$
+  durch $p$ teilbar.
+\end{Korollar}
+\begin{proof}[Beweis]
+  Die Gruppe der invertierbaren Elemente im Monoid $(\ZZZ/p\ZZZ,\cdot)$ hat
+  Ordnung $p-1$.
+\end{proof}
+\begin{Korollar}
+  Gruppen von Primzahlordnung sind zyklisch.
+\end{Korollar}
+\begin{proof}[Beweis]
+  Sei $e\ne g\in G$. Dann ist $\ord(g)>1$ ein Teiler der Primzahl $\abs{G}$,
+  also $\ord(g)=\abs{G}$ und daher $G=\gen{g}$.
+\end{proof}
+\subsection{Normalteiler und Faktorgruppen}
+Sind $A$ und $B$ Teilmengen einer Halbgruppe $G$, dann schreiben wir
+$AB:=\{ab|\;a\in A,b\in B\}$.
+
+Auf den Begriff des Normalteilers st\"o\ss t man, wenn man versucht, auf dem
+Quotientenraum $U\backslash G$ auf sinnvolle Weise ein Produkt einzuf\"uhren. Es sollte
+$(Ug)\cdot(Uh)=Ugh$ f\"ur alle $g,h\in G$ gelten. Speziell f\"ur $h=1$ folgt
+$gU\subseteq (Ug)U=Ug$, und daraus (durch Inversenbildung und Ersetzen von $g$
+durch $g^{-1}$) $gU=Ug$. Diese spezielle Eigenschaft von Untergruppen
+kennzeichnet Normalteiler.
+\begin{Definition}
+  Eine Untergruppe $N\le G$ hei\ss t \ei{Normalteiler} von $G$, wenn $Ng=gN$
+  f\"ur alle $g\in G$ gilt. Man sagt auch, $N$ ist \ei{normal} in $G$, und
+  schreibt $N\trianglelefteq G$.
+\end{Definition}
+Zur \"Uberpr\"ufung der Normalteilereigenschaft ist folgende Aussage oft
+n\"utzlich.
+\begin{Lemma}\label{L:normalkonj}
+  Die Untergruppe $N$ von $G$ ist genau dann ein Normalteiler, wenn
+  $g^{-1}Ng\subseteq N$ gilt f\"ur alle $g\in G$.
+\end{Lemma}
+\begin{proof}[Beweis]
+  Aus $g^{-1}Ng\subseteq N$ folgt $Ng\subseteq gN$. Mit $g^{-1}$ statt $g$
+  gilt $Ng^{-1}\subseteq g^{-1}N$, also $gN=(Ng^{-1})^{-1}\subseteq
+  (g^{-1}N)^{-1}=Ng$, und die eine Richtung der Behauptung folgt. Die andere
+  Richtung ist sowieso klar.
+\end{proof}
+\paragraph{Beispiele}
+\begin{itemize}
+\item Untergruppen abelscher Gruppen sind normal.
+\item Sei $U\le G$ mit $[G:U]=2$. F\"ur $g\in G$ gilt entweder $g\in U$, und
+  daher $Ug=U=gU$, oder $g\notin U$, und dann ist $Ug=gU$, da $G$ die disjunkte
+  Vereinigung von $U$ und $Ug$ bzw.\ von $U$ und $gU$ ist. Daher sind
+  Untergruppen vom Index $2$ stets Normalteiler.
+\item Es gilt $\SL_n(K)\trianglelefteq\GL_n(K)$. Dazu seien $A\in\SL_n(K)$ und
+  $B\in\GL_n(K)$ beliebig. Wegen $\det(B^{-1}AB)=\det(B)^{-1}\det(A)\det(B)=1$
+  gilt $B^{-1}AB\in\SL_n(K)$, und die Behauptung folgt aus Lemma
+  \ref{L:normalkonj}.
+\item Die Untergruppe $U$ der oberen Dreiecksmatrizen in $\GL_n(K)$ ist f\"ur
+  $n\ge2$ nicht normal in $\GL_n(K)$. Dazu sei $D$ die Antidiagonalmatrix mit
+  Eintr\"agen $1$. Dann besteht $D^{-1}UD$ aus den unteren Dreiecksmatrizen.
+\end{itemize}
+Der folgende Satz bildet aus einer Gruppe $G$ und einem Normalteiler $N$ eine
+kleinere Gruppe $G/N$. Dieses Prinzip ist wichtig, um \"uber eine eventuell
+komplizierte Gruppe $G$ Informationen aus den kleineren Gruppen $N$ und $G/N$
+gewinnen zu k\"onnen.
+\begin{Satz}
+  Sei $N\trianglelefteq G$. Dann gilt $(Ng)(Nh)=Ngh$ f\"ur alle $g,h\in
+  G$. Mit diesem Produkt wird $G/N$ zu einer Gruppe, der \ei{Faktorgruppe} von
+  $G$ modulo $N$.
+\end{Satz}
+\begin{proof}[Beweis]
+  Durch Verwendung von $Nx=xN$ und der Assoziativit\"at folgt $NgNh=NNgh=Ngh$.
+  Wir m\"ussen zeigen, dass wir ein wohldefiniertes Produkt auf $G/N$
+  bekommen. Dazu sei $Ng=Ng'$ und $Nh=Nh'$. Dies liefert $g'=ug$ und $h'=vh$
+  mit $u,v\in N$. Wegen $gvg^{-1}=w\in N$ und $uw\in N$ gilt
+  $g'h'=ugvh=u(gvg^{-1})gh=uwgh$ und daher $Ng'h'=Ngh$.
+
+  Assoziativit\"at des Produkt auf $G/N$ ist klar, das neutrale Element ist
+  $N$, und das inverse Element von $Ng$ ist $Ng^{-1}$.
+\end{proof}
+\begin{Definition}
+  Eine Gruppe $G>\{e\}$ hei\ss t \ei{einfach}, wenn sie au\ss er $G$ und
+  $\{e\}$ keine Normalteiler hat.
+\end{Definition}
+Einfache Gruppen spielen eine \"ahnliche Rolle wie die Primzahlen f\"ur die
+nat\"urlichen Zahlen. Nach dem Satz von Lagrange ist z.B.\ eine Gruppe von
+Primzahlordnung einfach. Weniger triviale Beispiele werden uns in den
+folgenden Abschnitten begegnen.
+\subsection{Symmetrische und alternierende Gruppen}
+Sei $n\in\NNN$ und $S_n$ die Gruppe der Permutationen von $\{1,2,\dots,n\}$.
+Wir verwenden die Exponentialnotation $a^\phi$ f\"ur das Bild von $a$ unter
+$\phi$. Das hat den Vorteil der bequemen Notation wie z.B.\ 
+$a^{\phi\psi}=(a^\phi)^\psi$ f\"ur $\phi,\psi\in S_n$. Man kann Permutationen
+$\phi\in S_n$ durch eine Wertetabelle $\phi=
+\begin{pmatrix}
+  1 & 2 & \cdots & n\\
+1^\phi & 2^\phi & \cdots & n^\phi
+\end{pmatrix}
+$ angeben. Transparenter, und f\"ur praktische wie auch theoretische Zwecke
+geeigneter, ist die Zykelnotation. Dabei hei\ss t $\psi\in S_n$ ein
+\ei{$m$-Zykel}, wenn es eine Folge $a_1,a_2,\dots,a_m$ verschiedener Zahlen
+aus $\{1,2,\dots,n\}$ gibt mit $a_i^\phi=a_{i+1}$ f\"ur $1\le i\le m-1$,
+$a_m^\phi=a_1$ und $a^\phi=a$ f\"ur alle $a\notin\{a_1,a_2,\dots,a_m\}$. Die
+\ei{Zykelnotation} f\"ur $\psi$ ist $\psi=(a_1,a_2,\dots,a_m)$, wobei man auch
+h\"aufig $\psi=(a_1\, a_2\,\ldots\, a_m)$ schreibt. In den folgenden Beweisen
+erspart man sich Fallunterscheidungen, wenn man $a_{m+1}=a_1, a_{m+2}=a_2,
+\dots$ setzt.
+
+Ist $\phi\in S_n$ eine Permutation, so nennt man die Menge der von $\phi$
+bewegten Elemente den Tr\"ager von $\phi$; er besteht also aus den $a$ mit
+$a^\phi\ne a$.
+
+Jedes Element $\phi$ aus $S_n$ ist ein Produkt von Zykeln $\psi_i$ mit
+disjunkten Tr\"agern. Diese Zykel kommutieren paarweise, also
+$\psi_i\psi_j=\psi_j\psi_i$ f\"ur alle $i,j$. Das Produkt diser Zykel in
+Zykelnotation ist die \ei{Zykelnotation} f\"ur $\phi$. Kommt in $\phi$ ein
+trivialer Zykel $(a)$ vor, so l\"asst man den Faktor $(a)$ h\"aufig weg.
+\paragraph{Beispiele}
+\begin{itemize}
+\item $n=3$, $\phi=\begin{pmatrix}
+  1 & 2 & 3\\
+3 & 2 & 1
+\end{pmatrix}
+=(1 3)(2)=(1 3)$.
+\item $n=5$, $\phi=\begin{pmatrix}
+  1 & 2 & 3 & 4 & 5\\
+3 & 5 & 1 & 2 & 4
+\end{pmatrix}
+=(1 3)(2 5 4)$, $\phi^{-1}=(1 3)(2 4 5)$, $\phi^2=(1)(3)(2 4 5)=(2 4 5)$.
+\item $n=5$, $\phi=(1 2 3 4)$, $\psi=(2 3)(4 5)$, $\phi\psi=(1 3 5 4)$.
+\end{itemize}
+Ein wichtiger Begriff der Gruppentheorie ist die \ei{Konjugiertheit}, den wir
+hier am Beispiel der symmetrischen Gruppe n\"aher kennenlernen wollen. Die
+Konjugiertheit ist eine Verallgemeinerung des Begriffs der \"Ahnlichkeit f\"ur
+die Gruppe der invertierbaren Matrizen $\GL_n(K)$.
+\begin{Definition}
+  Sei $G$ eine Gruppe. Die Elemente $a,b\in G$ hei\ss en \ei{konjugiert}, wenn
+  es ein $g\in G$ gibt mit $b=g^{-1}ag$. Statt $g^{-1}ag$ schreibt man auch
+  $a^g$, was die eing\"angigen Beziehungen $a^{gh}=(a^g)^h$ und
+  $(ab)^g=a^gb^g$ liefert.
+\end{Definition}
+Die Konjugiertheit schreibt sich in Zykelnotation sehr \"ubersichtlich:
+\begin{Satz}
+  Sei $\phi=(a_1\,a_2\dots)(b_1\,b_2\dots)\dots\in S_n$ und $\psi\in S_n$.
+  Dann gilt
+  $\phi^\psi=(a_1^\psi\,a_2^\psi\dots)(b_1^\psi\,b_2^\psi\dots)\dots$.
+\end{Satz}
+\begin{proof}[Beweis]
+  Wir m\"ussen sehen, wohin z.B.\ das Element $a_i^\psi$ von $\phi^\psi$
+  abgebildet wird. Wir rechnen
+  \begin{align*}
+    (a_i^\psi)^{\phi^\psi} &= (a_i^\psi)^{\psi^{-1}\phi\psi}\\
+&= a_i^{\psi\psi^{-1}\phi\psi} \\
+&= a_i^{\phi\psi} \\
+&= (a_i^\phi)^\psi \\
+&= a_{i+1}^\psi
+  \end{align*}
+und die Behauptung folgt.
+\end{proof}
+Die Zykell\"angen von $\alpha$ sind die L\"angen der in der Zykelschreibweise
+von $\alpha$ auftretenden Zykel. Obiger Satz zeigt, dass sich die Zykell\"angen
+unter Konjugation nicht \"andern. Es gilt auch die Umkehrung:
+\begin{Satz}\label{S:zykkon}
+  Seien $\alpha,\beta\in S_n$ Permutationen mit den gleichen Zykell\"angen.
+  Dann sind $\alpha$ und $\beta$ in $S_n$ konjugiert.
+\end{Satz}
+\begin{proof}[Beweis]
+  Seien $m_1,m_2,\dots$ die Zykell\"angen. Schreibe
+  \begin{align*}
+    \alpha &=
+    (a_{1,1}\,a_{1,2}\dots a_{1,m_1})(a_{2,1}\,a_{2,2}\dots a_{2,m_2})\dots\\
+    \beta &=
+    (b_{1,1}\,b_{1,2}\dots b_{1,m_1})(b_{2,1}\,b_{2,2}\dots b_{2,m_2})\dots,\\
+\end{align*}
+wobei wir auch die Zykel der L\"angen $1$ mit aufschreiben. Jedes Element aus
+$\{1,2,\dots,n\}$ kommt daher genau einmal sowohl unter den $a_{i,j}$, als
+auch unter den $b_{i,j}$, vor. Sei $\psi\in S_n$ definiert durch
+$b_{i,j}=a_{i,j}^\psi$. Aus der folgenden Rechnung ergibt sich
+$\beta=\alpha^\psi$:
+\begin{align*}
+  b_{i,j}^{\beta} &= b_{i,j+1}\\
+&= a_{i,j+1}^\psi\\
+&= a_{i,j}^{\alpha\psi}\\
+&= a_{i,j}^{\psi\psi^{-1}\alpha\psi}\\
+&= b_{i,j}^{\psi^{-1}\alpha\psi}
+\end{align*}
+\end{proof}
+Eine wichtige Klasse von Permutationen sind die $2$-Zykel. Man nennt sie auch
+\ei{Transpositionen}. Die folgende Aussage zeigt, dass die symmetrischen
+Gruppen von Transpositionen erzeugt werden.
+\begin{Satz}
+  Jede Permutation $\phi\in S_n$ ist ein Produkt von
+  Transpositionen, und jeder Zykel der L\"ange $m$ ist ein Produkt von $m-1$
+  Transpositionen.
+\end{Satz}
+\begin{proof}[Beweis]
+  Da jede Permutation ein Produkt von Zykeln ist, gen\"ugt es, die Aussage
+  f\"ur einen Zykel zu beweisen. Die Behauptung folgt induktiv wegen
+  $(a_1\,a_2\dots a_m)=(a_2\,a_3\dots a_m)(a_1\,a_2)$.
+\end{proof}
+Sind $m_1,m_2,\dots,m_r$ die Zykell\"angen eines Elements $\phi\in S_n$, so
+nennt man $\ell(\phi):=\sum_{i=1}^r(m_i-1)$ die \ei{L\"ange} von
+$\phi$. Obiger Satz zeigt, dass sich $\phi$ als Produkt von $\ell(\phi)$
+Transpositionen schreiben l\"asst.
+\begin{Satz}
+  F\"ur $\phi,\psi\in S_n$ gilt
+  $\ell(\phi\psi)\equiv\ell(\phi)+\ell(\psi)\pmod{2}$.
+\end{Satz}
+\begin{proof}[Beweis]
+  Schreibt man $\phi$ und $\psi$ jeweils als Produkt von Transpositionen, so
+  sieht man, dass die Behauptung aus folgender Aussage folgt: Sei
+  $\alpha=\tau_1\tau_2\dots\tau_m$ ein Produkt von $m$ Transpositionen. Dann
+  gilt $\ell(\alpha)\equiv m\pmod{2}$. Das beweisen wir durch Induktion \"uber
+  $m$. Die Behauptung ist trivial f\"ur $m=1$. Wir nehmen nun an, dass sie
+  richtig ist f\"ur $m$. Sei $\tau$ eine Transposition. Die Richtigkeit der
+  Aussage f\"ur $m+1$ folgt, wenn wir zeigen, dass
+  $\ell(\alpha\tau)=\ell(\alpha)+\delta$ gilt mit $\delta\in\{-1,1\}$. Wir
+  schreiben $\tau=(u\,v)$, und unterscheiden zwei F\"alle:
+\begin{itemize}
+\item[(i)] $u$ und $v$ sind in einem Zykel $\beta=(a_1\,a_2\cdots a_r)$ von
+  $\alpha$ enthalten, also etwa $a_i=u$ und $a_j=v$ mit $i<j$. Zur Bestimmung
+  der Zykeldarstellung von $\alpha\tau$ muss man lediglich $\beta\tau$
+  bestimmen. Man erh\"alt $\beta\tau=(a_1\,a_2\cdots
+  a_r)(a_i\,a_j)=(a_1\,a_2\dots a_{i-1}\,a_j\,a_{j+1}\dots
+  a_r)(a_i\,a_{i+1}\dots a_{j-1})$, also
+  $\ell(\beta\tau)=(r-j+i-1)+(j-i-1)=r=\ell(\beta)-1$, und daher
+  $\ell(\alpha\tau)=\ell(\alpha)-1$
+\item[(ii)] $u$ und $v$ liegen in verschiedenen Zykeln $(a_1\dots a_r)$ und
+  $(b_1\dots b_s)$ von $\alpha$, wobei wir $a_1=u$ und $b_1=v$ annehmen
+  d\"urfen. Aus $(a_1\dots a_r)(b_1\dots b_s)(a_1\,b_1)=(a_1\,a_2\dots
+  a_r\,b_1\,b_2\dots b_s)$ folgt $\ell(\alpha\tau)=\ell(\alpha)+1$.
+\end{itemize}
+\end{proof}
+\begin{Definition}
+  Permutationen $\phi$ mit $\ell(\phi)\equiv0\pmod{2}$ hei\ss en gerade, und
+  solche mit $\ell(\phi)\equiv1\pmod{2}$ hei\ss en ungerade.
+\end{Definition}
+\begin{Satz}
+  Sei $1<n\in\NNN$. Die Menge der geraden Permutationen aus $S_n$ bildet eine
+  Gruppe $A_n$ mit $[S_n:A_n]=2$. Man nennt $A_n$ die \ei{alternierende
+  Gruppe} vom Grad $n$.
+\end{Satz}
+\begin{proof}[Beweis]
+  Aus obigem Satz folgt die multiplikative Abgeschlossenheit von $A_n$, somit
+  ist $A_n$ eine Untergruppe von $S_n$. Sei $\tau\in S_n$ eine Transposition,
+  und $\phi\in S_n$, aber $\phi\notin A_n$. Da $\tau$ und $\phi$ ungerade
+  Permutationen sind, ist nach dem obigen Satz $\phi\tau$ gerade, also
+  $\phi\tau\in A_n$, und daher $\phi\in A_n\tau$. Somit ist $S_n=A_n\cup
+  A_n\tau$ eine Nebenklassenzerlegung, und die Behauptung folgt.
+\end{proof}
+Unser Ziel ist es zu zeigen, dass die alternierenden Gruppen $A_n$ f\"ur
+$n\ge5$ einfach sind. Hierf\"ur ben\"otigen wir noch einige Vorbereitungen:
+\begin{Satz}\label{S:Anerz}
+  Jede gerade Permutation ist ein Produkt von $3$-Zykeln. Insbesondere wird
+  $A_n$ von den $3$-Zykeln aus $S_n$ erzeugt.
+\end{Satz}
+\begin{proof}[Beweis]
+  Da jede gerade Permutation das Produkt einer geraden Anzahl von
+  Transpositionen ist, gen\"ugt es zu zeigen, dass das Produkt von zwei
+  Transpositionen $\sigma=(a\,b)$ und $\tau=(c\,d)$ ein Produkt von $3$-Zykeln
+  ist. Wir unterscheiden zwei F\"alle: (i) $\sigma$ und $\tau$ bewegen einen
+  gemeinsamen Punkt. Sei also etwa $a=c$ (und $b\ne d$, da es sonst nichts zu
+  beweisen gibt). Dann gilt $\sigma\tau=(a\,b)(a\,d)=(a\,b\,d)$. (ii) $\sigma$
+  und $\tau$ bewegen keinen gemeinsamen Punkt. In diesem Fall gilt
+  $\sigma\tau=(a\,b)(c\,d)=(a\,b)(b\,c)(b\,c)(c\,d)=(a\,c\,b)(b\,d\,c)$.
+\end{proof}
+\begin{Lemma}
+  Sei $n\ge5$. Dann sind alle $3$-Zykel aus $A_n$ konjugiert.
+\end{Lemma}
+\begin{proof}[Beweis]
+  Seien $\alpha$ und $\beta$ zwei $3$-Zykel. Nach Satz \ref{S:zykkon} gibt es
+  $\gamma\in S_n$ mit $\beta=\alpha^\gamma$. Liegt $\gamma$ in $A_n$, dann
+  sind wir fertig. Das sei also nicht der Fall. Wegen $n\ge5$ gibt es eine
+  Transposition $\tau$, die zwei Fixpunkte von $\beta$ vertauscht. Somit gilt
+  $\beta=\alpha^\gamma=\alpha^{\gamma\tau}$, und die Behauptung folgt wegen
+  $\gamma\tau\in A_n$.
+\end{proof}
+\begin{Satz}
+  F\"ur $n\ge5$ ist die Gruppe $A_n$ einfach.
+\end{Satz}
+\begin{proof}
+  Sei $N>1$ ein Normalteiler von $A_n$. Unser Ziel ist es zu zeigen, dass $N$
+  einen $3$-Zykel $\rho$ enth\"alt. F\"ur alle $\gamma\in A_n$ folgt dann
+  n\"amlich $\rho^\gamma\in N^\gamma=N$, und wegen obigem Lemma enth\"alt $N$
+  dann alle $3$-Zykel aus $A_n$. Diese aber erzeugen nach Satz \ref{S:Anerz}
+  die Gruppe $A_n$, und somit gilt $N=A_n$.
+  
+  Es bleibt die Existenz eines $3$-Zykels $\rho\in N$ zu zeigen. Dazu starten
+  wir mit einem beliebigen Element $1\ne\phi\in N$. Ist $\sigma$ ein
+  $3$-Zykel, dann liegt das Produkt der $3$-Zykel $\sigma^{-1}$ und
+  $\phi^{-1}\sigma\phi$ in $N$, da $\sigma^{-1}\phi^{-1}\sigma$ und $\phi$ in
+  $N$ liegen. Unser Ziel ist es, $\sigma$ geschickt zu w\"ahlen, so dass
+  $\rho$ ein $3$-Zykel wird. Das gelingt nicht immer in einem Schritt, aber da
+  das Produkt von zwei $3$-Zykeln h\"ochstens $6$ Elemente bewegt, hat $\rho$
+  schon mal mindestens $n-6$ Fixpunkte.
+  
+  Ist $\phi$ ein $3$-Zykel, dann sind wir sowieso fertig. Da $\phi$ gerade
+  ist, kann $\phi$ keine Transposition sein.  Somit bleibt der Fall zu
+  betrachten, dass $\phi$ mindestens $4$ Punkte bewegt.
+  
+  Hierzu unterscheiden wir drei F\"alle:
+
+(i) $\phi$ hat eine Zykell\"ange $\ge4$. Dann k\"onnen wir
+$\phi:=(a\,b\,c\,d\dots)\dots$ schreiben. Wir setzen
+$\sigma:=(a\,b\,c)$. Wegen
+$\phi^{-1}\sigma\phi=(a^\phi\,b^\phi\,c^\phi)=(b\,c\,d)$ gilt
+$\rho=\sigma^{-1}\phi^{-1}\sigma\phi=(a\,c\,b)(b\,c\,d)=(a\,d\,b)$ ist
+$\rho\in N$ ein $3$-Zykel.
+
+(ii) $\phi$ enth\"alt einen $3$-Zykel $(a\,b\,c)$. Da $\phi$ kein $3$-Zykel
+ist, wird mindestens ein weiteres Element $d$ bewegt, also
+$\phi=(a\,b\,c)(d\,e\dots)\dots$. Wir setzen $\sigma=(a\,b\,d)$. Es folgt
+$\phi^{-1}\sigma\phi=(a\,b\,d)^\phi=(b\,c\,e)$ und
+$\rho=(a\,d\,b)(b\,c\,e)=(a\,d\,c\,e\,b)$. Somit sind wir im Fall (i), und
+k\"onnen so wie dort einen $3$-Zykel konstruieren.
+
+(iii) $\phi$ hat nur Zykell\"angen $2$. Dann gilt $\phi=(a\,b)(c\,d)\dots$,
+und wir setzen $\sigma=(a\,c\,e)$, wobei $e$ von $a,b,c,d$ verschieden ist.
+(Das geht wegen $n\ge5$!) Es gilt
+$\phi^{-1}\sigma\phi=(a\,c\,e)^\phi=(b\,d\,f)$ mit $f=e^\phi$. Ist $e=f$, dann
+gilt $\rho=(a\,e\,c)(b\,d\,e)=(a\,b\,d\,e\,c)$, und wir fahren fort wie im
+Fall (i). Ist hingegen $e\ne f$, dann ist $\rho=(a\,e\,c)(b\,d\,f)$ das
+Produkt zweier disjunkter $3$-Zykel, und wir fahren fort wie im Fall (ii).
+
+Wie wir sehen, gelangen wir stets nach endlich vielen Schritten zu einem
+$3$-Zykel aus $N$. Die Behauptung folgt.
+\end{proof}
+\subsection{Homomorphismen}
+Strukturerhaltende Abbildungen spielen in der gesamten Mathematik eine
+wichtige Rolle. In der Algebra hei\ss en sie meist Homomorphismen. Eine
+Abbildung $\Phi:X\to Y$ zwischen zwei Mengen schreiben wir entweder in der
+gew\"ohnlichen oder der Exponentialnotation, d.h.\ das Bild von $x$ unter
+$\Phi$ ist $\Phi(x)$ oder $x^\Phi$.
+\begin{Definition}
+  Eine Abbildung $\Phi:G\to H$ von der Gruppe $G$ in die Gruppe $H$ hei\ss t
+  ein \ei{Homomorphismus}, wenn $(xy)^\Phi=x^\Phi y^\Phi$ gilt f\"ur alle
+  $x,y\in G$.
+\end{Definition}
+\paragraph{Einfache Folgerungen}
+Die folgenden Aussagen f\"ur einen Homomorphismus $\Phi:G\to H$ erh\"alt man
+direkt aus den Definitionen
+\begin{itemize}
+\item Ein Homomorphismus bildet das neutrale Element auf das neutrale Element
+  ab, das folgt aus der K\"urzungsregel und $e^\Phi=(ee)^\Phi=e^\Phi e^\Phi$.
+\item Es gilt $(x^{-1})^\Phi=(x^\Phi)^{-1}$, man schreibt daf\"ur auch
+  manchmal $x^{-\Phi}$.
+\item Die Komposition von Homomorphismen ist ein Homomorphismus.
+\item Das Bild $U^\Phi=\{u^\Phi|\,u\in U\}$ einer Untergruppe $U\le G$ ist eine
+  Untergruppe von $H$.
+\item Das Urbild $V^{\Phi^{-1}}$ einer Untergruppe $V\le H$ ist eine
+  Untergruppe von $G$. Ist dabei $V$ normal in $H$, dann ist $V^{\Phi^{-1}}$
+  normal in $G$. (Sind auch Bilder von Normalteilern normal?)
+\item Sind $x,y$ in $G$ konjugiert, so sind $x^\Phi,y^\Phi$ in $H$ konjugiert.
+\item $\Phi$ ist bereits durch seine Werte auf einem Erzeugendensystem von $G$
+  festgelegt.
+\end{itemize}
+Homomorphismen $\Phi:G\to H$ mit speziellen Eigenschaften haben noch weitere
+Bezeichnungen:
+
+%  \centering
+  \begin{tabular}{ll}
+\ei{Monomorphismus:} & $\Phi$ ist injektiv\\
+\ei{Epimorphismus:} & $\Phi$ ist surjektiv\\
+\ei{Isomorphismus:} & $\Phi$ ist bijektiv\\
+\ei{Endomorphismus:} & $G=H$\\
+\ei{Automorphismus:} & $G=H$ und $\Phi$ ist bijektiv
+  \end{tabular}
+
+Die Umkehrabbildung eines Isomorphismus $\Phi$ bezeichnet man mit
+$\Phi^{-1}$. Aus
+$xy=(x^{\Phi^{-1}})^\Phi(y^{\Phi^{-1}})^\Phi=
+(x^{\Phi^{-1}}y^{\Phi^{-1}})^\Phi$, folgt, nach Anwenden von $\Phi^{-1}$, dass
+auch $\Phi^{-1}$ ein Homomorphismus und damit ein Isomorphismus
+ist. Insbesondere ist die Menge der Automorphismen einer Gruppe $G$ selber
+eine Gruppe, man bezeichnet sie mit $\Aut(G)$. Besteht zwischen den Gruppen
+$G$ und $H$ ein Isomophismus, dann nennt man $G$ und $H$ \ei{isomorph}, und
+schreibt $G\cong H$.
+\paragraph{Beispiele von Homomorphismen}
+\begin{itemize}
+\item $G=(\CCC,+)$, $H=(\CCC\setminus\{0\},\cdot)$, $x^\Phi:=e^x$.
+\item $G=\GL_n(K)$, $H=(K\setminus\{0\},\cdot)$, $x^\Phi:=\det(x)$.
+\item $G=S_n$, $H=(\{-1,1\},\cdot)$, $x^\Phi:=(-1)^{l(x)}$.
+\item $G=H$ abelsch, $n\in\ZZZ$, $x^\Phi:=x^n$.
+\item $N\trianglelefteq G$, $H=G/N$, $x^\Phi:=Nx$.
+\end{itemize}
+\begin{Definition}
+  Der \ei{Kern} eines Homomorphismus $\Phi:G\to H$ ist die Menge der $g\in G$
+  mit $g^\Phi=e$, man schreibt auch $\text{Kern}(\Phi)$ f\"ur diese Menge. Als
+  Urbild des Normalteilers $\{e\}$ von $H$ ist $\text{Kern}(\Phi)$ ein
+  Normalteiler von $G$. Mit $\text{Bild}(\Phi)$ bezeichnen wir das Bild
+  $G^\Phi$ von $G$ unter $\Phi$.
+\end{Definition}
+\begin{Bemerkung*}
+  Man rechnet sofort nach, dass ein Homomorphismus $\Phi$ genau dann injektiv
+  ist, wenn $\text{Kern}(\Phi)=\{e\}$ gilt.
+\end{Bemerkung*}
+Analog zu einem Satz der linearen Algebra erhalten wir den folgenden wichtigen
+Homomorphiesatz:
+\begin{Satz}
+  Sei $\Phi:G\to H$ ein Homomorphismus. Dann ist die Abbildung
+  $\Psi:G/\text{Kern}(\Phi)\to\text{Bild}(\Phi)$, $\text{Kern}(\Phi)x\mapsto
+  x^\Phi$ wohldefiniert, und liefert einen Isomorphismus
+  $G/\text{Kern}(\Phi)\cong\text{Bild}(\Phi)$.
+\end{Satz}
+\begin{proof}[Beweis]
+Die Wohldefiniertheit und Surjektivit\"at folgen direkt aus der
+Definition. Setze $N:=\text{Kern}(\Phi)$. Wegen $NxNy=Nxy$ gilt
+$(NxNy)^\Psi=(Nxy)^\Psi=(xy)^\Phi=x^\Phi y^\Phi=(Nx)^\Psi(Ny)^\Psi$. Somit ist
+$\Psi$ ein Homomorphismus. Ferner ist $\Psi$ injektiv, denn aus
+$e_H=(Nx)^\Psi=x^\Phi$ folgt $x=e_G$. ($e_G$ und $e_H$ bezeichnen die
+neutralen Elemente von $G$ bzw.\ $H$.)  
+\end{proof}
+Es war wohl schon fr\"uher klar, dass es ``im Prinzip'' nur die zyklischen
+$\ZZZ$ und $\ZZZ/n\ZZZ$ gibt. Mit den jetzigen Begriffen k\"onnen wir das
+pr\"azise formulieren und beweisen:
+\begin{Korollar}
+  Bis auf Isomorphie gibt es nur die folgenden zyklischen Gruppen: $(\ZZZ,+)$
+  und $(\ZZZ/n\ZZZ,+)$ f\"ur ein $n\in\NNN$.
+\end{Korollar}
+\begin{proof}[Beweis]
+  Sei $g$ ein Erzeuger einer zyklischen Gruppe. Die Abbildung $\ZZZ\to G$,
+  $m\mapsto g^m$ ist ein Epimorphismus. Sei $N$ der Kern. Dann gilt nach
+  obigem Satz $G\cong\ZZZ/N$. Ist $N=\{0\}$, dann gilt nat\"urlich
+  $\ZZZ/N\cong\ZZZ$. Sei nun $N\ne\{0\}$, und $n$ die kleinste nat\"urliche
+  Zahl in $N$. Dann gilt $N=n\ZZZ$, und die Behauptung folgt.
+\end{proof}
+Eine weitere wichtige Erkenntnis ist der Satz, dass jede Gruppe isomorph ist
+zu einer Untergruppe einer symmetrischen Gruppe.
+\begin{Satz}[Cayley]
+  Jede Gruppe $G$ ist isomorph zu einer Untergruppe von $\text{Sym}(G)$.
+\end{Satz}
+\begin{proof}[Beweis]
+  F\"ur $g\in G$ sei $g^\Phi$ die Permutation der Elemente von $G$, welche
+  $x\in G$ auf $xg$ abbildet. Aus
+  $x^{(gh)^\Phi}=xgh=(x^{g^\Phi})^{h^\Phi}=x^{g^\Phi h^\Phi}$ folgt, dass
+  $\Phi:G\to\text{Sym}(G)$ ein Homomorphismus ist. Der Kern von $\Phi$ besteht
+  offenbar nur aus dem neutralen Element, somit ist $G$ isomorph zu $G^\Phi$.
+\end{proof}
+Wie in der Linearen Algebra folgen aus dem Homomorphiesatz einige
+Isomorphies\"atze. Beachte, dass wenn $N$ ein Normalteiler und $U$ eine
+Untergruppe einer Gruppe $G$ sind, dann ist $UN$ eine Untergruppe von $G$.
+\begin{Satz}
+  \begin{itemize}
+  \item[(a)] Sei $G$ eine Gruppe mit Untergruppe $U$ und Normalteiler $N$.
+    Dann gilt $U/U\cap N\cong UN/N$.
+  \item[(b)] Seien $G$ eine Gruppe mit Normalteilern $N\subseteq M$. Dann gilt
+  $(G/N)/(M/N)\cong G/M$.
+  \end{itemize}
+\end{Satz}
+\begin{proof}[Beweis]
+  (a) Sei $\Phi$ der nat\"urliche Homomophismus $G\to G/N$. Das Bild von $U$
+  besteht aus den Nebenklassen $uN$ f\"ur $u\in U$, ist also $UN/N$. Der Kern
+  der Einschr\"ankung von $\Phi$ auf $U$ ist $U\cap N$, die Behauptung folgt
+  nun aus dem Homomorphiesatz.
+
+(b) Die Abbildung $G/N\to G/M$, $gN\mapsto gM$ ist ein wohldefinierter
+Epimorphismus mit Kern $M/N$, die Behauptung folgt wiederum aus dem
+Homomorphiesatz.
+\end{proof}
+\subsection{Gruppenoperationen}
+In diesem Abschnitt wollen wir Operationen von Gruppen auf Mengen
+betrachten. Einige grundlegende Aussagen werden sp\"ater als Hilfsmittel zum
+Beweis interner Aussagen \"uber endliche Gruppen dienen, die nichts mit
+Gruppenoperationen zu tun haben.
+\begin{Definition}
+  Eine \ei{Operation} einer Gruppe $G$ auf einer Menge $M$ ist eine Abbildung
+  $M\times G\to M$, $(m,g)\mapsto m^g$, f\"ur die $m^e=m$ und $(m^g)^h=m^{gh}$
+  gilt f\"ur alle $m\in M$, $g\in G$.
+\end{Definition}
+\begin{Bemerkung*}
+  $G$ operiere auf $M$ wie oben. Sei $\Phi:G\to\text{Sym}(M)$ die Abbildung,
+  die $g\in G$ auf die Permutation $M\to M$, $m\mapsto m^g$ abbildet. Dann ist
+  $\Phi$ ein Homomorphismus. Umgekehrt liefert jeder Homomorphismus
+  $G\to\text{Sym}(G)$ eine Operation von $G$ auf $M$.
+\end{Bemerkung*}
+Operiert die Gruppe $G$ auf der Menge $M$, so erh\"alt man auf nat\"urliche
+Weise eine \"Aquivalenzrelation auf $M$: Zwei Elemente $m_1,m_2\in M$ sind
+\"aquivalent genau dann, wenn es ein Element $g\in G$ gibt mit
+$m_2=m_1^g$. (Man verifiziere die drei Eigenschaften Reflexivit\"at, Symmetrie
+und Transitivit\"at.) Die \"Aquivalenzklassen nennt man \ei{Bahnen}. Die Bahn
+durch $m$ besteht offenbar aus den Elementen $m^g$, $g\in G$, und wird daher
+mit $m^G$ bezeichnet.
+
+Eine Operation von $G$ auf $M$ hei\ss t \ei{transitiv}, wenn $M$ nur aus einer
+Bahn besteht. In diesem Fall wird $M$ gelegentlich auch \ei{homogener Raum}
+genannt.
+
+\paragraph{Beispiele}
+\begin{itemize}
+\item Sei $U$ eine Untergruppe der Gruppe $G$. Dann operiert $G$ auf dem
+  Nebenklassenraum $U\backslash G$: Hierbei schickt $g$ die Nebenklasse $Ux$
+  auf die Nebenklasse $Uxg$. Diese Operation ist offensichtlich transitiv.
+  Gleich werden wir sehen, dass jede transitive Operation auf einer Menge $M$,
+  bis auf Umbenennung der Elemente von $M$, eine solche Operation auf einem
+  Nebenklassenraum ist.
+  
+  Diese Operation liefert einen Homomorphismus $G\to\text{Sym}(U\backslash
+  G)$. Es ist nat\"urlich interessant, den Kern $N$ zu bestimmen. Dabei
+  besteht $N$ aus genau den Elementen $g\in G$, die jede Nebenklasse $Ux$
+  festlassen, also $Uxg=Ux$ f\"ur alle $x\in G$ erf\"ullen. Aber $Uxg=Ux$ ist
+  \"aquivalent zu $xgx^{-1}\in U$, und das ist \"aquivalent zu $g\in U^x$.
+  Daher besteht $N$ aus dem Schnitt der Konjugierten von $U$. Gilt
+  $[G:U]=n<\infty$, dann ist nach dem Homomorphiesatz $G/N$ isomorph zu einer
+  Untergruppe der symmetrischen Gruppe auf $n$ Elementen, insbesondere ist
+  $[G:N]$ endlich und ein Teiler von $n!$.
+\item Die Gruppe $G$ operiert auf sich selbst durch Konjugation. Dabei schickt
+  $g$ das Element $x$ auf $g^{-1}xg=x^g$. F\"ur $\abs{G}>1$ ist diese
+  Operation nicht transitiv, da $\{e\}$ eine Bahn ist.
+\item Die lineare Gruppe $\GL_n(K)$ operiert auf dem Vektorraum $K^n$, aber
+  sie operiert zum Beispiel auch auf der Menge der $1$-dimensionalen
+  Unterr\"aume von $K^n$.
+\item Sei $G$ die Gruppe der gleichsinnigen Symmetrien eines W\"urfels. Diese
+  Gruppe hat Ordnung $24$, denn eine Seitenfl\"ache l\"asst sich auf $6$
+  m\"ogliche Fl\"achen abbilden, und danach hat man noch $4$ m\"ogliche
+  Drehungen dieser Fl\"ache. Diese Gruppe hat verschiedene transitive
+  Operationen auf Objekten, die zum W\"urfel geh\"oren: $G$ operiert transitiv
+  auf den $8$ Ecken, transitiv auf den $6$ Fl\"achen, transitiv auf den $12$
+  Kanten, aber auch transitiv auf den $4$ Raumdiagonalen.
+\end{itemize}
+
+Operiert $G$ auf $M$, so nennt man $G_m:=\{g\in G|\;m^g=m\}$ den
+\ei{Stabilisator} von $m\in M$. Andere gebr\"auchliche Bezeichnungen sind
+\ei{Punktstabilisator}, \ei{Standgruppe} oder \ei{Isotropiegruppe}. Man
+rechnet sofort nach, dass $G_m$ eine Untergruppe von $G$ ist.
+
+\begin{Definition}
+  Die Gruppe $G$ operiere auf den Mengen $M$ und $N$. Eine Abbildung
+  $\phi:M\to N$ nennen wir $G$-\ei{\"aquivariant}, wenn
+  $(m^g)^\phi=(m^\phi)^g$ gilt f\"ur alle $m\in M$, $g\in G$.
+\end{Definition}
+\begin{Satz}
+  Die Gruppe $G$ operiere transitiv auf der Menge $M$. Sei $U$ der
+  Stabilisator eines Elements $m\in M$. Dann wird durch $\phi:U\backslash G\to
+  M$, $Ux\mapsto m^x$ eine $G$-\"aquivariante Bijektion definiert.
+\end{Satz}
+\begin{proof}[Beweis]
+  Zun\"achst m\"ussen wir sehen, dass $\phi$ wohldefiniert ist. Dazu sei etwa
+  $Ux=Uy$. Dann gilt $y=ux$ mit $u\in U$, und wegen $m^u=m$ folgt
+  $m^x=m^{ux}=m^y$.
+  
+  $\phi$ ist offenbar surjektiv. Ferner ist $\phi$ injektiv, denn aus
+  $m^x=m^y$ folgt $m^{yx^{-1}}=m$, also $yx^{-1}\in U$ und dann $Ux=Uy$.
+  
+  Die $G$-\"Aquivarianz folgt aus
+  $((Ux)^\phi)^g=(m^x)^g=m^{xg}=(Uxg)^\phi=((Ux)^g)^\phi$.
+\end{proof}
+Eine wichtige Konsequenz ist
+\begin{Korollar}\label{K:Bahnlaenge}
+  Die Gruppe $G$ operiere auf $M$. Die L\"ange der Bahn durch $m$ berechnet
+  sich durch $\abs{m^G}=[G:G_m]$.
+\end{Korollar}
+\begin{proof}[Beweis]
+  $G$ operiert transitiv auf der Bahn $m^G$. Nach obigem Satz besteht eine
+  Bijektion zwischen $m^G$ und $\text{St}_G(m)\backslash G$.
+\end{proof}
+Folgende einfache Aussage wird h\"aufig ohne Kommentar verwendet:
+\begin{Lemma}
+  $G$ operiere auf $M$. Die Elemente $u,v\in M$ seien in einer gemeinsamen
+  Bahn. Dann sind die Stabilisatoren $G_u$ und $G_v$ in $G$ konjugiert.
+  Genauer: Ist $v=u^g$, dann gilt $G_v=g^{-1}G_ug=G_u^g$.
+\end{Lemma}
+\begin{proof}[Beweis]
+  Sei $v=u^g$. Dann ist $h\in G_v$ $\Longleftrightarrow$ $v^h=v$
+  $\Longleftrightarrow$ $u^{gh}=u^g$ $\Longleftrightarrow$ $u^{ghg^{-1}}=u$
+  $\Longleftrightarrow$ $ghg^{-1}\in G_u$ $\Longleftrightarrow$ $h\in
+  g^{-1}G_ug$.
+\end{proof}
+An einigen Beispielen wollen wir die Anwendbarkeit der neuen Resultate und
+Konzepte verdeutlichen. Vorher ben\"otigen wir noch einige Begriffe.
+\begin{Definition}
+  Die Gruppe $G$ operiere durch Konjugation auf sich selbst. Den Stabilisator
+  eines Elements $x$ unter dieser Operation nennt man den \ei{Zentralisator}
+  von $x$ in $G$, und schreibt daf\"ur $C_G(x)$. Die Menge $C_G(x)$ besteht
+  also aus allen $g\in G$ mit $gx=xg$.
+  
+  Die Bahn $x^G=\{g^{-1}xg|\;g\in G\}$ nennt man \ei{Konjugationsklasse} von
+  $x$ in $G$.
+  
+  Ist $X$ eine Teilmenge von $G$, so nennt man $C_G(X):=\{g\in
+  G|\;x^g=x\text{ f\"ur alle $x\in X$}\}$ den Zentralisator von $X$ in $G$.
+  Offenbar ist $C_G(X)$ der Schnitt der Zentralisatoren $C_G(x)$ f\"ur alle
+  $x\in X$.
+  
+  Ist speziell $X=G$, so nennt man $Z(G):=C_G(G)$ das \ei{Zentrum} von $G$.
+  
+  $G$ operiert auch durch Konjugation auf der Menge der Teilmengen von $G$.
+  Ist $X$ eine Teilmenge, dann nennt man den Stabilisator von $X$ den
+  \ei{Normalisator} von $X$ in $G$, und schreibt daf\"ur $N_G(X)$. Es gilt
+  also $N_G(X)=\{g\in G|\;X^g=X\}$.
+  
+  Da Stabilisatoren Untergruppen sind, folgt sofort, dass $N_G(X)$, $C_G(x)$,
+  $C_G(X)$ und $Z(G)$ Untergruppen von $G$ sind, was man aber auch direkt
+  nachrechnen kann. F\"ur $x\in X$ folgt aus der Definition sofort $Z(G)\le
+  C_G(X)\le C_G(x)$ und $C_G(X)\le N_G(X)$.
+\end{Definition}
+\begin{Satz}[Bahnengleichung]
+Die Gruppe $G$ operiere auf der endlichen Menge $M$. Seien $m_1,m_2,\dots,m_r$
+Repr\"asentanten der Bahnen. Dann gilt
+\[
+\abs{M}=\sum_{i=1}^r[G:G_{m_i}].
+\]
+\end{Satz}
+\begin{proof}[Beweis]
+  $M$ ist die disjunkte Vereinigung der Bahnen durch die $m_i$, die Behauptung
+  folgt dann aus Satz \ref{K:Bahnlaenge}.
+\end{proof}
+\begin{Satz}[Klassengleichung]
+  Sind $x_1,x_2,\dots,x_r$ die Repr\"asentanten der Konjugationsklassen der
+  endlichen Gruppe $G$, dann gilt
+\[
+\abs{G}=\sum_{i=1}^r[G:C_G(x_i)].
+\]
+\end{Satz}
+\begin{proof}[Beweis]
+  Dies ist obiger Satz, angewandt auf die Operation von $G$ auf sich durch
+  Konjugation.
+\end{proof}
+\begin{Korollar}\label{K:Zentrum_p-Gruppe}
+  Sei $p$ eine Primzahl, $n\in\NNN$, und $G$ eine Gruppe der Ordnung
+  $p^n$. Dann gilt $\abs{Z(G)}>1$.
+\end{Korollar}
+\begin{proof}[Beweis]
+  Seien $1=x_1,x_2,\dots,x_r$ die Repr\"asentanten der Konjugationsklassen von
+  $G$. Dann gilt $p^n=\sum_{i=1}^r[G:C_G(x_i)]$. Nach dem Satz von Lagrange
+  sind die Indizes $[G:C_G(x_i)]$ Potenzen von $p$. Die linke Seite der
+  Klassengleichung ist durch $p$ teilbar, aber $[G:C_G(x_1)]=1$ ist es
+  nicht. Daher muss es einen Index $i>1$ geben, so dass auch $[G:C_G(x_i)]$
+  nicht durch $p$ teilbar ist. Als Potenz von $p$ muss dann $[G:C_G(x_i)]=1$
+  gelten, also $G=C_G(x_i)$ und somit $1\ne x_i\in Z(G)$.
+\end{proof}
+Die folgende Formel wird manchmal die Burnsidesche Bahnenformel genannt,
+obwohl sie schon fr\"uher bei Cauchy und Frobenius auftaucht.
+\begin{Satz}[Cauchy-Frobenius Bahnenformel]
+  Die endliche Gruppe $G$ operiere auf der endlichen Menge $M$. F\"ur $g\in G$
+  sei $\chi(g)$ die Anzahl der Fixpunkte $m\in M$ mit $m^g=m$. Dann ist
+\[
+\frac{1}{G}\sum_{g\in G}\chi(g)
+\]
+die Anzahl der Bahnen von $G$ auf $M$.
+\end{Satz}
+\begin{proof}[Beweis]
+  Es gen\"ugt die Aussage f\"ur transitive Operationen zu beweisen, da die
+  Anzahl der Fixpunkte von $g$ die Summe der Anzahlen der Fixpunkte auf den
+  einzelnen Bahnen ist. Sei $S$ die Menge der Paare $(m,g)\in M\times G$ mit
+  $m^g=m$. Wir z\"ahlen $S$ einmal \"uber die Elemente $g$, und einmal \"uber
+  die Elemente $m$ ab. Die erste Abz\"ahlung liefert $\abs{S}=\sum_{g\in
+    G}\chi(m)$, und die zweite Abz\"ahlung ergibt $\abs{S}=\sum_{m\in
+    M}\abs{G_m}$. Wegen der Transitivit\"at gilt $\abs{M}=[G:G_m]$ f\"ur alle
+  $m\in M$, also $\abs{G_m}=\abs{G}/\abs{M}$, und die Behauptung folgt.
+\end{proof}
+Wir notieren zwei Folgerungen.
+\begin{Korollar}
+  Die Gruppe $G$ operiere transitiv auf der endlichen Menge $M$. Es gelte
+  $\abs{M}>1$. Dann enth\"alt $G$ ein fixpunktfreies Element.
+\end{Korollar}
+\begin{proof}[Beweis]
+  Wir d\"urfen $G$ ersetzen mit seinem homomorphen Bild in $\text{Sym}(M)$,
+  insbesondere ist dann $G$ endlich. Nach obigem Satz haben die Elemente von
+  $G$ durchschnittlich einen Fixpunkt. Aber $e$ hat $\abs{M}>1$ Fixpunkte,
+  daher muss es zum Ausgleich ein Element mit weniger als einem Fixpunkt
+  geben.
+\end{proof}
+\begin{Korollar}
+  Die echte Untergruppe $U$ von $G$ habe endlichen Index. Dann ist $G$ nicht
+  die Vereinigung der Konjugierten von $U$.
+\end{Korollar}
+\begin{proof}[Beweis]
+  Betrachte die Operation von $G$ auf $U\backslash G$. Nach obigem Korollar
+  hat $G$ ein fixpunktfreies Element $g$. Das hei\ss t $Uxg\ne Ux$ f\"ur alle
+  $x\in G$, und somit $g\notin U^x$ f\"ur alle $x\in G$.
+\end{proof}
+\begin{Bemerkung*}
+  Diese Aussage wird falsch, wenn man die Voraussetzung des endlichen Index
+  wegl\"asst. In der Theorie der sogenannten algebraischen Gruppen spielen
+  gerade gewisse Untergruppen (die Borelgruppen) eine wichtige Rolle, deren
+  Konjugierte im zusammenh\"angenden Fall die Gruppe ausf\"ullen. Ein
+  Spezialfall davon ist z.B.\ die bekannte Aussage aus der Linearen Algebra,
+  dass sich jede Matrix aus $\GL_n(\CCC)$ auf obere Dreiecksgestalt
+  transformieren l\"asst.
+\end{Bemerkung*}
+\subsection{Produkte}
+Sei $I$ eine Indexmenge, und f\"ur alle $i\in I$ sei $G_i$ eine Gruppe. Die
+Menge der Tupel $(g_i)_{i\in I}$ mit $g_i\in G_i$ wird mit der
+komponentenweise Multiplikation $(g_i)_{i\in I}(h_i)_{i\in I}:=(g_ih_i)_{i\in
+  I}$ zu einer Gruppe. Man nennt diese Gruppe das \emph{direkte
+  Produkt}\index{direktes Produkt} der Gruppen $G_i$, und schreibt daf\"ur
+$\prod_{i\in I}G_i$. Ist $I$ die endliche Menge $\{1,2,\dots,n\}$, dann
+schreibt man daf\"ur auch $G_1\times G_2\times\dots\times G_n$, und stellt die
+Elemente durch $n$-Tupel $(g_1,g_2,\dots,g_n)$ dar.
+
+Das \emph{eingeschr\"ankte direkte Produkt}\index{eingeschr\"anktes direkte
+  Produkt} ist der Normalteiler bestehend aus all den Tupeln $g_i\in G_i$, in
+  denen f\"ur alle bis auf endlich viele Indizes $i$ das Element $g_i$ das
+  neutrale Element ist. Man nennt das manchmal auch \ei{direkte
+  Summe}. Gebr\"auchliche Schreibweisen sind $\bigoplus_{i\in I}G_i$ und
+  $\coprod_{i\in I}G_i$. Ist die Indexmenge $I$ endlich, dann stimmen
+  nat\"urlich direkte Summe und direktes Produkt \"uberein.
+
+  \begin{Lemma}
+    Seien $A$ und $B$ Normalteiler der Gruppe $G$ mit $A\cap B=\{e\}$ und
+    $G=AB$. Dann gilt $G\cong A\times B$.
+  \end{Lemma}
+  \begin{proof}[Beweis]
+    Sei $a\in A$, $b\in B$. Wegen $a^{-1}b^{-1}a\in B$ und $b\in B$ gilt
+    $a^{-1}b^{-1}ab\in B$. Wegen $a^{-1}\in A$ und $b^{-1}ab\in A$ gilt aber
+    auch $a^{-1}b^{-1}ab\in A$, also $a^{-1}b^{-1}ab\in A\cap B=\{e\}$ und
+    somit $ab=ba$. Folglich ist die Abbildung $A\times B\to G$, $(a,b)\mapsto
+    ab$ ein Homomorphismus. Gem\"a\ss\ Voraussetzung ist dieser Homomorphismus
+    surjektiv. Er ist aber auch injektiv, denn aus $ab=e$ folgt $a,b\in A\cap
+    B$, also $a=b=e$.
+  \end{proof}
+  \begin{Bemerkung*}
+    Das Produkt $AB$ im Lemma nennt man auch das \emph{interne direkte
+    Produkt}\index{internes direktes Produkt} der Normalteiler $A$ und
+    $B$. Im Gegensatz dazu bezeichnet man $A\times B$ manchmal als das
+    \emph{externe direkte Produkt}\index{externes direktes Produkt} von $A$
+    und $B$.
+  \end{Bemerkung*}
+Eine Verallgemeinerung des obigen Lemmas auf mehrere Faktoren ist
+\begin{Satz}
+  Sei $I$ eine Indexmenge, und $G_i$, $i\in I$ seien Untergruppen einer Gruppe
+  $G$. Auf $I$ w\"ahle man eine Totalordnung $<$. Die folgenden Aussagen sind
+  \"aquivalent.
+  \begin{itemize}
+\item[(a)] $G_i\trianglelefteq G$ f\"ur alle $i$, die $G_i$ erzeugen $G$, und
+  $G_i\cap \hat G_i=\{e\}$, wo $\hat G_i$ das Erzeugnis der Gruppen $G_j$ mit
+  $j\in I\setminus\{i\}$ ist.
+\item[(b)] $G_i\trianglelefteq G$ f\"ur alle $i$, und f\"ur jedes $g\in G$
+  gibt es, bis auf Faktoren $e$, genau eine Darstellung $g=g_{i_1}g_{i_2}\dots
+  g_{i_n}$ mit $g_i\in G_i$ und $i_1<i_2<\dots i_n$.
+\item[(c)] F\"ur alle $i\ne j$, $i,j\in I$ gilt $g_ig_j=g_jg_i$ f\"ur $g_i\in
+  G_i$, $g_j\in G_j$, und f\"ur jedes $g\in G$ gibt es, bis auf Faktoren $e$,
+  genau eine Darstellung $g=g_{i_1}g_{i_2}\dots g_{i_n}$ mit $g_i\in G_i$ und
+  $i_1<i_2<\dots i_n$.
+  \end{itemize}
+  Gilt eine der Aussagen, dann ist $G$ ist isomorph zur direkten Summe der
+  $G_i$.
+\end{Satz}
+\begin{proof}[Beweis]
+Aus $G_i\trianglelefteq G$ folgt, wie im Beweis des obigen Lemmas, dass
+  $a^{-1}b^{-1}ab\in G_i\cap G_j$ liegt f\"ur $a\in G_i$, $b\in G_j$.
+  
+  ``(a) $\Longrightarrow$ (b)'': F\"ur $i\ne j$ gilt $G_j\le \hat G_i$, also
+  $G_i\cap G_j=\{e\}$. Daher vertauschen die Elemente aus $G_i$ mit denen aus
+  $G_j$. Da die $G_i$ ganz $G$ erzeugen, hat jedes Element $g\in G$ eine
+  Darstellung $g=g_{i_1}g_{i_2}\dots g_{i_n}$ mit $g_i\in G_i$ und
+  $i_1<i_2<\dots i_n$. Sei eine weitere solche Darstellung f\"ur $g$ gegeben.
+  Durch Erg\"anzung der Indexmengen durch Einf\"ugen der Faktoren $e$ d\"urfen
+  wir $g=h_{i_1}h_{i_2}\dots h_{i_n}$ mit $h_i\in G_i$ annehmen. Es folgt
+  $h_{i_1}^{-1}g_{i_1}=h_{i_2}h_{i_3}\dots h_{i_n}g_{i_n}^{-1}\dots
+  g_{i_3}^{-1}g_{i_2}^{-1}\in G_{i_1}\cap \hat G_{i_1}$ und daraus
+  $g_{i_1}=h_{i_1}$. Fortsetzen des Verfahrens liefert nacheinander
+  $g_{i_2}=h_{i_2}$, \dots, $g_{i_n}=h_{i_n}$. Die Eindeutigkeitsaussage
+  folgt.
+  
+  ``(b) $\Longrightarrow$ (c)'': Dies folgt aus dem Beginn des Beweises.
+  
+  ``(c) $\Longrightarrow$ (a)'': Aus der Vertauschbarkeitsvoraussetzung
+  folgt $G_i\trianglelefteq G$ f\"ur alle $i$. Wegen der eindeutigen
+  Elementdarstellung aus den $G_i$ folgt $G_i\cap \hat G_i=\{e\}$.
+  
+  Es gelte nun (a), (b) und (c). Dann ist die nat\"urliche Abbildung
+  $\bigoplus_{i\in I}G_i\to G$, die durch multiplikative Fortsetzung der
+  Einbettungsabbildungen $G_i\to G$ definiert ist, ein Epimorphismus. Sei
+  $(g_{i_1},g_{i_2},\dots,g_{i_n})$ im Kern, also $g_{i_1}g_{i_2}\dots
+  g_{i_n}=e$. Wegen der eindeutigen Darstellbarkeit von $e$ folgt
+  $g_{i_1}=g_{i_2}=\dots=g_{i_n}=e$, und die Abbildung ist somit auch
+  injektiv. Die Behauptung folgt.
+\end{proof}
+\paragraph{Beispiele von Produkten}
+\begin{itemize}
+\item Seien $m$ und $n$ teilerfremde nat\"urliche Zahlen, und $G$ eine
+  zyklische Gruppe der Ordnung $mn$. Dann hat $G$ Untergruppen $A$ der Ordnung
+  $m$ und $B$ der Ordnung $n$. Nach dem Satz von Lagrange gilt $A\cap
+  B=\{e\}$. Nach obigem Satz gilt $AB\cong A\times B$. Die rechte Seite hat
+  Ordnung $mn$, daher auch die linke Seite und es folgt $G=AB\cong A\times
+  B$.
+\item Sei $\CCC^\star$ die multiplikative Gruppe der komplexen Zahlen, und
+  $S^1$ die Untergruppe der komplexen Zahlen vom Betrag $1$. Sei $P$ die
+  Gruppe der positiven reellen Zahlen. Dann gilt $\CCC^\star\cong S^1\times
+  P$.
+\item Sei $V$ ein Vektorraum \"uber einem K\"orper $K$, und $\{e_i|i\in I\}$
+  eine (eventuell unendliche) Basis. Dann ist $(V,+)$ die interne direkte
+  Summe der Unterr\"aume $Ke_i$, und isomorph zur externen direkten Summe
+  $\bigoplus_{i\in I}K$.
+\end{itemize}
+In obigem Beispiel hatten wir ein etwas indirektes Argument zur Bestimmung der
+Ordnung von $AB$. Die Gr\"o\ss e von Produkten $AB$ l\"asst sich ganz
+allgemein bestimmen. Man beachte, dass $AB$ im allgemeinen keine Gruppe sein
+muss.
+\begin{Satz}
+  Seien $A$ und $B$ Untergruppen der endlichen Gruppe $G$. Dann gilt
+  $\abs{AB}=\frac{\abs{A}\abs{B}}{\abs{A\cap B}}$.
+\end{Satz}
+\begin{proof}[Beweis]
+  1.\ Beweis: Sei $\{b_1,b_2,\dots,b_n\}$ ein Vertretersystem der
+  Rechtsnebenklassen $(A\cap B)\backslash B$. Dann sind die Nebenklassen
+  $Ab_i$ disjunkt, denn aus $Ab_i=Ab_j$ folgt $b_ib_j^{-1}\in A\cap B$, also
+  $(A\cap B)b_i=(A\cap B)b_j$. Ferner hat jedes Element aus $AB$ die Form
+  $ab_i$ mit $a\in A$: Dazu sei $a'\in A$, $b\in B$. Schreibe $b=a''b_i$ f\"ur
+  geeignetes $a''\in A\cap B$. Dann gilt $a'b=a'a''b_i$, und die Behauptung
+  folgt mit $a=a'a''$.
+    
+  2.\ Beweis: Betrachte die Operation von $G$ auf $A\backslash G$. Die Bahn
+  der Untergruppe $B$ durch $A$ besteht aus den Nebenklassen $Ab$, $b\in B$.
+  Die Vereinigung dieser Nebenklassen ist $AB$, und jede Nebenklasse besteht
+  aus $\abs{A}$ Elementen. Daher hat die Bahn die L\"ange $\abs{AB}/\abs{A}$.
+  Der Stabilisator in $B$ von $A$ ist $A\cap B$. Nach Korollar
+  \ref{K:Bahnlaenge} wird die Bahnl\"ange durch $[B:A\cap B]$ gegeben, und die
+  Behauptung folgt.
+\end{proof}
+Wir kommen nun zum wichtigen Begriff des \emph{semidirekten
+  Produkts}\index{semidirektes Produkt}, einer Verallgemeinerung des direkten
+Produkts zweier Faktoren. Hierzu sei $U$ eine Untergruppe der Gruppe $G$, und
+$N$ ein Normalteiler von $G$, so dass $U\cap N=\{e\}$ und $G=UN$ gelten. In
+dieser Situation sagt man, $G$ sei das \emph{semidirekte Produkt} des
+Normalteilers $N$ mit der Untergruppe $H$. Ferner nennt man $H$ ein
+\ei{Komplement} von $N$ in $G$. Im folgenden konstruieren wir aus dieser
+Situation eine Verallgemeinerung des externen direkten Produkts. Dazu
+beobachten wir, dass jedes Element aus $G$ eine eindeutige Darstellung der
+Form $un$ mit $u\in U$, $n\in N$ hat. Das Ziel ist es, das Produkt zweier
+solcher Elemente $u_1n_1$ und $u_2n_2$ wieder in dieser Form darzustellen. Wir
+rechnen
+\[
+u_1n_1u_2n_2=u_1u_2u_2^{-1}n_1u_2n_2=u_1u_2n_1^{u_2}n_2.
+\]
+Man beachte, dass $u_1u_2\in U$ und $n_1^{u_2}n_2\in N$ gilt. Um also solche
+Produkte zu berechnen, muss man Produkte innerhalb $U$ und $N$ berechnen, und
+die Konjugationswirkung von $H$ aud $N$ kennen. Das f\"uhrt direkt auf den
+Begriff des (externen) semidirekten Produkts.
+\begin{Satz}
+  Seien $N$ und $U$ Gruppen, und $\phi:U\to\Aut(N)$ ein Homomorphismus. Auf
+  der Menge $G$ der Paare $(u,n)$, $u\in U$, $n\in N$ definiere man ein
+  Produkt durch $(u_1,n_1)(u_2,n_2)=(u_1u_2,n_1^{u_2^\phi}n_2)$. Mit
+  diesem Produkt ist $G$ eine Gruppe. $G$ hat die zu $U$ und $N$ isomorphen
+  Untergruppen $\tilde U=\{(u,e)|u\in U\}$ und $\tilde N=\{(e,n)|n\in
+  N\}$. $G$ ist ein semidirektes Produkt des Normalteilers $\tilde N$ mit
+  $\tilde U$. Es gilt $(e,n)^{(u,e)}=(e,n^{u^\phi})$.
+\end{Satz}
+\begin{proof}[Beweis]
+  Die Aussagen ergeben sich alle durch direktes Nachrechnen.
+\end{proof}
+\begin{Bemerkung*}
+  Dir erste Teil des Satzes liefert eine wichtige Konstruktionsmethode f\"ur
+  Gruppen. Gelegentlich schreibt man f\"ur $G$ auch $U\ltimes_\phi N$. Ist
+  $\phi$ der triviale Homomorphismus, dann ist $U\ltimes_\phi N$ einfach das
+  direkte Produkt $U\times N$.
+\end{Bemerkung*}
+\paragraph{Beispiele semidirekter Gruppen}
+\begin{itemize}
+\item Sei $S_n$ die symmetrische Gruppe auf $n$ Punkten, $A_n$ die
+  alternierende Gruppe, und $C$ die von einer Transposition erzeugte
+  Untergruppe von $S_n$. Dann gilt $S_n=C\ltimes A_n$, aber nicht $S_n=C\times
+  A_n$.
+\item Sei $C_n$ eine zyklische Gruppe der Ordnung, $C=\gen{c}$ eine Gruppe der
+  Ordnung $2$, und $\phi:C\to\Aut(C_n)$ definiert durch
+  $g^{c^\phi}:=g^{-1}$. Die Gruppe $G:=C\ltimes_\phi C_n$ ist die
+  \ei{Diedergruppe} $D_n$ der Ordnung $2n$. F\"ur $n\ge3$ kann man sich diese
+  Gruppe geometrisch veranschaulichen, sie besteht aus den
+  Kongruenzabbildungen eines regul\"aren $n$-Ecks. Die Gruppe $C_n$ besteht
+  dabei aus den gleichsinnigen Kongruenzen, und $c$ ist eine Spiegelung.
+\item Es gilt $\GL_n(K)=U\ltimes \SL_n(K)$, wo $U$ die Untergruppe der
+  Diagonalmatrizen ist, die au\ss er links oben nur $1$er enth\"alt.
+\end{itemize}
+\subsection{Endliche abelsche Gruppen}
+Das Ziel dieses Abschnitts ist die Bestimmung der endlichen abelschen Gruppen.
+Wir beginnen mit einem einfachen
+\begin{Lemma}
+  Seien $a,b$ Elemente einer Gruppe mit teilerfremden Ordnungen. Ferner gelte
+  $ab=ba$. Dann gilt $\ord(ab)=\ord(a)\ord(b)$.
+\end{Lemma}
+\begin{proof}[Beweis]
+  Sei $r=\ord(a)$, $s=\ord(b)$. Es gilt $(ab)^{rs}=(a^r)^s(b^s)^r=e$, daher
+  ist die Ordnung von $ab$ h\"ochstens $rs$. Sei nun $m\in\NNN$ mit
+  $(ab)^m=e$. Dann gilt $a^m=(b^{-1})^m$. Nach dem Satz von Lagrange haben die
+  beiden Gruppen $\gen{a}$ und $\gen{b}$ trivialen Schnitt. Es folgt
+  $a^m=b^m=e$, und somit sind $r$ und $s$ Teiler von $m$. Es folgt $rs=m$.
+\end{proof}
+\begin{Lemma}
+  Sei $G$ eine endliche abelsche Gruppe, und $U$ eine zyklische Untergruppe
+  maximaler Ordnung. Dann ist $\ord(g)$ ein Teiler von $\abs{U}$ f\"ur alle
+  $g\in G$.
+\end{Lemma}
+\begin{proof}[Beweis]
+  Sei $g\in G$, $p$ eine Primzahl, und $p^r$ ein Teiler von $\ord(g)$. Wir
+  werden zeigen, dass $p^r$ ein Teiler von $\abs{U}$ ist. Da das f\"ur alle
+  $p$ gilt folgt daraus die Behauptung.
+  
+  Da $p^r$ ein Teiler von $\ord(g)$ ist gibt es ein Element $a\in\gen{g}$ der
+  Ordnung $p^r$. Sei $\abs{U}=p^em$ mit $\ggT(p,m)=1$, und $b\in U$ mit
+  Ordnung $m$. Nach obigem Lemma hat $ab$ die Ordnung $p^rm$, wegen der
+  Maximalit\"at von $\abs{U}$ folgt $p^rm\le p^em$, also $r\le e$ und die
+  Behauptung folgt.
+\end{proof}
+Als Vorbereitung des Hauptsatzes ben\"otigen wir
+\begin{Lemma}
+  Sei $G$ eine endliche abelsche Gruppe, und $U$ eine zyklische Untergruppe
+  maximaler Ordnung. Dann hat $U$ ein Komplement in $G$.
+\end{Lemma}
+\begin{proof}[Beweis]
+  Wir beweisen die Aussage durch vollst\"andige Induktion \"uber $\abs{G}$.
+  
+  Ist $G=U$, dann gibt es nichts zu beweisen. Sei also $\abs{U}<\abs{G}$. Wir
+  w\"ahlen $g\in G\setminus U$ von minimaler Ordnung. Sei $u$ ein Erzeuger von
+  $U$. Nach obigem Lemma besitzt $U$ eine Untergruppe $W$ der Ordnung
+  $\ord(g)$. Sei $w$ ein Erzeuger von $W$. Sei $p$ ein Primteiler von
+  $\ord(g)$. Dann gilt $g^p\in U$ (wegen der Minimalit\"at von $\ord(g)$ mit
+  $g\notin U$), aber $\gen{g^p}=\gen{w^p}$, da die Untergruppen der zyklischen
+  Gruppe $U$ schon durch ihre Ordnungen eindeutig bestimmt sind. Es gibt also
+  $i\in\NNN$ mit $g^p=w^{pi}$, und daher $(gw^{-i})^p=e$. Aber $gw^{-i}\notin
+  U$ ist somit ein Element der Ordnung $p$.
+  
+  Somit ist $N:=\gen{g}w^{-i}$ eine Untergruppe mit $\abs{N}>1$ und $U\cap
+  N=\{e\}$.  Sei $\phi:G\to G/N$, $g\mapsto Ng$ der nat\"urliche
+  Epimorphismus. F\"ur $x\in G$ folgt aus $x^n=e$ nat\"urlich
+  $(x^\phi)^n=e^\phi$, also $\ord(x^\phi)\le\ord(x)$. Wegen $UN/N\cong
+  U/(U\cap N)\cong U$ gilt $\abs{U^\phi}=\abs{U}$. Somit ist $U^\phi$ die
+  gr\"o\ss te zyklische Untergruppe von $G^\phi$. Nach Induktionsannahme hat
+  $U^\phi$ in $G^\phi$ ein Komplement. Sei $V\ge N$ das Urbild in $G$ dieses
+  Komplements in $G$.  Dann gilt $UN\cap V\le N$, also $U\cap V\le U\cap
+  N=\{e\}$. Ferner gilt $G^\phi=U^\phi V^\phi$, also $G=(UN)V=U(NV)=UV$, und
+  die Behauptung folgt.
+\end{proof}
+Aus diesem Lemma folgt nun, wiederum durch Induktion \"uber $\abs{G}$, das
+Hauptergebnis dieses Abschnitts.
+\begin{Satz}
+  Jede endliche abelsche Gruppe ist eine direkte Summe zyklischer
+  Untergruppen.
+\end{Satz}
+Im folgenden wollen wir noch die Eindeutigkeit solcher Zerlegungen in
+zyklische Gruppen kl\"aren. In einem fr\"uheren Beispiel sahen wir schon, dass
+jede endliche zyklische Gruppe eine direkte Summe zyklischer Gruppen von
+Primpotenzordnung ist. An obigem Satz sehen wir schon, dass es zu jedem Teiler
+$m$ der Ordnung einer endlichen abelschen Gruppe auch eine Untergruppe der
+Ordnung $m$ gibt. Diese Untergruppe muss nicht eindeutig sein, aber es gilt
+\begin{Lemma}
+  Sei $p$ eine Primzahl, und $p^m$ die h\"ochste Potenz von $p$, die die
+  Ordnung einer endlichen abelschen Gruppe teilt. Dann gibt es genau eine
+  Untergruppe der Ordnung $p^m$.
+\end{Lemma}
+\begin{proof}[Beweis]
+  Seien $A$ und $B$ Untergruppen der Ordnung $p^m$. Wegen
+  $\abs{AB}=\abs{A}[B:A\cap B]$ ist auch die Ordnung der Untergruppe $AB$ eine
+  Potenz von $p$, die aber $p^m$ teilen muss. Daher gilt $B=A\cap B$, also
+  $B\le A$ und aus Symmetriegr\"unden $A=B$.
+\end{proof}
+Hieraus folgt
+\begin{Lemma}
+  Sei $n=\prod p_i^{e_i}$ die Primfaktorzerlegung der Ordnung einer endlichen
+  abelschen Gruppe $G$, und $G_{p_i}$ die Untergruppe der Ordnung
+  $p_i^{e_i}$. Dann ist $G\cong\bigoplus G_{p_i}$.
+\end{Lemma}
+Um eine bis auf Isomorphie eindeutige Darstellung einer abelschen Gruppe zu
+bekommen m\"ussen wir nur noch zyklische Gruppen von Primpotenzordnung
+betrachten. Wir wissen schon, dass solche Gruppen direkte Summen zyklischer
+Gruppen sind. Im folgenden erhalten wir auch eine Eindeutigkeitsaussage.
+\begin{Lemma}
+  Sei $G$ eine abelsche Gruppe von Primpotenzordnung, und $G=G_1G_2\dots
+  G_n\cong G_1\times G_2\times\dots\times G_n$ ein direktes Produkt zyklischer
+  Untergruppen $G_i$ der Ordnung $>1$. Dann sind bis auf Reihenfolge die
+  Ordnungen $\abs{G_1}$, $\abs{G_2}$, \dots, $\abs{G_n}$ eindeutig gegeben.
+\end{Lemma}
+\begin{proof}[Beweis]
+  Sei $\abs{G}$ eine Potenz von $p$. Wir zeigen die Aussage durch
+  vollst\"andige Induktion \"uber die Gruppenordnung. Sei $N=\{g\in
+  G|\,g^p=1\}$. Man sieht sofort, dass $N$ eine Untergruppe ist. Ferner
+  besteht $N$ aus genau den Elementen $g_1g_2\dots g_n$ mit $g_i\in G_i$,
+  f\"ur die $g_i^p=1$ gilt. Insbesondere ist $N$ das direkte Produkt der
+  Gruppen $N_i:=G_i\cap N$, und da die Gruppen $G_i$ zyklisch sind, gilt
+  $\abs{N_i}=p$ f\"ur alle $i$.
+  
+  Der nat\"urliche Epimorphismus $G\to\bigoplus G_i/N_i$, der
+  $(g_1,\dots,g_n)$ auf $(N_1g_1,\dots,N_ng_n)$ abbildet, hat Kern $N$. Daher
+  gilt $G/N\cong\bigoplus G_i/N_i$. Nach Induktionsannahme sind die Ordnungen
+  $\abs{G_i/N_i}$ eindeutig gegeben, und wegen $\abs{G_i}=p\abs{G_i/N_i}$ gilt
+  das dann auch f\"ur die Ordnungen $\abs{G_i}$.
+\end{proof}
+Wir fassen die Ergebnisse zusammen
+\begin{Satz}
+  Eine endliche abelsche Gruppe ist isomorph zu einem direkten Produkt
+  zyklischer Gruppen von Primpotenzordnung, und die Ordnungen dieser
+  zyklischer Gruppen sind bis auf Reihenfolge eindeutig gegeben.
+\end{Satz}
+\paragraph{Beispiele}
+\begin{itemize}
+\item Um (bis auf Isomorphie) die abelschen Gruppen der Ordnung $8$ zu
+  bestimmen m\"ussen wir alle Darstellungen $\bigoplus_{i=1}^rC_{m_i}$
+  betrachten, wo $C_{m_i}$ eine zyklische Gruppe der Ordnung $m_i$ ist und
+  $m_1m_2\dots m_r=8$ gilt. Da es auf die Reihenfolge nicht ankommt, k\"onnen
+  wir ferner $m_1\le m_2\le m_r$ annehmen. Wir sehen, dass es f\"ur diese
+  Tupel $(m_1,m_2,\dots,m_r)$ genau die M\"oglichkeiten $(2,2,2)$, $(2,4)$,
+  und $(8)$ gibt. Bis auf Isomorphie gibt es also genau $3$ abelsche Gruppen
+  der Ordnung $8$.
+\item Ist $n$ quadratfrei, dann ist die zyklische Gruppe der Ordnung $n$ die
+  einzige abelsche Gruppe dieser Ordnung. (Das ist auch schon ohne obigen
+  Hauptsatz klar.)
+\end{itemize}
+\begin{Bemerkung*}
+  Der Beweis des Struktursatzes f\"ur abelsche Gruppen (oder auch obiger Satz)
+  liefert eine andere Form der Darstellung abelscher Gruppen: Jede endliche
+  abelsche Gruppe ist isomorph zu einem direkten Produkt zyklischer Gruppen
+  der Ordnungen $n_1$, $n_2$, \dots, $n_k$ mit $n_i>1$, so dass $n_i$ ein
+  Teiler von $n_{i+1}$ ist f\"ur alle $n_i$. Diese $n_i$ sind durch die Gruppe
+  eindeutig gegeben.
+\end{Bemerkung*}
+\subsection{Der Satz von Jordan-H\"older}
+Ist $N$ ein Normalteiler der Gruppe $G$, so entsprechen die Normalteiler von
+$G/N$ bijektiv den Normalteilern $M$ von $G$ mit $M\ge N$. Wir nennen $N$
+einen maximalen Normalteiler von $G$, wenn $N<G$ normal in $G$ ist, und es
+keinen Normalteiler von $G$ gibt, der echt zwischen $N$ und $G$ liegt. Somit
+ist $N$ genau dann ein maximaler Normalteiler von $G$, wenn $G/N$ einfach
+ist. Ist $N$ ein maximaler Normalteiler von $G$, dann kann man in $N$ wieder
+einen maximalen Normalteiler von $N$ w\"ahlen, und das Verfahren
+fortsetzen. Dies f\"uhrt auf den folgenden Begriff.
+\begin{Definition}
+  Sei $G$ eine Gruppe, und $G=G_0>G_1>G_2>\dots>G_n=\{e\}$ eine Kette von
+  Untergruppen, so dass $G_{i+1}$ ein maximaler Normalteiler von $G_i$
+  ist. Eine solche Kette hei\ss t \ei{Kompositionsreihe}, und die einfachen
+  Gruppen $G_i/G_{i+1}$ hei\ss en \ei{Kompositionsfaktoren}.
+\end{Definition}
+\begin{Bemerkung*}
+  Ist $G$ endlich, dann existiert trivialerweise eine Kompositionsreihe. F\"ur
+  unendliche Gruppen muss es das aber nicht geben. Man \"uberlege sich, dass
+  z.B.\ $(\ZZZ,+)$ keine Kompositionsreihe besitzt.
+\end{Bemerkung*}
+Das Beispiel $C_6>C_3>\{e\}$ und $C_6>C_2>\{e\}$ zeigt schon, dass
+Kompositionsreihen und die Reihenfolge der Kompositionsfaktoren nicht
+eindeutig sein m\"ussen. Die symmetrische Gruppe $S_3$ hat die
+Kompositionsreihe $S_3>A_3>\{e\}$, also die gleichen Kompositionsfaktoren wie
+$C_6$. Hieran sehen wir, dass die Kompositionsfaktoren den Isomorphietyp einer
+Gruppe nicht festlegen. Sie liefern aber dennoch wertvolle Informationen.
+Wenigstens h\"angen aber die Kompositionsfaktoren einer Gruppe nicht
+wesentlich von der gew\"ahlten Kompositionsreihe ab, wie der folgende Satz
+zeigt.
+\begin{Satz}[Jordan-H\"older]
+  Sei $G$ eine endliche Gruppe. Dann haben alle Kompositionsreihen von $G$ die
+  gleiche L\"ange, und die Kompositionsfaktoren stimmen bis auf Reihenfolge
+  und Isomorphie \"uberein.
+\end{Satz}
+\begin{proof}[Beweis]
+  Wir zeigen die Behauptung durch vollst\"andige Induktion \"uber die Ordnung
+  von $G$. Seien $G=G_0>G_1>G_2>\dots>G_m=\{e\}$ und
+  $G=H_0>H_1>H_2>\dots>H_n=\{e\}$ Kompositionsreihen. Ist $G_1=H_1$, so folgt
+  die Behauptung durch Induktion.
+  
+  Sei also von nun an $G_1\ne H_1$. Dann ist $G_1H_1$ ein Normalteiler von
+  $G$, der die maximalen und verschiedenen Normalteiler $G_1$ und $H_1$
+  enth\"alt. Es folgt $G=G_1H_1$.
+  
+  Setze $U=G_1\cap H_1$, und $U>U_1>U_2>\dots>U_k=\{e\}$ eine
+  Kompositionsreihe von $U$.
+
+Wegen
+\[
+G_1/U=G_1/G_1\cap H_1\cong G_1H_1/H_1=G/H_1
+\]
+ist $U$ ein maximaler Normalteiler von $G_1$, insbesondere ist
+$G_1>U>U_1>U_2>\dots>U_k=\{e\}$ eine Kompositionsreihe von $G_1$. Aber $G_1$
+besitzt auch die Kompositionsreihe $G_1>G_2>\dots>G_m=\{e\}$. Nach
+Induktionsannahme stimmen L\"ange und Kompositionsfaktoren dieser beiden
+Kompositionsreihen \"uberein.
+
+Analog gilt die Behauptung auch f\"ur die Kompositionsreihen
+$H_1>U>U_1>U_2>\dots>U_k=\{e\}$ und $H_1>H_2>\dots>H_n=\{e\}$. Es folgt
+zun\"achst $m=n$. Oben sahen wir bereits $G/H_1\cong G_1/U$, und analog
+$G/G_1\cong H_1/U$, und daraus folgt schlie\ss lich die Behauptung, wobei
+zur besseren Orientierung folgendes Diagramm dient:
+\dgARROWLENGTH=0.7em
+\[
+\begin{diagram}
+  \node[3]{G_2} \arrow{e,-} \node{G_3} \arrow{e,-} \node{\dots} \arrow{e,-}
+  \node{G_m=\{e\}}\\
+\node[2]{G_1} \arrow{ne,-} \arrow{se,-}\\
+\node{G} \arrow{ne,-} \arrow{se,-} \node[2]{U} \arrow{e,-} \node{U_1} \arrow{e,-} \node{\dots} \arrow{e,-} \node{U_k=\{e\}}\\
+\node[2]{H_1} \arrow{ne,-} \arrow{se,-}\\
+\node[3]{H_2} \arrow{e,-} \node{H_3} \arrow{e,-} \node{\dots} \arrow{e,-}
+  \node{H_m=\{e\}}
+\end{diagram}
+\]
+\end{proof}
+\paragraph{Beispiele von Kompositionsfaktoren}
+\begin{itemize}
+\item Ist $G$ eine abelsche Gruppe der Ordnung $\prod p_i^{e_i}$, dann
+  bestehen die Kompositionsfaktoren aus den zyklischen Gruppen der Ordnung
+  $p_i$, wobei die Gruppe der Ordnung $p_i$ genau $e_i$ Male auftritt.
+\item F\"ur eine Primzahl $p$ sei $G$ eine Gruppe der Ordnung $p^m>1$. Wir
+  behaupten, dass alle Kompositionsfaktoren Ordnung $p$ haben (und damit
+  zyklisch sind). Dazu muss man lediglich sehen, dass eine einfache Gruppe mit
+  $p$-Potenzordnung $>1$ zyklisch der Ordnung $p$ ist. Wegen Korollar
+  \ref{K:Zentrum_p-Gruppe} hat eine solche Gruppe ein nichtriviales
+  Zentrum. Eine Untergruppe der Ordnung $p$ des Zentrums ist aber ein
+  Normalteiler der Gruppe, und die Behauptung folgt.
+\item Ist die Gruppe $G$ ein direktes Produkt einfacher Gruppen $G_1$, $G_2$,
+  \dots, $G_n$, dann sind diese einfachen Gruppen gerade die
+  Kompositionsfaktoren von $G$. (Man beweise diese Aussage!)
+\end{itemize}
+In der Theorie der L\"osbarkeit von Polynomen spielt eine wichtige Eigenschaft
+gewisser Gruppen eine gro\ss e Rolle.
+\begin{Definition}
+  Sei $G$ eine Gruppe. Elemente der Form $a^{-1}b^{-1}ab$ f\"ur $a,b\in G$
+  hei\ss en \ei{Kommutatoren}. Die von den Kommutatoren erzeugte Gruppe $G'$
+  hei\ss t die \ei{Kommutatorgruppe} von $G$. Die \ei{h\"oheren
+    Kommutatorgruppen} $G^{(i)}$ werden rekursiv durch $G^{(0)}=G$,
+  $G^{(i+1)}=(G^{(i)})'$ definiert. Die Gruppe $G$ hei\ss t \ei{aufl\"osbar},
+  wenn es ein $n\in\NNN$ gibt mit $G^{(n)}=\{e\}$.
+\end{Definition}
+Sind $A$ und $B$ Normalteiler einer Gruppe $G$, so dass $G/A$ und $G/B$
+abelsch sind, dann ist $G/A\cap B$ abelsch, da diese Gruppe isomorph ist zu
+einer Untergruppe von $G/A\times G/B$. Daher gibt es genau einen kleinsten
+Normalteiler $N$ von $G$, so dass $G/N$ abelsch ist.
+
+Die Kommutatorgruppe $G'$ ist nicht nur normal in $G$, sondern hat eine
+st\"arkere Eigenschaft: Es gilt $(G')^\sigma=G'$ f\"ur jeden Automorphismus
+von $G$. Das liegt daran, dass ein Automorphismus die Menge der Kommutatoren
+permutiert, also das Erzeugnis der Kommutatoren nicht \"andert. Induktiv
+folgt, dass auch die h\"oheren Kommutatorgruppen unter Automorphismen $\sigma$
+invariant, also insbesondere auch normal in $G$ sind.
+
+Die wichtigste Eigenschaft der Kommutatorgruppe ist
+\begin{Satz}
+  Sei $G$ eine Gruppe. Dann ist $G'$ der kleinste Normalteiler $N$ von $G$,
+  f\"ur den $G/N$ abelsch ist.
+\end{Satz}
+\begin{proof}[Beweis]
+  Sei $N$ der kleinste Normalteiler mit $G/N$ abelsch. Sei $\phi:G\to G/N$ der
+  nat\"urliche Epimorphismus. Wegen
+  $(a^{-1}b^{-1}ab)^\phi=a^{-\phi}b^{-\phi}a^\phi b^\phi=e$ ist $(G')^\phi$
+  die triviale Gruppe, also $G'\le N$. Umgekehrt liegt jedes Element
+  $a^{-1}b^{-1}ab$ in $G'$, d.h.\ modulo $G'$ ist $G$ abelsch, und somit $N\le
+  G'$. Die Behauptung folgt.
+\end{proof}
+\begin{Lemma}\label{L:GNaufl}
+  Sei $N$ ein Normalteiler von $G$. Dann ist $G$ genau dann aufl\"osbar, wenn
+  $N$ und $G/N$ aufl\"osbar sind.
+\end{Lemma}
+\begin{proof}[Beweis]
+  Ist $\phi:G\to H$ ein Epimorphismus, dann bestehen die Kommutatoren von $H$
+  gerade aus den Bildern der Kommutatoren von $G$, und somit gilt
+  $(G')^\phi=H'$. Per Induktion folgt daraus $(G^{(n)})^\phi=H^{(n)}$ f\"ur
+  alle $n\in\NNN$. Speziell f\"ur den Epimorphismus $G\to G/N$ folgt daraus
+  $G^{(n)}N/N=(G/N)^{(n)}$.
+
+Ist nun $G$ aufl\"osbar, so sieht man, dass auch $G/N$ aufl\"osbar ist. Wegen
+$N^{(n)}\le G^{(n)}$ ist dann auch $N$ aufl\"osbar.
+
+Seien nun $G/N$ und $N$ aufl\"osbar. Wegen der Aufl\"osbarkeit von $G/N$ folgt
+zun\"achst die Existenz von $n$ mit $G^{(n)}\le N$. Daraus folgt dann induktiv
+$G^{(n+k)}\le N^{(n+k)}$ f\"ur $k\ge0$. Aus der Aufl\"osbarkeit von $N$ ergibt
+sich dann die Behauptung.
+\end{proof}
+Bei endlichen Gruppen l\"asst sich die Aufl\"osbarkeit an den
+Kompositionsfaktoren ablesen. 
+\begin{Satz}
+  Sei $G$ eine endliche Gruppe. Dann ist $G$ genau dann aufl\"osbar, wenn alle
+  Kompositionsfaktoren von $G$ zyklisch (von Primzahlordnung) sind.
+\end{Satz}
+\begin{proof}[Beweis]
+  Ist $G$ aufl\"osbar, so sind die Quotienten aufeinanderfolgender Terme in
+  der Kommutatorreihe abelsch. Insbesondere l\"asst sich die Kommutatorreihe
+  durch Einf\"ugen weiterer Untergruppen zu einer Kompositionsreihe mit
+  zyklischen Quotienten verfeinern.
+  
+  Die Umkehrung folgt unmittelbar per Induktion aus Lemma \ref{L:GNaufl}.
+\end{proof}
+\paragraph{Beispiele aufl\"osbarer Gruppen}
+\begin{itemize}
+\item Abelsche Gruppen sind aufl\"osbar.
+\item Gruppen von Primpotenzordnung sind aufl\"osbar.
+\item Homomorphe Bilder und direkte Produkte aufl\"osbarer Gruppen sind
+  aufl\"osbar.
+\end{itemize}
+\begin{Bemerkung*}
+  F\"ur $n\ge5$ sind die Gruppen $A_n$ und $S_n$ wegen der Einfachheit von
+  $A_n$ nicht aufl\"osbar. Man \"uberlege sich, dass f\"ur alle $n\in\NNN$
+  stets $S_n'=A_n$ gilt.
+\end{Bemerkung*}
+\subsection{Die S\"atze von Sylow}
+Sei $p$ eine Primzahl. Eine endliche Gruppe hei\ss t \ei{$p$-Gruppe}, wenn die
+Ordnung der Gruppe eine Potenz von $p$ ist (evtl.\ auch $1$). Wir kommen nun
+zu einer wichtigen Klasse von Untergruppen.
+\begin{Definition}
+  Sei $G$ eine endliche Gruppe, und $p$ eine Primzahl. Eine Untergruppe $H$
+  von $G$ hei\ss t \ei{$p$-Sylowgruppe} von $G$, wenn $\abs{U}$ eine
+  $p$-Gruppe ist, und $[G:U]$ nicht durch $p$ teilbar ist.
+\end{Definition}
+Ist also $p^r$ die h\"ochste Potenz von $p$, die $\abs{G}$ teilt, dann sind
+die $p$-Sylowgruppen gerade die Untergruppen der Ordnung $p^r$. F\"ur abelsche
+Gruppen haben wir gesehen, dass es f\"ur jedes $p$ genau eine $p$-Sylowgruppe
+gibt. Der wichtigste Satz in diesem Zusammenhang liefert die Existenz von
+Sylowgruppen auch f\"ur nicht abelsche Gruppen.
+\begin{Satz}[Sylow]\label{S:Sylow}
+  Sei $G$ eine endliche Gruppe, und $p$ eine Primzahl. Dann besitzt $G$ eine
+  $p$-Sylowgruppe.
+\end{Satz}
+F\"ur diesen wichtigen Satz geben wir drei Beweise.
+\begin{proof}[1.\ Beweis]
+  Sei $Z$ das Zentrum von $G$, und $g_1,g_2,\dots,g_h$ Repr\"asentanten der
+  Konjugationsklassen. Die Klassengleichung liefert
+\[
+\abs{G}=\sum_{i=1}^h[G:C_G(g_i)]=\abs{Z}+\sum_{g_i\notin Z}[G:C_G(g_i)].
+\]
+Man beachte, dass in der zweiten Summe die Gruppen $C_G(g_i)$ echte
+Untergruppen von $G$ sind. Nach Induktion besitzen diese Gruppen
+$p$-Sylowgruppen. Ist einer der Indizes $[G:C_G(g_i)]$ teilerfremd zu $p$,
+dann ist eine $p$-Sylowgruppe von $C_G(g_i)$ auch eine von $G$. Wir sind also
+fertig, au\ss er wenn alle Indizes durch $p$ teilbar sind. In diesem Fall aber
+ist $\abs{Z}$ durch $p$ teilbar. $Z$ besitzt also eine Untergruppe $N$ der
+Ordnung $p$, diese ist normal in $G$. Nach Induktion besitzt $G/N$ eine
+$p$-Sylowgruppe $P/N$, aber dann ist $P$ eine $p$-Sylowgruppe von $G$.
+\end{proof}
+F\"ur den zweiten Beweis ben\"otigen wir ein kleines
+\begin{Lemma}
+  Sei $n\in\NNN$, und $p^r$ die h\"ochste Potenz der Primzahl $p$, die $n$
+  teilt. Dann ist der Binomialkoeffizient $\binom{n}{p^r}$ nicht durch $p$
+  teilbar.
+\end{Lemma}
+\begin{proof}[Beweis]
+  Schreibe $n=p^rm$. Somit ist $m$ nicht durch $p$ teilbar.
+  $\binom{n}{p^r}=\binom{p^rm}{p^r}$ ist das Produkt der rationalen Zahlen
+  $\frac{p^rm-k}{p^r-k}$ f\"ur $k=0,1,\dots,p^r-1$. Wir zeigen, dass in der
+  gek\"urzten Darstellung Z\"ahler und Nenner nicht durch $p$ teilbar sind.
+  Das ist klar f\"ur $k=0$. Sei daher $0<k=p^le$ mit $e$ nicht durch $p$
+  teilbar. Wegen $k<p^r$ gilt $l<r$, daher ist $p^{r-l}$ durch $p$ teilbar und
+  die Behauptung folgt aus
+  $\frac{p^rm-k}{p^r-k}=\frac{p^{r-l}m-e}{p^{r-l}-e}$.
+\end{proof}
+\begin{proof}[2.\ Beweis von Satz \ref{S:Sylow}]
+  Sei $p^r$ wieder die h\"ochste $p$-Potenz, die $\abs{G}$ teilt. Sei $M$ die
+  Menge der $p^r$-elementigen Teilmengen von $G$. Die M\"achtigkeit
+  $\abs{M}=\binom{\abs{G}}{p^r}$ ist nach obigem Lemma nicht durch $p$
+  teilbar. Wir lassen nun $G$ von rechts auf $M$ operieren, $g\in G$ schickt
+  also die Teilmenge $S\in M$ nach $Sg$. Da $\abs{M}$ nicht durch $p$ teilbar
+  ist, muss eine Bahn dabei sein, deren L\"ange nicht durch $p$ teilbar ist.
+  Sei $S\in M$ in dieser Bahn, und $P$ der Stabilisator von $S$. Die Bahn
+  durch $S$ hat L\"ange $[G:P]$, und da das nicht durch $p$ teilbar ist, ist
+  $\abs{P}$ durch $p^r$ teilbar. Sei $s\in S$. Die Abbildung $P\to S$,
+  $x\mapsto sx$ ist injektiv, daher gilt $\abs{P}\le\abs{S}=p^r$, und somit
+  $\abs{P}=p^r$, und die Behauptung folgt.
+\end{proof}
+\begin{proof}[3.\ Beweis von Satz \ref{S:Sylow}]
+  Diesen Beweis zerlegen wir in eine Serie von \"Ubungsaufgaben.
+  \begin{itemize}
+  \item[(a)] Sei $S$ eine endliche Gruppe mit $p$-Sylowgruppe $P$, und $G$
+    eine Untergruppe von $S$. Dann gibt es ein $s\in S$, so dass $G\cap P^s$
+    eine $p$-Sylowgruppe von $G$ ist. Hierzu betrachte man die Operation von
+    $G$ auf dem Nebenklassenraum $P\setminus S$.
+    
+    Um den Satz zu beweisen, gen\"ugt es also, zu unserer gegebeben Gruppe $G$
+    eine Gruppe $S$ zu finden, die eine zu $G$ isomorphe Untergruppe
+    enth\"alt, und f\"ur die es eine $p$-Sylowgruppe $P$ gibt. Das wird in den
+    folgenden Schritten erreicht.
+    
+  \item[(b)] Die Gruppe $G$ ist isomorph zu einer Untergruppe der
+    symmetrischen Gruppe $S_n$. Sei $\FFF_p=\ZZZ/p\ZZZ$ der K\"orper mit $p$
+    Elementen. In $\GL_n(\FFF_p)$ betrachte man die Menge $U$ der Matrizen,
+    die in jeder Zeile und jeder Spalte genau eine $1$, und sonst nur $0$er
+    besitzen. Zeige, dass $U$ eine zu $S_n$ isomorphe Untergruppe von
+    $\GL_n(\FFF_p)$ ist. Somit hat $\GL_n(\FFF_p)$ eine zu $G$ isomorphe
+    Untergruppe.
+  
+  \item[(c)] Zeige, dass die Gruppe der echten oberen Dreiecksmatrizen von
+    $\GL_n(\FFF_p)$ eine $p$-Sylowgruppe ist durch direkte Berechnung der
+    Ordnung dieser Gruppe und der h\"ochsten $p$-Potenz, die die Ordnung von
+    $\GL_n(\FFF_p)$ teilt.
+  \end{itemize}
+\end{proof}
+Bevor wir zu weiteren Aussagen von Sylow kommen, wollen wir eine einfache
+Eigenschaft von $p$-Gruppen beweisen.
+\begin{Lemma}
+  Sei $U$ eine echte Untergruppe der $p$-Gruppe $G$. Dann gilt
+  $N_G(U)>U$. Ferner hat $G$ f\"ur jeden Teiler $m$ der Gruppenordnung eine
+  Untergruppe der Ordnung $m$, und Untergruppen vom Index $p$ sind normal.
+\end{Lemma}
+\begin{proof}[Beweis]
+  $U$ operiere auf dem Nebenklassenraum $U\setminus G$. Da $U$ eine $p$-Gruppe
+  ist, hat jede Bahn eine L\"ange, die eine Potenz von $p$ ist. Ferner ist die
+  Summe $\abs{U\setminus G}$ durch $p$ teilbar. Da die Bahn durch $U$ L\"ange
+  $1$ hat, muss es eine weitere Bahn $Ux\ne U$ der L\"ange $1$ geben. Es gilt
+  also $Uxu=Ux$ f\"ur alle $u\in U$, und daraus folgt $U^x=U$, d.h.\ $x$ liegt
+  nicht in $U$, normalisiert aber $U$.
+  
+  Die letzte Aussage ist aus Ordnungsgr\"unden klar, und die Existenz der
+  Untergruppen der Ordnung $m$ folgt induktiv aus der ersten Aussage, oder
+  alternativ aus der bereits gesehenen Tatsache, dass die Kompositionsfaktoren
+  von $G$ alle Ordnung $p$ haben.
+\end{proof}
+Das Hauptergebnis von Sylow, das wir im folgenden Abschnitt st\"andig
+verwenden werden, ist
+\begin{Satz}[Sylow]\label{S:Sylow2}
+  Sei $G$ eine endliche Gruppe, und $p$ eine Primzahl. Dann gilt:
+  \begin{itemize}
+  \item[(a)] Jede $p$-Untergruppe von $G$ liegt in einer $p$-Sylowgruppe von
+  $G$.
+\item[(b)] Die $p$-Sylowgruppen von $G$ sind konjugiert.
+\item[(c)] Die Anzahl der $p$-Sylowgruppen ist von der Form $1+kp$ mit
+  $k\in\NNN_0$, und gleich $[G:N_G(P)]$, wobei $P$ eine $p$-Sylowgruppe von
+  $G$ ist.
+  \end{itemize}
+\end{Satz}
+\begin{proof}[Beweis]
+  Sei $P$ eine $p$-Sylowgruppe von $G$, und $S$ die Menge der zu $P$
+  konjugierten Untergruppen von $P$. Nat\"urlich ist jede Gruppe aus $S$
+  wieder eine $p$-Sylowgruppe. $G$ operiert auf $S$ durch Konjugation. Wegen
+  $\abs{S}=[G:N_G(P)]$ ist die $\abs{S}$ nicht durch $p$ teilbar. Sei $U\le G$
+  eine $p$-Gruppe. Auch $U$ operiert durch Konjugation auf $S$. Da jede
+  Bahnl\"ange von $U$ eine $p$-Potenz ist, und $\abs{S}$ nicht durch $p$
+  teilbar ist, muss $U$ eine Bahn $\{Q\}$ der L\"ange $1$ haben. Dann gilt
+  $uQ=Qu$ f\"ur alle $u\in U$, insbesondere ist $QU$ eine Gruppe mit
+  Normalteiler $Q$. Wegen $QU/Q\cong U/Q\cap U$ ist $QU$ eine $p$-Gruppe der
+  Ordnung $\abs{Q}[U:Q\cap U]$. Aber $Q$ ist schon eine $p$-Untergruppe von
+  $G$ gr\"o\ss tm\"oglicher Ordnung, daher gilt $U=Q\cap U$, also $U\le Q$.
+  Hieraus folgt (a), und damit auch (b).
+
+Um (c) zu zeigen, verwenden wir obiges Argument mit $U=P$. Ein Fixpunkt von
+$P$ ist $P$ selber. Weitere Fixpunkte $Q$ kann es nicht geben, denn wie oben
+folgt $P\le Q$, also $P=Q$ aus Ordnungsgr\"unden. Alle anderen Bahnen von $p$
+haben also eine L\"ange der Form $p^r$ mit $r\ge1$, insbesondere sind diese
+L\"angen durch $p$ teilbar. Daher hat $\abs{S}$ die Form $1+kp$.
+
+Der Stabilisator von $P$ in $G$ ist $N_G(P)$, daher gilt $\abs{S}=[G:N_G(P)]$,
+und alles ist gezeigt.
+\end{proof}
+\subsection{Gruppen kleiner Ordnung}
+In diesem Abschnitt sollen examplarisch einige Anwendungen der Sylow-S\"atze
+und der Techniken der Gruppenoperationen vorgestellt werden, die dem Studium
+von Gruppen dienen, die klein sind oder deren Ordnungen nur wenige Teiler
+besitzen.
+
+Ist $p$ eine Primzahl, dann sind die Gruppen der Ordnung $p$ nat\"urlich
+zyklisch. Eine Gruppe der Ordnung der Ordnung $p^2$ hat ein nicht triviales
+Zentrum, wird also vom Zentrum und einem weiteren Element erzeugt, und ist
+somit abelsch. Daher ist jede Gruppe der Ordnung $p^2$ isomorph zu $C_{p^2}$
+oder $C_p\times C_p$.
+
+Wenn man in einer Gruppe $G$ mit wenigen Teilern von $\abs{G}$ nach
+Normalteilern sucht, dann ist h\"aufig folgendes Vorgehen erfolgreich:
+
+Man nimmt den gr\"o\ss ten Primteiler $p$ von $\abs{G}$, oder die Primzahl $p$
+mit der gr\"o\ss ten $p$-Sylowgruppe $P$. Nun versucht man mittels der
+Teilbarkeitseigenschaften aus den S\"atzen von Sylow zu zeigen, dass $P$
+normal in $G$ ist. Gelingt das nicht, sollte man andere Primzahlen
+probieren. Funktioniert auch das nicht, so kann man versuchen, die
+Nichtnormalit\"at einer $p$-Sylowgruppe $P$ dadurch zu einem Widerspruch zu
+f\"uhren, dass $P$ zu viele Konjuguierte hat. Ich n\"amlich $P$ nicht normal,
+dann hat $P$ mindestens $1+p$ Konjugierte. Hat beispielsweise $P$ die Ordnung
+$p$, dann schneiden sich die Konjugierten trivial, man erh\"alt also
+mindestens $(p-1)(p+1)$ Elemente der Ordnung $p$. Wenn man das auch noch f\"ur
+andere Sylowgruppen macht, kann es beispielsweise passieren, dass man durch
+solche Z\"ahlungen mehr Elemente bekommt als die Gruppenordnung ist.
+
+Hilft auch das nicht weiter, kann man probieren, kleine
+Permutationsoperationen zu finden. Ist z.B.\ $P$ nicht normal, dann erh\"alt
+man einen nicht trivialen Homomorphismus $G\to\text{Sym}(P\setminus G)$. Oft
+muss aus Anzahl- oder Teilbarkeitsgr\"unden ein nicht-trivialer Kern vorhanden
+sein. Manchmal wei\ss\ man schon, dass $N_G(P)>P$ gilt, dann bekommt man meist
+bessere Aussagen, wenn man $G\to\text{Sym}(N_G(P)\setminus G)$ betrachtet.
+
+Nat\"urlich muss man sich oft auch, abh\"angig von der Situation, andere
+Tricks einfallen lassen. Beispielsweise kann man aus der Klassengleichung oft
+n\"utzliche Informationen gewinnen.
+
+Die folgenden Beispiele sollen einige dieser Prinzipien verdeutlichen.
+
+\subsubsection{$\abs{G}=pq$, $p<q$ Primzahlen.}\label{sss:A}
+Sei $P$ und $Q$ eine $p$-Sylow- bzw.\ $q$-Sylowgruppe von $G$, und $n_p$ und
+$n_q$ die Anzahl der $p$-Sylow- bzw.\ $q$-Sylowgruppen. Ist $Q$ nicht
+normal in $G$, dann gilt $N_G(Q)=Q$, es folgt
+$n_q=[G:N_G(Q)]=[G:Q]=\frac{pq}{q}=p$. Anderseits ist $q$ ein Teiler von
+$n_q-1=p-1$, also insbesondere $q<p$, im Widerspruch zu $p<q$.
+
+Daher ist $Q$ ein Normalteiler, und $G$ ein semidirektes Produkt von $Q$ mit
+$P$.
+
+Ist $P$ auch normal in $G$, dann ist $G$ ein direktes Produkt von $P$ und $Q$,
+also $G\cong C_p\times C_q\cong C_{pq}$.
+
+Allerdings, wie das Beispiel $S_3$ schon zeigt, muss $P$ nicht normal sein. In
+diesem Fall folgt analog wie oben, dass $p$ ein Teiler von $q-1$ sein
+muss. Wenn also $p$ kein Teiler von $q-1$ ist, dann ist $G\cong C_{pq}$.
+
+Als n\"achstes wollen wir den Fall von $3$ verschiedenen Primfaktoren
+studieren. Zur Einstimmung erst mal ein einfaches Beispiel.
+
+\subsubsection{$\abs{G}=1001=7\cdot 11\cdot 13$.}
+Seien $n_7$, $n_{11}$ und $n_{13}$ die Anzahlen der $7$-, $11$- und
+$13$-Sylowgruppen. Nun ist $n_{13}$ ein Teiler von $7\cdot11$, also gleich
+$1,7,11$ oder $77$. Aber au\ss er $1$ hat keine dieser Zahlen die Form
+$1+13k$, es folgt $n_{13}=1$. Analog ist $n_7$ gleich $1,11,13$ oder $11\cdot
+13=143$ und von der Form $1+7k$, also $n_7=1$, und genauso folgt
+$n_{11}=1$. Damit sind alle Sylowgruppen normal, und $G$ ist somit ein
+direktes Produkt dieser zyklischen Normalteiler mit teilerfremden
+Ordnungen. Daher ist $G$ zyklisch.
+
+\subsubsection{$\abs{G}=pqr$, $p<q<r$ Primzahlen.}
+Seien nun $P$, $Q$ und $R$ Untergruppen der Ordnungen $p$, $q$, und $r$.
+Nat\"urlich sind $P$, $Q$ und $R$ Sylowgruppen. F\"ur eine Primzahl $s$ sei
+$n_s$ wieder die Anzahl der $s$-Sylowgruppen.
+
+\begin{comment}
+Zun\"achst wollen wir sehen, dass $R$ normal ist. Das sei also nicht der Fall.
+Wegen $R\le N_G(R)<G$ gilt $n_r=p,q$ oder $pq$. Die ersten beiden F\"alle
+treten aber nicht auf, da $r$ ein Teiler von $n_r-1$ ist, aber $r>p-1$ und
+$r>q-1$ nach Voraussetzung. Daher gilt $n_r=pq$. Somit gibt es
+$pq(r-1)=pqr-pq$ Elemente der Ordnung $r$. Die Anzahl der Elemente von einer
+Ordnung $\ne r$ ist daher $pq$. Die Konjugierten von $P$ und $Q$ steuern
+$1+n_p(p-1)+n_q(q-1)$ Elemente der Ordnung $\ne r$ bei, daher gilt
+$1+n_p(p-1)+n_q(q-1)\le pq$. Wir wollen sehen, dass $n_p=1$ oder $n_q=1$ gilt.
+Ist das nicht der Fall, dann ist $n_p>1$ ein Teiler von $qr$, also $n_p\ge q$,
+und analog $n_q=\ge p$. Es folgt $1+q(p-1)+p(q-1)\le pq$, also $(p-1)(q-1)\le
+0$, was Unsinn ist. Damit ist $P$ oder $Q$ normal in $G$, insbesondere ist
+$U=PQ$ ein semidirektes Produkt der Ordnung $pq$, und $U$ enth\"alt keine
+Elemente der Ordnung $r$. Damit besteht $U$ genau aus den Elementen von $G$
+der Ordnung $\ne r$, insbesondere ist $U$ normal in $G$. Nach Beispiel
+\ref{sss:A} ist $Q$ normal in $U$. Insbesondere ist $Q$ die einzige
+$q$-Sylowgruppe von $U$, und da $U$ normal in $G$ ist, ist $Q$ sogar normal in
+$G$. Insbesondere ist $QR$ ein semidirektes Produkt, aber da $r$ kein Teiler
+von $q-1$ ist, ist das Produkt direkt. Wegen $G=QRP$, sind die Konjugierten
+von $R$ von der Form $R^x$ mit $x\in P$, insbesondere gilt $n_r\le p$, im
+Widerspruch zu $n_r=pq$.
+
+Damit ist $R$ als Normalteiler erkannt. Nach Beispiel \ref{sss:A} ist $QR/R$
+normal in $G/R$, und somit ist $QR$ normal in $G$. Es folgt
+\[
+G\cong P\ltimes (Q\ltimes R).
+\]
+Als \"Ubung \"uberlege man sich, dass auch
+\[
+G\cong (P\ltimes Q)\ltimes R
+\]
+gilt. Dazu muss man etwas aufpassen, denn $PQ$ muss keine Gruppe
+sein. Stattdessen muss man $Q$ durch eine Konjugierte ersetzen, die von $P$
+normalisiert werden.
+
+F\"uhrt man diese etwas technischen Betrachtungen noch etwas weiter, so sieht
+man, dass stets $G\cong C_p\ltimes C_{qr}$ oder $G\cong C_{pq}\ltimes C_r$
+gilt.
+\end{comment}
+Zun\"achst wollen wir sehen, dass eine der Gruppen $P$, $Q$ oder $R$ normal in
+$G$ ist. Dazu nehmen wir an, das sei nicht der Fall. Wegen $R\le N_G(R)<G$
+gilt $n_r=p,q$ oder $pq$. Die ersten beiden F\"alle treten aber nicht auf, da
+$r$ ein Teiler von $n_r-1$ ist, aber $r>p-1$ und $r>q-1$ nach Voraussetzung.
+Daher gilt $n_r=pq$. Ferner ist $1<n_p$ ein Teiler von $qr$, also $n_p\ge q$,
+und analog $n_q\ge p$. Die Konjugierten der Gruppen $P$, $Q$ und $R$ schneiden
+sich paarweise trivial. Daher gibt es $n_r(r-1)$ Elemente der Ordnung $r$,
+$n_p(p-1)$ Elemente der Ordnung $p$ und $n_q(q-1)$ Elemente der Ordnung $q$.
+Es folgt
+\[
+pqr-1\ge n_r(r-1)+n_p(p-1)+n_q(q-1)\ge pq(r-1)+q(p-1)+p(q-1),
+\]
+also $(p-1)(q-1)\le 0$, was Unsinn ist. Damit ist eine der Gruppen $P$, $Q$
+oder $R$ normal in $G$.
+
+Wir wollen sehen, dass $R$ normal in $G$ ist. Nach obigem ist $P$ oder $Q$
+normal in $G$, sei z.B.\ $P$ normal in $G$. Nach Beispiel \ref{sss:A} ist dann
+$PR/P$ normal in $G/P$, also $PR$ normal in $G$. Aber wiederum nach Beispiel
+\ref{sss:A} ist $R$ normal in $PR$. Somit ist $R$ die einzige $r$-Sylowgruppe
+in $PR$, und daher muss $R$ in $G$ normal sein.
+
+Damit ist $R$ als Normalteiler erkannt. Nach Beispiel \ref{sss:A} ist $QR/R$
+normal in $G/R$, und somit ist $QR$ normal in $G$. Es folgt
+\[
+G\cong P\ltimes (Q\ltimes R).
+\]
+
+F\"uhrt man diese etwas technischen Betrachtungen noch weiter, so sieht man,
+dass stets $G\cong C_p\ltimes C_{qr}$ oder $G\cong C_{pq}\ltimes C_r$ gilt.
+\subsubsection{$\abs{G}=p^aq^b$, $p<q$ Primzahlen, $0\le a,b\le 2$.}
+Sei wieder $P$ und $Q$ eine $p$- und $q$-Sylowgruppe. Ist $Q$ normal in $G$,
+dann ist $G$ ein semidirektes Produkt von $Q$ mit $P$. Wir wollen den Fall
+analysieren, dass $Q$ nicht normal ist. Mit den gewohnten Bezeichnungen folgt,
+dass $1<n_q$ ein Teiler von $p^2$ ist, und $q$ ein Teiler von $n_q-1$
+ist. Wegen $q>p$ kann nicht $n_q=p$ gelten, daher gilt $n_q=p^2$, und $q$ ist
+ein Teiler von $p^2-1=(p-1)(p+1)$. Daher ist $p-1$ oder $p+1$ durch $q$
+teilbar. Wegen $q>p$ folgt $q=p+1$, also $p=2$, $q=3$.
+
+Somit gilt $n_3=4$ und $\abs{G}=12$ oder $\abs{G}=36$. Wegen $n_3=2^2$ gilt
+$N_G(Q)=Q$. Betrachte die Operation durch Konjugation auf den vier
+$3$-Sylowgruppen. Wir erhalten $G\to S_4$, und der Kern ist der Schnitt der
+$3$-Sylowgruppen. Im Fall $\abs{G}=12$ ist dieser Schnitt trivial, es folgt
+$G\le S_4$. Aber $A_4$ ist die einzige Untergruppe der Ordnung $12$ in
+$S_4$, und es folgt $G\cong A_4$. Insbesondere ist $P$ normal in $G$.
+
+Im zweiten Fall ist der Kern von $G\to S_4$ eine Gruppe $Z$ der Ordnung $3$,
+wie eben folgt $G/Z\cong A_4$. Somit ist $PZ/Z$ normal in $G/Z$, also $PZ$
+normal in $G$ der Ordnung $12$. Es folgt schnell, dass $P$ normal in $G$ ist.
+\begin{Bemerkung*}
+  F\"ur beliebige nat\"urliche Zahlen $a,b$ gilt der Satz von Burnside, dass
+  eine Gruppe der Ordnung $p^aq^b$ aufl\"osbar ist. Auch bis heute ist der
+  einfachste Beweis mittels Darstellungstheorie. Hierbei untersucht man die
+  m\"oglichen Homomorphismen $G\to\GL_n(\CCC)$.
+\end{Bemerkung*}
+\subsubsection{Aufl\"osbarkeit von $G$ f\"ur $\abs{G}<60$.}
+Wir haben bereits die Gruppe $A_5$ der Ordnung $60$ kennengelernt, die einfach
+aber nicht abelsch ist. Hier wollen wir sehen, dass es keine kleinere einfache
+und nicht abelsche Gruppen gibt. Insbesondere sind dann alle Gruppen der
+Ordnung $<60$ aufl\"osbar.
+
+Sei $G$ einfach und nicht abelsch mit $\abs{G}<60$. Wegen der bisherigen
+F\"alle bleiben nur noch die Gruppenordnungen $2\cdot 3^3$, $2^3\cdot 3$,
+$2^3\cdot 5$, $2^3\cdot 7$ und $2^4\cdot 3$ zu untersuchen. $G$ kann keine
+echte Untergruppe $U$ vom Index $\le4$ besitzen, denn dann bettet $G$ ein in
+$\text{Sym}(U\setminus G)\le S_4$, aber $S_4$ ist aufl\"osbar. Damit bleiben
+nur noch die Ordnungen $2^3\cdot 5$ und $2^3\cdot 7$. Im ersten Fall folgt aus
+den Sylows\"atzen sofort, dass die $5$-Sylowgruppe normal ist, ein
+Widerspruch. Bleibt $\abs{G}=8\cdot 7$. Es folgt $n_7=8$, daher hat $G$ genau
+$8(7-1)=48$ Elemente der Ordnung $7$. Die Menge der restlichen $8$ Elemente
+ist unter Konjugation invariant. Aber auch die $2$-Sylowgruppe von $G$ hat
+Ordnung $8$, und stimmt daher mit dieser Menge \"uberein. Sie ist also normal.
+\section{Ringe und Moduln}
+\subsection{Definitionen, Beispiele}
+Ein \ei{Ring} ist eine Menge $R$ mit zwei zweistelligen Verkn\"upfungen $+$
+und $\cdot$ und Elementen $0,1\in R$, so dass die folgenden Ringaxiome gelten:
+\begin{itemize}
+\item $(R,+)$ ist eine (additiv geschriebene) abelsche Gruppe mit neutralem
+  Element $0$.
+\item $(R,\cdot)$ ist ein Monoid mit neutralem Element $1$.
+\item Es gelten die beiden Distributivgesetze $x\cdot(y+z)=x\cdot y+x\cdot z$
+  und $(y+z)\cdot x=y\cdot x+z\cdot x$ f\"ur alle $x,y,z\in R$.
+\end{itemize}
+Um Klammern zu sparen gelten die \"ublichen Konventionen, dass Potenzbildung
+vor Multiplikation, und diese vor Addition geht. Bei Produkten schreibt man
+oft $xy$ statt $x\cdot y$.
+
+Zur Gew\"ohnung an die Axiome beginnen wir mit einigen einfachen Aussagen:
+\begin{Lemma}
+  In einem Ring $R$ gelten die folgenden Aussagen:
+  \begin{itemize}
+  \item[(a)] $0a=a0=0$.
+\item[(b)] $(-a)b=-ab=a(-b)$.
+\item[(c)] $a(b-c)=ab-ac$, $(a-b)c=ac-bc$.
+\item[(d)] Gilt $0=1$,  so folgt $R=\{0\}$.
+\item[(e)] Gilt $ab=ba$, so folgt $(a+b)^n=\sum_{k=0}^n\binom{n}{k}a^kb^{n-k}$
+  f\"ur $n\in\NNN$.
+  \end{itemize}
+\end{Lemma}
+\begin{proof}[Beweis]
+  Aus $0=0+0$ folgt $a0=a(0+0)=a0+a0$, also $a0=0$, und analog
+  $0a=0$. \"Ahnlich einfach folgen die Aussagen (b) und (c). Aussage (d) folgt
+  aus (a) und $a=a\cdot1=a\cdot0=0$. Der Beweis von (e) ist wie in der
+  Analysis mittels vollst\"andiger Induktion, bei der Rechnung bemerkt man,
+  dass man neben den Ringaxiomen noch die multiplikative Vertauschbarkeit von
+  $a$ und $b$ ben\"otigt.
+\end{proof}
+Soweit im folgenden nichts anderes gesagt wird, sei stillschweigend $0\ne1$
+vorausgesetzt.
+\paragraph{Beispiele von Ringen}
+\begin{itemize}
+\item Die ganzen Zahlen $\ZZZ$ bilden einen Ring.
+\item Ist $n\in\NNN$, so bildet die Menge der Restklassen $\ZZZ/n\ZZZ$ mit den
+  Festsetzungen $(a+n\ZZZ)+(b+n\ZZZ)=(a+b)+n\ZZZ$ und
+  $(a+n\ZZZ)\cdot(b+n\ZZZ)=(ab)+n\ZZZ$ einen Ring mit $n$ Elementen.
+\item Ist $K$ ein K\"orper, so bildet die Menge der Matrizen $M_n(K)$ einen
+  Ring.
+\item F\"ur eine abelsche Gruppe $A$ ist die Menge der Endomophismen von $A$
+  ein Ring, wobei $f+g$ durch $a^{f+g}:=a^f+a^g$ und $a^{f\cdot
+  g}:=a^{fg}=(a^f)^g$ erkl\"art werden. (Was passiert, wenn $A$ nicht abelsch
+  ist?)
+\item Ist $M$ eine Menge, und $R$ ein Ring, so bildet die Menge der
+  Abbildungen von $M$ nach $R$ unter elementweiser Addition und Multiplikation
+  ein Ring.
+\end{itemize}
+Nach diesen Beispielen wollen wie einige nachfolgend h\"aufig benutzte
+Begriffe definieren.
+\begin{Definition}
+  Ein Element $a\in R$ hei\ss t \ei{invertierbar} oder \ei{Einheit}, wenn es
+  $b,c\in R$ gibt mit $ab=ca=1$. (Dann folgt automatisch $c=c1=cab=1b=b$.)
+  Die Menge $R^\times$ der Einheiten bilden eine Gruppe, die
+  \ei{Einheitengruppe} von $R$.
+
+Ein Element $a\in R$ hei\ss t \ei{Nullteiler}, wenn es ein $b\ne0$ gibt mit
+$ab=0$.
+
+Ein Element $a\in R$ hei\ss t \ei{nilpotent}, wenn es ein $n\in\NNN$ gibt mit
+$a^n=0$.
+
+Ein Ring $R$ hei\ss t \ei{kommutativ}, wenn $ab=ba$ gilt f\"ur alle $a,b\in
+R$.
+
+Der Ring $R$ ($\ne\{0\}$) hei\ss t \ei{Integrit\"atsbereich} oder
+\ei{Integrit\"atsring}, wenn $R$ nullteilerfrei und kommutativ ist.
+  
+Sind alle Elemente $\ne0$ eines Ringes ($\ne\{0\}$) Einheiten, so hei\ss t der
+Ring ein \ei{Schiefk\"orper}.
+
+Kommutative Schiefk\"orper hei\ss en \ei{K\"orper}.
+\end{Definition}
+Typische Integrit\"atsbereiche sind etwa die ganzen Zahlen $\ZZZ$. Die
+Einheitengruppe von $\ZZZ$ besteht allerdings nur aus $\pm1$. Nat\"urlich ist
+auch jeder K\"orper ein Integrit\"atsbereich.
+Als einfache Anwendung der Begriffe zeigen wir
+\begin{Lemma}
+  Ein endlicher Integrit\"atsbereich ist ein K\"orper.
+\end{Lemma}
+\begin{proof}[Beweis]
+  Sei $R$ ein endlicher Integrit\"atsbereich, und $a\ne0$. Wir m\"ussen
+  zeigen, dass $a$ invertierbar ist. Dazu betrachten wir die Abbildung $R\to
+  R$, $x\mapsto ax$. Diese Abbildung ist injektiv, denn aus $ax=ay$ folgt
+  $a(x-y)=0$, also $x-y=0$, da $0$ der einzige Nullteiler von $R$ ist.  Da
+  aber $R$ endlich ist, folgt aus der Injektivit\"at dieser Abbildung schon
+  die Surjektivit\"at. Insbesondere gibt es $x\in R$ mit $ax=1$. Analog folgt
+  die Existenz von $y$ mit $ya=1$, die Behauptung folgt.
+\end{proof}
+Eine wichtige Folgerung ist
+\begin{Korollar}\label{K:ZnZ}
+  Sei $n\in\NNN$. Dann ist $\ZZZ/n\ZZZ$ genau dann ein K\"orper, wenn $n$ eine
+  Primzahl ist.
+\end{Korollar}
+\begin{proof}[Beweis]
+  Sei $R=\ZZZ/n\ZZZ$. Im Falle $n=1$ gilt $R=\{0\}$. Sei nun $n=ab$ mit
+  $a,b\in\NNN$ und $a,b>1$. Dann gilt $(a+n\ZZZ)(b+n\ZZZ)=n\ZZZ=0_R$, aber
+  $a+n\ZZZ,b+n\ZZZ\ne0_R$. Damit ist $R$ kein K\"orper.
+  
+  Nun sei $n$ eine Primzahl. Nach obigem Lemma bleibt zu zeigen, dass $R$ ein
+  Integrit\"atsbereich ist, d.h, dass $R$ keine Nullteiler au\ss er $0_R$ hat.
+  Seien $a+n\ZZZ,b+n\ZZZ\ne0_R$ mit $(a+n\ZZZ)(b+n\ZZZ)=ab+n\ZZZ=0_R$. Damit
+  ist $n$ ein Teiler von $ab$, und da $n$ prim ist, gilt z.B., dass $n$ ein
+  Teiler von $a$ ist. Aber dann gilt $a+n\ZZZ=0_R$, ein Widerspruch.
+\end{proof}
+Ein \ei{Teilring} eines Ringes $R$ ist eine Teilmenge $S$ von $R$ mit $0,1\in
+S$, so dass $S$ mit den von $R$ auf $S$ eingeschr\"ankten Operationen wieder
+einen Ring bildet. Hierzu gen\"ugt es zu zeigen, dass mit $s,t\in S$ auch
+$s-t$ und $st$ wieder in $S$ liegen. Ist $M$ eine Teilmenge von $R$, und $R_0$
+ein Teilring von $R$, dann bezeichnet $R_0[M]$ den von $R_0$ und $M$ erzeugten
+Teilring von $R$. Das ist der kleinste Teilring von $R$, der $R_0$ und $M$
+enth\"alt.
+\subsection{Homomorphismen und Ideale}
+\begin{Definition}
+  Eine Abbildung $\phi:R\to S$ zwischen Ringen $R$ und $S$ hei\ss t
+  \ei{Ringhomomorphismus}, wenn $1_R^\phi=1_S$ gilt, und
+  $(x+y)^\phi=x^\phi+y^\phi$ und $(xy)^\phi=x^\phi y^\phi$ gelten f\"ur alle
+  $x,y\in R$.
+\end{Definition}
+\"Ahnlich einfach wie bei Gruppen rechnet man nach, dass $R^\phi$ ein Teilring
+von $S$ ist, und dass Urbilder von Teilringen von $S$ wieder Teilringe von $R$
+sind. Die Kerne von Gruppenhomomorphismen waren gerade die Normalteiler von
+Gruppen. Der Kern eines Ringhomomorphismus $R\to S$ ist nat\"urlich eine
+Untergruppe von $(R,+)$, aber es gilt eine weitere Eigenschaft.
+\begin{Definition}
+  Eine Untergruppe $I$ von $(R,+)$ hei\ss t \ei{Ideal} von $R$, wenn f\"ur
+  alle $r\in R$, $i\in I$ gilt: $ri, ir\in I$. Man schreibt dann auch
+  $I\trianglelefteq R$.
+\end{Definition}
+Sei $I$ der Kern eines Ringhomomorphismus $\phi:R\to S$. Wie schon bemerkt,
+ist $I$ eine Untergruppe von $(R,+)$. Sei $r\in R$, $i\in I$. Wegen
+$(ri)^\phi=r^\phi i^\phi=r^\phi 0=0$ gilt $ri\in I$, und analog $ir\in
+I$. Damit ist $I$ ein Ideal. In K\"urze werden wir sehen, dass umgekehrt jedes
+Ideal der Kern eines geeigneten Homomorphismus ist.
+
+Man beachte, dass Ideale im allgemeinen keine Teilringe sind. Gilt n\"amlich
+$1\in R$, so folgt bereits $I=R$.
+
+Ist $M$ eine Teilmenge von $R$, so bildet die Menge der endlichen Summen $\sum
+r_i m_i s_i$ mit $r_i,s_i\in R$, $m_i\in M$ offenbar das kleinste Ideal von
+$R$, welches $M$ enth\"alt. Man nennt das auch das von $M$ erzeugte Ideal. Ein
+\ei{Hauptideal} ist ein von einem einzigen Element erzeugtes Ideal. Ist $R$
+kommutativ, dann hat das von $m$ erzeugte Hauptideal die Form $mR$. Man
+schreibt daf\"ur auch h\"aufig $(m)$. Ist jedes Ideal eines Ringes ein
+Haupideal, dann nennt man den Ring \ei{Hauptidealring}.
+
+Wir wissen bereits, dass die Untergruppen von $(\ZZZ,+)$ alle die Form $n\ZZZ$
+mit $n\in\NNN_0$ haben. Insbesondere haben alle Ideale von $\ZZZ$ diese Form,
+somit ist $\ZZZ$ ein Hauptidealring.
+
+Sei nun $I$ ein Ideal des Rings $R$. Da $(I,+)$ eine normale Untergruppe von
+$(R,+)$ ist, erhalten wir eine nat\"urliche Abbildung $\phi:R\to R/I$ via
+$x\mapsto x+I$. Wir wollen sehen, dass durch $(x+I)(y+I):=xy+I$ ein
+wohldefiniertes Produkt auf $R/I$ gegeben wird. Dazu sei $x=x'+i$, $y=y'+j$
+mit $i,j\in I$. Wir m\"ussen sehen, dass $xy+I=x'y'+I$ gilt. Das gilt aber
+wegen
+\[
+xy-x'y'=(x'+i)(y'+j)-x'y'=x'j+iy'+ij\in I.
+\]
+Damit ist $R/I$ offenbar ein Ring mit Nullelement $I$ und Einselement $1+I$,
+da sich die Ringaxiome direkt von $R$ auf $R/I$ \"ubertragen. Wir erhalten
+\begin{Satz}
+  Sei $I$ ein Ideal des Rings $R$. Dann ist $R\to R/I$, $x\mapsto x+I$ ein
+  Epimorphismus von Ringen mit Kern $I$.
+\end{Satz}
+Das zeigt, dass jedes Ideal der Kern eines Ringhomomorphismus ist. Fast
+w\"ortlich genauso wie in der Gruppentheorie (oder linearen Algebra) beweist
+man nun
+\begin{Satz}[Homomorphiesatz]
+  Sei $\phi:R\to S$ ein Homomorphismus von Ringen mit Kern $I$. Dann gilt
+  $R/I\cong \text{Bild}(\phi)$.
+\end{Satz}
+Auch die Isomorphies\"atze der Gruppentheorie haben ein Analogon in der
+Ringtheorie.
+\begin{Satz}[Isomorphies\"atze]
+  \begin{itemize}
+  \item[(a)] Sei $R$ ein Ring mit Teilring $S$ und Ideal $I$. Dann gilt
+  $S/S\cap I\cong S+I/I$.
+\item[(b)] Seien $I$ und $J$ Ideale des Rings $R$ mit $J\subseteq I$. Dann ist
+  $I/J$ ein Ideal von $R/J$, und es gilt $R/I\cong (R/J)/(I/J)$.
+  \end{itemize}
+\end{Satz}
+\subsection{Chinesischer Restsatz}
+Es seien $I$ und $J$ Ideale eines Rings $R$. Offenbar sind auch $I+J$ und
+$I\cap J$ Ideale von $R$. Die multiplikative Struktur von $R$ erlaubt es uns,
+aus $I$ und $J$ ein weiteres Ideal zu konstruieren. Mit $IJ$ bezeichnen wir
+die Menge der endlichen Summen mit Summanden der Form $ij$ mit $i\in I$, $j\in
+J$. Offenbar ist $IJ$ ein Ideal von $R$. Man beachte, dass nicht jedes
+Element aus $IJ$ die Form $ij$ haben muss. Es gilt $IJ\subseteq I\cap J$.
+
+Um die n\"achsten Begriffe zu motivieren, beweisen wir zun\"achst
+\begin{Lemma}\label{L:mn}
+  Es seien $m,n\in\ZZZ$, und nicht beide gleich $0$. Ferner sei $d\in\NNN$ der
+  gr\"o\ss te gemeinsame Teiler von $m$ und $n$. Dann gilt $(m)+(n)=(d)$.
+\end{Lemma}
+\begin{proof}[Beweis]
+  Da $\ZZZ$ ein Haupidealring ist, und $(m)+(n)$ nicht das Nullideal ist, gibt
+  es $d\in\NNN$ mit $(m)+(n)=(d)$. Daher gibt es $a,b\in\ZZZ$ mit
+  $d=am+bn$. Wegen $(m)\subseteq (d)$ ist $d$ ein Teiler von $m$, und analog
+  ist $d$ ein Teiler von $n$. Aber die Darstellung $d=am+bn$ zeigt, dass jeder
+  gemeinsame Teiler von $m$ und $n$ auch ein Teiler von $d$ ist, und die
+  Behauptung folgt.
+\end{proof}
+Wir sehen also, dass insbesondere $m$ und $n$ genau dann teilerfremd sind,
+wenn $(m)+(n)=\ZZZ$ gilt. Das motiviert (hoffentlich) die folgende
+\begin{Definition}
+  Die Ideale $I$ und $J$ des Rings $R$ hei\ss en \ei{teilerfremd}, wenn
+  $R=I+J$ gilt.
+\end{Definition}
+Sind $R_1,R_2,\dots,R_n$ Ringe, dann ist das direkte Produkt $R_1\times
+R_2\times\dots\times R_n$ mit den komponentenweisen Operationen wieder ein
+Ring. Im folgenden wollen wir in gewissen Situationen komplizierte Ringe als
+direkte Produkte einfacherer Ringe schreiben.
+
+Zuvor ben\"otigen wir noch ein
+\begin{Lemma}\label{L:I+JK}
+  Es sei $I$ ein Ideal des Rings $R$, das teilerfremd ist zu den Idealen $J$
+  und $K$. Dann gilt\begin{itemize}
+\item[(a)] $IJ+JI=I\cap J$.
+\item[(b)] $I$ ist teilerfremd zu $JK$ und $J\cap K$.
+  \end{itemize}
+\end{Lemma}
+\begin{proof}[Beweis]
+  Wegen $IJ,JI\subseteq I\cap J$ folgt $IJ+JI\subseteq I\cap J$. Sei nun
+  umgekehrt $x\in I\cap J$. Wegen $I+J=R$ gibt es $i\in I$, $j\in J$ mit
+  $1=i+j$. Es folgt
+\[
+x=(i+j)x=ix+jx\in IJ+JI,
+\]
+und damit (a). Sei nun weiter $1=i'+k$ mit $i'\in I$, $k\in K$. Wir erhalten
+\[
+1=(i+j)(i'+k)=ii'+ik+ji'+jk\in I+jk\subseteq I+JK,
+\]
+und die Behauptung folgt.
+\end{proof}
+Induktiv folgt aus (b)
+\begin{Lemma}\label{L:I_icap}
+  Das Ideal $I_1$ des Rings $R$ sei teilerfremd zu den Idealen
+  $I_2,\dots,I_n$. Dann ist $I_1$ teilerfremd zu $I_2\cap\dots\cap I_n$.
+\end{Lemma}
+Das Hauptergebnis dieses Abschnitts ist
+\begin{Satz}[Chinesischer Restsatz]
+  Seien $I_1,I_2,\dots,I_n$ paarweise teilerfremde Ideale eines Rings
+  $R$. Sei $I$ der Schnitt der Ideale $I_i$. Dann ist die Abbildung
+\begin{align*}
+R/I &\to R/I_1\times R/I_2\times\dots\times R/I_n\\
+r+I &\mapsto (r+I_1,r+I_2,\dots,r+I_n)
+\end{align*}
+ein Isomorphismus von Ringen.
+\end{Satz}
+\begin{proof}[Beweis]
+Offenbar ist $I$ der Kern der Abbildung $R\to R/I_1\times
+R/I_2\times\dots\times R/I_n$, $r\mapsto (r+I_1,r+I_2,\dots,r+I_n)$, die
+Behauptung folgt also aus dem Homomorphiesatz, sobald wir die Surjektivit\"at
+der Abbildung nachgewiesen haben. F\"ur $n=1$ ist nichts zu zeigen.
+
+Sei nun $n=2$. Wegen $R=I_1+I_2$ gibt es $i_1\in I_1$, $i_2\in I_2$ mit
+$1=i_1+i_2$. Seien $x,y\in R$ beliebig, und setze $r=xi_2+yi_1$. Es gilt
+$r=x(1-i_1)+yi_1=x+(y-x)i_1\in x+I_1$ und $r=xi_2+y(1-i_2)\in y+I_2$. Das
+Element $r$ wird also auf $(x+I_1,y+I_2)$ abgebildet. Da $x$ und $y$ beliebig
+waren, folgt die Behauptung f\"ur $n=2$.
+
+F\"ur $n\ge3$ benutzen wir vollst\"andige Induktion, wobei wir f\"ur den
+Induktionsschritt den Fall $n=2$ benutzen: Nach Lemma \ref{L:I_icap} ist $I_1$
+teilerfremd zum Schnitt $I_1'$ der $I_i$ mit $2\le i\le n$. Beachte, dass
+$I=I_1\cap I_1'$ gilt. Wegen des Falls $n=2$ ist $R/I_1\to R/I_1\times R/I_1'$
+ein Isomorphismus, und $R/I_1'\to R/I_2\times\dots\times R/I_n$ ist ein
+Isomorphismus nach der Induktionsannahme f\"ur $n-1$. Die Behauptung folgt.
+\end{proof}
+Die h\"aufigste Anwendung des chinesischen Restsatzes ist f\"ur kommutative
+Ringe $R$. In diesem Fall l\"asst sich der Schnitt paarweiser teilerfremder
+Ideale noch anders ausdr\"ucken:
+\begin{Lemma}
+  Seien $I_1,I_2,\dots,I_n$ paarweise teilerfremde Ideale eines kommutativen
+  Rings. Dann gilt $I_1I_2\dots I_n=I_1\cap I_2\cap\dots\cap I_n$.
+\end{Lemma}
+\begin{proof}[Beweis]
+  F\"ur $n=2$ folgt das aus Lemma \ref{L:I+JK}(a), und allgemein per Induktion.
+\end{proof}
+Eine wichtiger Spezialfall des chinesischen Restsatz ist
+\begin{Satz}
+  Sei $n=\prod p_i^{e_i}$ die nat\"urliche Primfaktorzerlegung von
+  $n\in\NNN$. Dann ist der Ring $\ZZZ/n\ZZZ$ isomorph zum direkten Produkt der
+  Ringe $\ZZZ/p_i^{e_i}\ZZZ$.
+\end{Satz}
+\subsection{Anwendungen der Kongruenzrechnung}
+Ein klassisches und wichtiges Gebiet der Mathematik ist die Frage der
+ganzzahligen L\"osbarkeit z.B.\ polynomialer Gleichungen oder
+Gleichungssysteme. Hier sind Restklassenbetrachtungen h\"aufig von gro\ss em
+Nutzen. Wir betrachten exemplarisch einige Beispiele:
+\begin{itemize}
+\item $4x-1=y^2+z^2$ hat keine ganzzahligen L\"osungen. Dazu sei
+  $\ZZZ\to\ZZZ/4\ZZZ$ der nat\"urliche Homomorphismus, und $\bar{a}$ sei das
+  Bild von $a\in\ZZZ$. Ist $x,y,z$ eine L\"osung der gegebenen Gleichung, dann
+  gilt auch $\bar{3}=-\bar{1}=\overline{4x-1}=\bar{y}^2+\bar{z}^2$. F\"ur
+  $a\in\ZZZ$ gilt aber $\bar{a}^2=\bar{0}$ oder $\bar{1}$, also $\bar{3}=u+v$
+  mit $u,v\in\{\bar{0},\bar{1}\}$, ein Widerspruch.
+\item Die nat\"urliche Zahl $n$ enthalte in der Dezimaldarstellung nur die
+  Ziffern $6$ und $0$. Kann $n$ eine Quadratzahl sein? Wir nehmen an, $n$ ist
+  eine Quadratzahl. Dann endet $n$ auf eine gerade Anzahl von $0$ern. Streicht
+  man diese, dann erh\"alt man eine Quadratzahl, die mit $6$ endet, also
+  modulo $4$ den Rest $2$ hat, was aber nicht geht, da die Reste der Quadrate
+  modulo $4$ nur $0$ und $1$ sind.
+\item $15x^2-7y^2=9$ ist in $\ZZZ$ nicht l\"osbar: Sei $x,y,z$ eine L\"osung.
+  Man sieht, dass $7y^2$ durch $3$ teilbar ist. Dann ist $y$ durch $3$
+  teilbar, also $7y^2$ durch $9$ teilbar. Somit ist $15x^2$ durch $9$ teilbar,
+  also $x$ durch $3$ teilbar. Wir setzen also $x=3a$, $y=3b$ mit $a,b\in\ZZZ$.
+  Es folgt $15a^2-7b^2=1$. Eine Betrachtung modulo $4$ bringt hier keinen
+  Widerspruch, sie liefert $\bar{b}^2-\bar{a}^2=bar 1$ in $\ZZZ/4\ZZZ$, aber
+  das ist nat\"urlich l\"osbar. In $\ZZZ/3\ZZZ$ hingegen erhalten wir
+  $-\bar{b}^2=\bar{1}$, aber $\bar{b}^2\in\{\bar{0},\bar{1}\}$, ein
+  Widerspruch.
+\item F\"ur welche nat\"urlichen Zahlen $n$ ist $a=2^n+65$ eine Quadratzahl?
+  Ist $n=2m+1$ ungerade, dann ist $2^n=2\cdot 4^m$ stets kongruent $\pm2$
+  modulo $5$, ferner ist $a$ ungerade, also endet $a$ auf $3$ oder $7$. Aber
+  ungerade Quadratzahlen enden auf $1$, $5$ oder $9$, ein Widerspruch. Daher
+  ist $n=2m$ gerade, und $2^n$ eine Quadratzahl. Wegen $a>2^n=(2^m)^2$ ist $a$
+  mindestens so gro\ss\ wie die n\"achste Quadratzahl nach $2^n$, also
+  $2^{2m}+65=2^n+65=a\ge (2^m+1)^2$, und somit $65\ge 2^{m+1}+1$, also $2^m\le
+  32$ und daher $m\le5$. Durchprobieren liefert die einzigen L\"osungen
+  $2^4+65=9^2$ und $2^{10}+65=33^2$.
+\item Die Kongruenzmethode f\"uhrt nicht immer zum Ziel: Man kann zeigen, dass
+  $3x^3+4y^3+5z^3=0$ modulo jedem $n\in\ZZZ$ nicht trivial l\"osbar ist, und
+  dennoch hat diese Gleichung keine ganzzahlige L\"osung au\ss er $x=y=z=0$.
+  Beide Aussagen sind aber nicht einfach zu beweisen, und liegen jenseits
+  dieser Vorlesung.
+\end{itemize}
+\subsection{Maximale Ideale}
+Sei $R$ ein kommutativer Ring. Ein \ei{maximales Ideal} ist ein Ideal $I$ von
+$R$ mit $I\ne R$, so dass kein Ideal $J$ von $R$ existiert mit $I\subsetneq
+J\subsetneq R$. Die wichtige Aussage in diesem Zusammenhang ist.
+\begin{Satz}
+  Sei $I$ ein Ideal eines kommutativen Ringes $R$. Dann ist $I$ genau dann
+  maximal, wenn $R/I$ ein K\"orper ist.
+\end{Satz}
+\begin{proof}[Beweis]
+  Sei $I$ maximal, und $a+I\ne 0$ in $R/I$. Damit ist $a\ne I$. Da $Ra+I$ ein
+  Ideal ist, welches $I$ echt enth\"alt, muss $Ra+I=R$ gelten. Daher gibt es
+  $r\in R$ mit $1\in ra+I$, also $1+I=(a+I)(r+I)$, und $a+I$ ist daher
+  multiplikativ invertierbar in $R/I$. Somit ist $R$ ein K\"orper.
+
+Sei nun $I$ nicht maximal, und $J$ ein Ideal echt zwischen $I$ und $R$. F\"ur
+$a\in J$ und $r\in R$ gilt dann $(a+I)(r+I)=ar+I\subseteq J$, also $1\ne
+ar+I$, und somit ist $a+I$ nicht invertierbar.
+\end{proof}
+\paragraph{Beispiele maximaler Ideale}
+\begin{itemize}
+\item Die Ideale $I$ von $\ZZZ$ haben die Form $n\ZZZ$ mit $n=0,1,\dots$. Ein
+  solches Ideal ist genau dann maximal, wenn $n$ eine Primzahl ist.
+\item Sei $R$ die Menge der reellwertigen Abbildungen $M\to\RRR$ f\"ur eine
+  Menge $M$. Offenbar ist $R$ ein Ring. F\"ur $m\in M$ ist die Abbildung
+  $R\to\RRR$, $f\mapsto f(m)$ ein Epimorphismus von Ringen. Der Kern $I$ ist
+  das Ideal der reellwertigen Abbildungen $f$ mit $f(m)=0$. Wegen
+  $R/I\cong\RRR$ ist $R/I$ ein K\"orper, und $I$ damit ein maximales Ideal.
+\end{itemize}
+Direkt aus dem Zornschen Lemma folgt
+\begin{Satz}[Krull]
+  Sei $I\subsetneq R$ ein Ideal eines kommutativen Rings $R$. Dann ist $I$ in
+  einem maximalen Ideal von $R$ enthalten.
+\end{Satz}
+\subsection{Primideale}
+Sei $R$ wieder ein kommutativer Ring. Ein Ideal $I$ von $R$ hei\ss t
+\ei{Primideal}, wenn $R/I$ ein Integrit\"atsring ist. Ist also $ab\in I$, dann
+ist $(a+I)(b+I)\subseteq ab+I=0$ in $R/I$, und wegen der Nullteilerfreiheit
+gilt $a\in I$ oder $b\in I$. Da K\"orper Integrit\"atsringe sind, sind
+maximale Ideale automatisch Primideale. Das einizige nichtmaximale Primideal
+von $\ZZZ$ ist $\{0\}$.
+
+Induktiv sieht man sofort, dass nilpotente Elemente in allen Primidealen
+liegen. Wir wollen die Umkehrung beweisen.
+\begin{Lemma}
+  Sei $R$ ein kommutativer Ring (mit $0\ne1$) und $S$ eine multiplikativ
+  abgeschlossene Teilmenge von $S$ mit $0\ne S$. Dann hat $R$ ein Primideal
+  mit $S\cap I=\emptyset$.
+\end{Lemma}
+\begin{proof}[Beweis]
+  Sei $M$ die Menge der Ideale von $R$, welche disjunkt sind zu $S$. Wegen
+  $\{0\}\in M$ ist $M$ nicht leer. Die Vereinigung von Ketten aus $M$ liegt
+  wieder in $M$, nach dem Zornschen Lemma hat $M$ daher ein maximales Element
+  $I$. Wir wollen sehen, dass $I$ ein Primideal ist. Dazu seien $x,y\in
+  R\setminus I$. Wir m\"ussen sehen, dass auch $xy\in R\setminus I$ gilt.
+  
+  Da die Ideale $Rx+I$ und $Ry+I$ echt gr\"o\ss er als $I$ sind, enthalten sie
+  Elemente $s_x$ und $s_y$ aus $S$. Es bestehen also Gleichungen
+  $s_x=r_xx+i_x$, $s_y=r_yy+i_y$ mit $r_x,r_y\in R$, $i_x,i_y\in I$. Es gilt
+  $s_xs_y+I=(s_x+I)(s_y+I)=(r_xx+I)(r_yy+I)=(r_xr_yxy+I)$. Da $S$
+  multiplikativ abgeschlossen ist gibt es $i\in I$ mit $r_xr_yxy+i\in S$.
+  W\"are $xy\in I$, dann g\"alte auch $r_xr_yxy+i\in I$, im Widerspruch zu
+  $I\cap S=\emptyset$. Die Behauptung folgt.
+\end{proof}
+\begin{Satz}
+  Sei $R$ ein kommutativer Ring (mit $0\ne1$). Die Menge der nilpotenten
+  Elemente besteht aus dem Durchschnitt der Primideale.
+\end{Satz}
+\begin{proof}[Beweis]
+  Sei $x\in R$ nicht nilpotent. Wir m\"ussen sehen, dass es ein Primideal $I$
+  gibt, das $x$ nicht enth\"alt. Da $x$ nicht nilpotent ist, ist
+  $S=\{x^n|n\in\NNN\}$ eine multiplikativ abgeschlossene Menge mit $0\notin
+  S$. Die Behauptung folgt aus dem vorigen Lemma.
+\end{proof}
+\subsection{Polynome}
+In diesem Abschnitt sei $R$ stets ein kommutativer Ring. Sei $X$ ein Symbol.
+Ein \ei{Polynom} in der \ei{Variablen} $X$ ist eine formale Summe
+$r_0+r_1X+r_2X^2+\dots+r_nX^n$ f\"ur ein $n\in\NNN_0$. Hierbei trifft man die
+Festsetzung $X^0=1$. Die Menge der Polynome bildet einen Ring unter
+koeffizientenweiser Addition, und den Festsetzungen $rX=Xr$ und
+$X^mX^n=X^{m+n}$. Man schreibt $R[X]$ f\"ur diesen Ring. Man fasst $R$ als
+Teilring von $R[X]$ auf, indem man $r\in R$ mit dem Polynom $r=rX^0$
+identifiziert. Die Elemente $r_0,r_1,\dots$ hei\ss en die \ei{Koeffizienten}
+des Polynoms $f:=\sum r_iX^i$. Sei $f\ne0$, und $n\in\NNN_0$ maximal mit
+$r_n\ne 0$. Dann hei\ss t $n$ der \ei{Grad} von $f$, und $r_n$ der
+\ei{Leitkoeffizient}. Man schreibt $n=\grad f$. Man nennt $f$ \ei{normiert},
+wenn $r_n=1$ gilt. Der Koeffizient $r_0$ wird \ei{konstanter Term} oder
+\ei{Absolutglied} genannt. F\"ur $f=0$ setzt man $\grad f=-\infty$.
+
+Aus den Definitionen folgt unmittelbar
+
+\begin{Lemma}
+  Seien $f,g\in R[X]$ Polynome. Dann gilt $\grad(f+g)\le\max(\grad f,\grad g)$
+  und $\grad(f\cdot g)\le\grad f+\grad g$. Ist $R$ ein Integrit\"atsbereich,
+  dann gilt $\grad(f\cdot g)=\grad f+\grad g$
+\end{Lemma}
+
+An der letzten Aussage sieht man, dass wenn $R$ ein Integrit\"atsbereich ist,
+dann gilt das auch f\"ur $R[X]$.
+
+Wie bei ganzen Zahlen hat man auch f\"ur Polynome \"uber K\"orpern eine
+Division mit Rest. Genauer gilt:
+
+\begin{Satz}
+  Sei $g\in R[X]$ ein Polynom mit invertierbarem Leitkoeffizienten, und $f\in
+  R[X]$ beliebig. Dann gibt es eindeutig gegebene Polynome $q,r\in R[X]$ mit
+  $f=q\cdot g+r$ und $\grad r<\grad g$.
+\end{Satz}
+\begin{proof}[Beweis]
+Wir wollen zun\"chst die Eindeutigkeit beweisen. Dazu sei $f=q'\cdot g+r'$
+eine weitere Darstellung der gegebenen Form. Dann folgt $(q-q')g=r'-r$. Da der
+Leitkoeffizient von $g$ kein Nullteiler ist, gilt
+$\grad(r'-r)=\grad(q-q')+\grad g$. Wegen $\grad(r'-r)<\grad g$ folgt $q=q'$
+und $r'=r$.
+
+Es bleibt die Existenz zu zeigen. Sei $a$ die Inverse des Leitkoeffizienten
+$g$, und $g'=ag$. Ist $f=q'g'+r$ eine Division durch $g'$ mit Rest der
+verlangten Art, dann gilt das auch f\"ur $f=qg+r$ mit $q=aq'$. Wir d\"urfen
+also annehmen, dass $g$ normiert ist.
+
+Ist $\grad f<\grad g$, dann gibt es nichts zu zeigen, da wir $q=0$ und $r=f$
+setzen k\"onnen. Wir verwenden nun vollst\"andige Induktion \"uber $\grad f$.
+Sei $n=\grad f\ge\grad g$, und $a$ der Leitkoeffizient von $f$. Setze
+$f'=f-aX^{\grad f-\grad g}g$. Dann gilt $\grad f'<\grad f$. Nach
+Induktionsvoraussetzung gibt es also eine Darstellung $f'=q'g+r$ mit $\grad
+r<\grad g$. Die Behauptung folgt nun aus $f=f'+aX^{\grad f-\grad
+  g}g=q'g+r'+aX^{\grad f-\grad g}g=(q'+aX^{\grad f-\grad g})g+r$.
+\end{proof}
+
+Eine wichtige Folgerung ist
+\begin{Satz}
+  Sei $R$ ein K\"orper, und $I\ne\{0\}$ ein Ideal von $R[X]$. Sei $g\ne0$ ein
+  Polynom kleinsten Grades aus $I$. Dann ist $g$ bis auf einen Faktor $0\ne
+  r\in R$ eindeutig, und es gilt $I=(g)$. Insbesondere ist $R[X]$ ein
+  Hauptidealring.
+\end{Satz}
+\begin{proof}[Beweis]
+  Ist $0\ne r\in R$ und $g\in R[X]$, dann gilt $g\in I$ genau dann wenn $rg\in
+  I$. Die Differenz zweier normierter Polynome von gleichem Grad $n$ hat Grad
+  $<n$, daraus folgt die Eindeutigkeitsaussage. Sei nun $0\ne g\in I$ von
+  kleinstem Grad, und $f\in I$ beliebig. Sei $f=qg+r$ eine Division mit Rest.
+  Aus $r\in I$ und $\grad r<\grad g$ folgt $r=0$, also $I\subseteq (g)$. Die
+  umgekehrte Inklusion ist sowieso klar.
+\end{proof}
+\begin{Bemerkung*}
+  Obige Aussage wird im allgemeinen falsch, wenn $R$ kein K\"orper mehr
+  ist. Sogar ein Integrit\"atsbereich zu sein ist zu schwach, wie das von $2$
+  und $X$ in $\ZZZ[X]$ erzeugte Ideal zeigt.
+\end{Bemerkung*}
+Ist $a\in R$ und $f=\sum r_iX^i\in R[X]$ ein Polynom, dann bedeutet $f(a)$ die
+Summe $\sum r_ia^i$, mit der Konvention $a^0=1$ auch dann, wenn $a=0$
+gilt. Offenbar ist $R[X]\to R$, $f\mapsto f(a)$ ein Ringhomomorphismus. Man
+nennt $a$ eine \ei{Nullstelle} von $f$, wenn $f(a)=0$ gilt.
+
+\begin{Satz}
+  Ist $a$ eine Nullstelle des Polynoms $f$, dann gibt es $g\in R[X]$ mit
+  $f=(X-a)g$.
+\end{Satz}
+\begin{proof}[Beweis]
+  Schreibe $f=(X-a)g+r$ mit $\deg r<\deg(X-a)=1$. Daher gilt $r\in
+  R$. Einsetzen von $a$ f\"ur $X$ liefert $0=f(0)=(a-a)g(a)+r=r$, und die
+  Behautptung folgt.
+\end{proof}
+Eine wichtige Folgerung ist
+\begin{Satz}\label{S:Nullstellen}
+  Sei $R$ ein Integrit\"atsring, und $0\ne f\in R[X]$. Dann hat $f$
+  h\"ochstens $\grad f$ Nullstellen.
+\end{Satz}
+\begin{proof}[Beweis]
+  F\"ur $\grad f\le 1$ ist die Aussage klar. Wir beweisen sie allgemein durch
+  vollst\"andige Induktion. Seien $a_1,\dots,a_r$ Nullstellen von
+  $f$. Wir schreiben $f=(X-a_1)g$. Wegen $0=f(a_i)=(a_i-a_1)g(a_i)$ und der
+  Nullteilerfreiheit von $R$ ist $a_i$ eine Nullstelle von $g$ f\"ur $i\ge
+  2$. Daher gilt $r-1\le\grad g=\grad f-1$, und die Behauptung folgt.
+\end{proof}
+\begin{Bemerkung*}
+  Man \"uberlege sich ein Gegenbeispiel zum Satz, wenn $R$ ein geeigneter Ring
+  mit Nullteilern ist.
+\end{Bemerkung*}
+Eine \"uberraschende Folgerung obigen Satzes ist
+\begin{Satz}
+  Sei $G$ eine endliche Untergruppe der multiplikativen Gruppe eines
+  K\"orpers. Dann ist $G$ zyklisch.
+\end{Satz}
+\begin{proof}[Beweis]
+  Sei $n$ die Ordnung von $G$. Ist die abelsche Gruppe $G$ nicht zyklisch,
+  dann gibt es nach dem Struktursatz f\"ur abelsche Gruppen eine Primzahl $p$
+  und eine zu $C_p\times C_p$ isomorphe Untergruppe $H$ von $G$. Aber f\"ur
+  alle Elemente $h\in H$ gilt $h^p=1$. Daher sind die $p^2$ Elemente aus $H$
+  Nullstellen des Polynoms $X^p-1$, im Widerspruch zu vorigem Satz.
+\end{proof}
+\begin{Korollar}\label{K:ZpZzyklisch}
+  Sei $p$ eine Primzahl. Dann ist die multiplikative Gruppe des K\"orpers
+  $\ZZZ/p\ZZZ$ zyklisch.
+\end{Korollar}
+\begin{Bemerkung*}
+  Das Korollar ist eine reine Existenzaussage in dem Sinne, dass man wei\ss\,
+  dass $(\ZZZ/p\ZZZ)^\times$ zyklisch ist, aber keinen Erzeuger explizit
+  geliefert bekommt. In der Tat ist keine explizite Formel oder guter
+  Algorithmus zum Auffinden solcher Erzeuger bekannt.
+\end{Bemerkung*}
+Ist $R$ ein kommutativer Ring, und $a$ eine Nullstelle eines Polynoms $0\ne
+f\in R[X]$. Sei $e\in\NNN$ mit $f=(X-a)^eg$ f\"ur ein $e\in\NNN$. Wegen
+$e+\grad g=\grad f$ gilt $e\le\grad f$. Insbesondere gibt es ein maximales $e$
+mit obiger Darstellung. Man nennt $e$ die \ei{Vielfachheit} der Nullstelle
+$a$. Man \"uberlegt sich sofort, dass Satz \ref{S:Nullstellen} auch dann noch
+gilt, wenn man die Nullstellen mit Vielfachheit z\"ahlt. Ist die Vielfachheit
+$1$, dann nennt man die Nullstelle \ei{einfach}. Die Ableitung ist ein
+einfaches Hilfsmittel, um Polynome auf vielfache Nullstellen zu testen.
+\begin{Definition}
+  Auf dem Polynomring $R[X]$ definiert man durch $r':=0$, $(rX^i)':=riX^{i-1}$
+  ($r\in R$, $i\ge1$) eine additive Abbildung $R[X]\to R[X]$, $f\mapsto
+  f'$. Man nennt diese Abbildung eine \ei{Ableitung} oder
+  \ei{Differentiation}.
+\end{Definition}
+Man rechnet sofort nach, dass die aus der Analysis gewohnte Produktregel
+$(fg)'=f'g+fg'$ gilt. Allerdings ist Vorsicht angebracht: Gilt $f'=0$, dann
+muss $f$ nicht ein konstantes Polynom sein. Ist beispielsweise $R=\ZZZ/p\ZZZ$,
+dann gilt $(X^p)'=pX^{p-1}=0X^{p-1}=0$.
+\begin{Satz}
+  Sei $R$ ein Integrit\"atsbereich, und $a$ eine Nullstelle des Polynoms $f\in
+  R[X]$. Dann ist $a$ eine einfache Nullstelle genau dann, wenn $f'(a)\ne0$
+  gilt.
+\end{Satz}
+\begin{proof}[Beweis]
+  Sei $f=(X-a)g$. Ableiten liefert $f'=(X-a)g'+g$, also $f'(a)=g(a)$. Die
+  Behauptung folgt.
+\end{proof}
+\subsection{Einheitengruppe von $\ZZZ/n\ZZZ$}
+Als Anwendung des Korollars \ref{K:ZpZzyklisch} wollen wir allgemein die
+Einheitengruppe von $\ZZZ/n\ZZZ$ bestimmen. Sei $n=\prod p_e^{e_i}$ die
+Primfaktorzerlegung von $n\in\NNN$. Nach dem Chinesischen Restsatz ist
+$\ZZZ/n\ZZZ$ isomorph zum direkten Produkt der Ringe $\ZZZ/p_i^{e_i}\ZZZ$, und
+damit ist die Einheitengruppe $(\ZZZ/n\ZZZ)^\times$ isomorph zum direkten
+Produkt der Einheitengruppen $(\ZZZ/p_i^{e_i}\ZZZ)^\times$. Der folgende Satz
+kl\"art die Struktur dieser Gruppen.
+\begin{Satz}\label{S:ZnZ}
+  \begin{itemize}
+  \item[(a)] Sei $p$ eine ungerade Primzahl und $l\in\NNN$. Dann ist
+    $(\ZZZ/p^l\ZZZ)^\times$ zyklisch. Sei $w\in\ZZZ$, so dass $w+p\ZZZ$ ein
+    Erzeuger von $(\ZZZ/p\ZZZ)^\times$ ist. Dann ist
+    $w^{p^{l-1}}(1+p)+p^l\ZZZ$ ein Erzeuger von $(\ZZZ/p^l\ZZZ)^\times$.
+  \item[(b)] F\"ur $l\ge2$ ist $(\ZZZ/2^l\ZZZ)^\times$ isomorph zu einem
+    direkten Produkt zweier zyklischer Gruppen der Ordnungen $2$ und
+    $2^{l-2}$, mit Erzeugern $-1$ und $5$.
+  \end{itemize}
+\end{Satz}
+Dem Beweis schicken wir einige Lemmata voraus.
+\begin{Lemma}\label{L:pk}
+  Sei $p$ eine Primzahl, und $1\le k\le p-1$. Dann ist $\binom{p}{k}$ durch
+  $p$ teilbar.
+\end{Lemma}
+\begin{proof}[Beweis]
+  Wegen $\binom{p}{k}=\frac{p(p-1)\dots(p-k+1)}{1\cdot2\dots k}$ ist der
+  Z\"ahler durch $p$ teilbar, aber nicht der Nenner.
+\end{proof}
+\begin{Lemma}\label{L:ap-bp}
+  Sei $p$ eine Primzahl, $l\in\NNN$, und f\"ur $a,b\in\ZZZ$ sei $a-b$ durch
+  $p^l$ teilbar. Dann ist $a^p-b^p$ durch $p^{l+1}$ teilbar.
+\end{Lemma}
+\begin{proof}[Beweis]
+  Schreibe $a=b+cp^l$. Dann gilt
+  \begin{align*}
+    a^p-b^p &= (b+cp^l)^p-b^p\\
+&= \sum_{k=1}^p\binom{p}{k}b^{p-k}(cp^l)^k\\
+&= b^{p-1}cp^{l+1}+\sum_{k=2}^p\binom{p}{k}b^{p-k}(cp^l)^k.
+  \end{align*}
+Aber f\"ur $k\ge2$ gilt $kl\ge 2l\ge l+1$, und die Behauptung folgt.
+\end{proof}
+\begin{Lemma}\label{L:pl}
+  Sei $l\ge2$, und $p\ne2$ eine Primzahl. Dann ist
+  $(1+p)^{p^{l-2}}-(1+p^{l-1})$ durch $p^l$ teilbar.
+\end{Lemma}
+\begin{proof}[Beweis]
+Wir benutzen vollst\"andige Induktion \"uber $l$. Die Aussage ist klar f\"ur
+$l=2$.
+
+Sie gelte nun f\"ur $l$. Nach obigem Lemma ist $(1+p)^{p^{l-1}}-(1+p^{l-1})^p$
+durch $p^{l+1}$ teilbar. Wegen
+\[
+(1+p^{l-1})^p=(1+p^l)+\sum_{k=2}^p\binom{p}{k}(p^{l-1})^k
+\]
+ist zu zeigen, dass die Summe durch $p^l$ teilbar ist. Wegen Lemma \ref{L:pk}
+ist das klar f\"ur jeden Summanden au\ss er dem f\"ur $k=p$. Hierf\"ur
+ben\"otigen wir $(l-1)p\ge l+1$. Das gilt aber wegen $p\ge3$ und $l\ge2$.
+\end{proof}
+\begin{Bemerkung*}
+  Man sieht, dass der letzte Schritt im Beweis f\"ur $p=2$ nicht
+  funktioniert. In der Tat ist die entsprechende Aussage falsch. Dies f\"uhrt
+  dazu, da\ss\ die Primzahl $2$ hier und in der Zahlen- und Gruppentheorie oft
+  eine (unangenehme) Sonderrolle spielt.
+\end{Bemerkung*}
+\begin{Lemma}\label{L:2l}
+  F\"ur $l\ge3$ ist $5^{2^{l-3}}-(1+2^{l-1})$ durch $2^l$ teilbar.
+\end{Lemma}
+
+\begin{proof}[Beweis]
+  Die Behauptung ist klar f\"ur $l=3$. Sie gelte f\"ur $l$. Nach Lemma
+  \ref{L:ap-bp} ist dann $5^{2^{l-2}}-(1+2^{l-1})^2$ durch $2^{l+1}$ teilbar.
+  Wegen $(1+2^{l-1})^2=1+2^l+2^{2l-2}$ und $2l-2\ge l+1$ folgt die Behauptung.
+\end{proof}
+\begin{proof}[Beweis von Satz \ref{S:ZnZ}]
+  Die Gruppe $(\ZZZ/p^l\ZZZ)^\times$ besteht aus den Restklassen
+  $i+p^l\ZZZ$, mit $0\le i\le p^l-1$ und $i$ teilerfremd zu $p$. Daher hat
+  $(\ZZZ/p^l\ZZZ)^\times$ die Ordnung $p^{l-1}(p-1)$.
+  
+  (a) Wir zeigen zun\"achst, dass $1+p$ die Ordnung $p^{l-1}$ hat. W\"are das
+  nicht der Fall, dann w\"are die Ordnung von $1+p$ ein echter Teiler von
+  $p^{l-1}$. Insbesondere w\"are $(1+p)^{p^{l-2}}-1$ durch $p^l$ teilbar. Nach
+  Lemma \ref{L:pl} w\"are dann $p^{l-1}$ durch $p^l$ teilbar, was nat\"urlich
+  Unsinn ist.
+  
+  Da $w$ modulo $p$ die Ordnung $p-1$ hat, ist die Ordnung von $w$ modulo
+  $p^l$ ein Vielfaches von $p-1$. Diese Ordnung teilt $p^{l-1}(p-1)$, daher
+  hat $w^{p^{l-1}}$ die Ordnung $p-1$, und nach obigem hat $w^{p^{l-1}}(1+p)$
+  modulo $p^l$ die Ordnung $(p-1)p^{l-1}$, die Behauptung folgt.
+  
+  (b) Die Ordnung von $(\ZZZ/2^l\ZZZ)^\times$ ist $2^{l-1}$. Lemma \ref{L:2l}
+  zeigt, dass die Ordnung von $5+2^l\ZZZ$ gerade $2^{l-2}$ ist. Zum Beweis der
+  Aussage ist also zu zeigen, dass $-1+2^l\ZZZ$ nicht in der von $5+2^l\ZZZ$
+  erzeugten zyklischen Gruppe liegt. Wir nehmen das Gegenteil an. Dann gibt es
+  $m\in\NNN$, so dass $2^l$ ein Teiler von $5^m-(-1)=5^m+1$ ist. Insbesondere
+  ist $4$ ein Teiler von $5^m+1$, ein Widerspruch.
+\end{proof}
+
+\subsection{Quotientenk\"orper}
+Es sei $R$ ein Integrit\"atsbereich. Analog wie man den K\"orper $\QQQ$ aus
+$\ZZZ$ konstruiert, werden wir zu $R$ einen kleinsten K\"orper $K$
+konstruieren, in dem $R$ enthalten ist. Auf der Menge der Paare $(r,s)$ mit
+$r,s\in R$, $s\ne0$ f\"uhren wir eine \"Aquivalenzrelation ein. Dabei sind
+zwei solche Paare $(r,s)$ und $(r',s')$ genau dann \"aquivalent, wenn
+$rs'=r's$ gilt. Man rechnet sofort nach, dass man tats\"achlich eine
+\"Aquivalenzrelation erh\"alt. Die \"Aquivalenzklasse von $(r,s)$ bezeichnet
+man mit $\frac{r}{s}$. Sei $K$ die Menge der \"Aquivalenzklassen. Man rechnet
+ebenso schnell nach, dass man durch
+\[
+\frac{r}{s}+\frac{r'}{s'}=\frac{rs'+r's}{ss'}
+\]
+und
+\[
+\frac{r}{s}\cdot\frac{r'}{s'}=\frac{rr'}{ss'}
+\]
+eine wohldefinierte Addition und Multiplikation auf $K$ bekommt. Ferner
+verifiziert man, dass $K$ ein Ring ist, der via $r\mapsto\frac{r}{1}$ den Ring
+$R$ als Teilring enth\"alt.
+
+Diw wichtigste Eigenschaft von $K$ ist, dass $K$ ein K\"orper ist: Sei
+$\frac{r}{s}\ne0$. Dann gilt $r\ne0$, also $\frac{s}{r}\in K$. Wegen
+$\frac{r}{s}\frac{s}{r}=1$ ist $\frac{r}{s}$ multiplikativ invertierbar. Man
+nennt daher $K$ den \ei{Quotientenk\"orper} von $R$.
+\subsection{Teilbarkeit}
+Im folgenden sei $R$ wieder ein Integrit\"atsbereich. Wir wollen einige von
+$\ZZZ$ bekannte Eigenschaften \"uber Teilbarkeit auf $R$ \"ubertragen, aber
+auch sehen, dass man mit Verallgemeinerungen vorsichtig sein muss.
+
+Sind $r,s\in R$, dann sagt man, $r$ \ei{teilt} $s$ (oder $r$ ist ein
+\ei{Teiler} von $s$), wenn es $x\in R$ gibt mit $s=xr$. Insbesondere ist $1$
+ein Teiler von allen $r\in R$, und $0$ wird von allen $r\in R$ geteilt. Ist
+$K\supseteq R$ der Quotientenk\"orper von $R$, und $s\ne0$, dann ist $s$ ein
+Teiler von $r$ genau dann, wenn $\frac{r}{s}\in R$ gilt.
+
+Ist $s$ ein Teiler von $r$, dann schreibt man $r\mid s$, und wenn das nicht
+der Fall ist, so schreibt man $r \nmid s$.
+
+Ist $0\ne s\in R$, so besitzt $s$ gewisse triviale Teiler. So ist z.B.\ jede
+Einheit $u$ ein Teiler von $s$, denn ist $uu'=1$, so gilt $s=u(u's)$. Ferner
+ist wegen $s=(su)u'$ auch $su$ ein Teiler von $s$. Ist $s$ keine Einheit, und
+hat $s$ au\ss er diesen trivialen Teilern keine weiteren Teiler, dann hei\ss t
+$s$ \ei{unzerlegbar} oder \ei{irreduzibel}. Ist $r$ nicht irreduzibel, dann
+ist $r$ \ei{reduzibel}.
+
+Die irreduziblen Elemente aus
+$\ZZZ$ sind die Zahlen $\pm p$, wobei $p$ eine Primzahl ist. Man hat sich
+daran gew\"ohnt, dass man in $\ZZZ$ eine (bis auf Vorzeichen) eindeutige
+Primfaktorzerlegung hat. Erst Gau\ss\ hat erkannt, dass diese Aussage nicht
+trivial ist und einen Beweis ben\"otigt, den er auch gegeben hat.
+\paragraph{Beispiel f\"ur Versagen der eindeutigen Zerlegung in irreduzible
+  Faktoren}
+Sei $R=\ZZZ[\sqrt{-5}]=\{a+b\sqrt{-5}|a,b\in\ZZZ\}$. Man rechnet sofort nach,
+dass $R$ ein Ring ist. Wir betrachten die Abbildung $N:R\to\NNN_0$,
+$a+b\sqrt{-5}\mapsto a^2+5b^2$. Dabei ist also $N(x)$ das Quadrat des Betrags
+der komplexen Zahl $x$. Man wei\ss, oder rechnet sofort nach, dass
+$N(xy)=N(x)N(y)$ gilt f\"ur alle $x,y\in R$. Ist $r$ eine Einheit, dann gibt
+es $r'$ mit $rr'=1$. Hieraus folgt $1=N(1)=N(rr')=N(r)N(r')$, also
+$N(r)=1$. Ist umgekehrt $1=N(a+b\sqrt{-5})=a^2+5b^2$, dann gilt $b=0$ und
+$a=\pm1$. Somit ist $r$ genau dann eine Einheit, wenn $N(r)=1$ gilt.
+
+Ist $0\ne r$ keine Einheit und reduzibel, dann gibt es $x,y\in R$ mit $r=xy$,
+so dass $x$ und $y$ keine Einheiten sind. Es folgt $N(r)=N(x)N(y)$. Da es in
+$R$ keine Nichteinheiten $s\ne0$ mit $N(s)=2$ oder $N(s)=3$ gibt, folgt
+$N(r)\ge16$. Wegen $N(2)=4$, $N(3)=9$, und $N(1\pm\sqrt{-5})=6$ sind die
+Elemente $2$, $3$ und $1\pm\sqrt{-5}$ daher irreduzibel, und $2$ unterscheidet
+sich weder von $1+\sqrt{-5}$, noch von $1-\sqrt{-5}$ um eine Einheit. Daher
+sind $6=2\cdot3=(1+\sqrt{-5})(1-\sqrt{-5})$ zwei grunds\"atzlich verschiedene
+Zerlegungen in irreduzible Faktoren.
+
+Ein mit der Irreduzibilit\"at verwandter Begriff ist der eines primen
+Elements. Dabei hei\ss t eine Nichteinheit $0\ne r\in R$ \ei{prim}, wenn aus
+$r\mid ab$ stets $r\mid a$ oder $r\mid b$ folgt. Die letzte Bedingung ist
+\"aquivalent dazu, dass das Hauptideal $(p)$ ein Primideal von $R$ ist.
+
+Eine erste einfache Beobachtung ist
+\begin{Lemma}
+  Jedes Primelement ist irreduzibel.
+\end{Lemma}
+\begin{proof}[Beweis]
+  Sei $r$ prim, aber nicht irreduzibel. Dann gibt es Nichteinheiten $x,y\in R$
+  mit $r=xy$. Da $r$ prim ist, teilt $r$ einen der Faktoren $x$ und $y$. Wir
+  nehmen $r\mid x$ an. Es gibt also $x'\in R$ mit $x=rx'$. Es folgt $r=rx'y$,
+  also $r(1-x'y)=0$. Wegen der Nullteilerfreiheit gilt $x'y=1$, daher ist $y$
+  eine Einheit, ein Widerspruch.
+\end{proof}
+  Obiges Beispiel zeigt, dass die Umkehrung im allgemeinen nicht gilt. Die
+  Elemente $2$, $3$ und $1\pm\sqrt{-5}$ sind alle irreduzibel in
+  $\ZZZ[\sqrt{-5}]$, aber keines davon ist prim. Unter Zusatzvoraussetzungen
+  allerdings stimmt die Umkehrung:
+\begin{Satz}
+  Jedes irreduzible Element eines Hauptidealrings ist ein Primelement.
+\end{Satz}
+\begin{proof}[Beweis]
+  Sei $p$ ein irreduzibles Element, welches das Produkt $ab$ teilt, aber nicht
+  $a$ teilt. Das von $a$ und $p$ erzeugte Ideal ist ein Hauptideal $(d)$, es
+  gibt also $u,v\in R$ mit $ua+vp=d$. Wegen $(p)\subset (d)$ gilt $d\mid
+  p$. Damit ist $d$ eine Einheit, oder von der Form $up$ mit einer Einheit
+  $u$. Aber $d\mid a$, und somit $p\mid a$, im Widerspruch zur Voraussetzung
+  an $a$. Daher ist $d$ eine Einheit, und ohne Einschr\"ankung
+  $d=1$. Multiplikation mit $b$ liefert die Behauptung.
+\end{proof}  
+Wir kommen nun zum wichtigen Begriff des faktoriellen Rings.
+\begin{Definition}
+  Ein Integrit\"atsbereich $R$ hei\ss t \ei{faktoriell}, wenn jedes Element
+  $\ne0$ entweder eine Einheit ist, oder ein Produkt endlich vieler
+  Primelemente ist.
+\end{Definition}
+Nat\"urlich ist in einem faktoriellen Ring jedes irreduzible Element ein
+Primelement. Die wichtigste Eigenschaft eines faktoriellen Rings ist die
+eindeutige Primfaktorzerlegung.
+\begin{Satz}
+  Sei $R$ ein faktorieller Ring, $0\ne a\in R$ keine Einheit, und
+  $a=p_1p_2\dots p_r=q_1q_2\dots q_s$ zwei Zerlegungen in Primelemente $p_i,
+  q_i$. Dann gilt $r=s$, und die $p_i$ bzw.\ $q_i$ stimmen bis auf Reihenfolge
+  und Multiplikation mit Einheiten \"uberein. (D.h., es gibt eine Permutation
+  $\sigma$ von $\{1,2,\dots,r\}$ und Einheiten $u_1,\dots,u_r$ mit
+  $p_{i}=u_iq_{i^\sigma}$ f\"ur alle $i$.)
+\end{Satz}
+\begin{proof}[Beweis]
+  Ohne Einschr\"ankung gilt $r\ge s$. Wir beweisen die Aussage durch
+  vollst\"andige Induktion \"uber $r$. F\"ur $r=1$ gibt es nichts zu
+  beweisen. Wir schlie\ss en nun von $r-1$ auf $r$. Da $p_r$ das Produkt
+  $q_1q_2\dots q_s$ teilt, folgt durch mehrfache Anwendung der Primeigenschaft
+  von $p_r$, dass $p_r$ einen der Faktoren $q_1,q_2,\dots,q_s$ teilt. Durch
+  Umbenennung der $q_i$ d\"urfen wir annehmen, dass $p_r\mid q_s$, also
+  $q_s=up_r$. Als Primelement ist $q_s$ irreduzibel, daher ist $u$ eine
+  Einheit. Die Behauptung folgt nun aus der Richtigkeit f\"ur $r-1$, angewandt
+  auf $p_1p_2\dots p_{r-1}=q_1q_2\dots q_{s-2}(uq_{s-1})$. 
+\end{proof}
+Nat\"urlich hat jede ganze Zahl eine Zerlegung in irreduzible Zahlen. Da
+$\ZZZ$ ein Hauptidealring ist, stimmen irreduzible und Primelemente \"uberein,
+und obiger Satz liefert die eindeutige Primfaktorzerlegung in $\ZZZ$.
+
+Die Primeigenschaft der Primzahlen hatten wir schon fr\"uher verwendet
+(Korollar \ref{K:ZnZ}). Ferner machten wir mehrfach von der eindeutigen
+Primfaktorzerlegung in $\ZZZ$ Gebrauch. Man mache sich klar, dass der gerade
+nachgetragene Beweis nicht auf einem Zirkelschluss beruht!
+
+Wir wissen auch, dass Polynomringe \"uber einem K\"orper Hauptidealringe
+sind. Ferner beweist man mittels der Gradfunktion, dass jedes Polynom ein
+Produkt irreduzibler Polynome ist. Das liefert das wichtige
+\begin{Korollar}
+  Sei $R=\ZZZ$, oder $R$ der Polynomring $K[X]$ f\"ur einen K\"orper $K$. Dann
+  stimmen in $R$ irreduzible Elemente und prime Elemente \"uberein.
+  Insbesondere ist $R$ faktoriell.
+\end{Korollar}
+\subsection{Inhalt von Polynomen, Lemma von Gau\ss}
+Im folgenden sei $R$ ein faktorieller Integrit\"atsbereich, und $K$ der
+Quotientenk\"orper von $R$. Es mag das Verst\"andnis erleichtern, wenn man
+stets das Beispiel $R=\ZZZ$, $K=\QQQ$ im Auge beh\"alt.
+
+Sei $0\ne a\in K$, und $p\in R$ ein Primelement von $R$. Aus der eindeutigen
+Primfaktorzerlegung folgt schnell, dass man eine Darstellung
+$a=p^m\frac{u}{v}$ mit $m\in\ZZZ$, $u\in R$, $0\ne v\in R$ finden kann, so
+dass $p$ weder $u$ noch $v$ teilt. Dabei ist $m$ unabh\"angig von der Wahl des
+Paares $u,v$. Wir schreiben $v_p(a):=m$, und setzen $v_p(0):=\infty$. Es gilt
+$v_p(ab)=v_p(a)v_p(b)$. Ist $0\ne f=a_0+a_1^X+\dots a_nX^n\in K[X]$, dann
+setzen wir $v_p(f):=\min_iv_p(a_i)$. Sei $P$ eine Menge von Primelementen von
+$R$, so dass jedes Primelement aus $R$ sich von genau einem Element aus $P$
+nur um eine Einheit unterscheidet. Ist $0\ne f\in K[X]$, dann nennt man
+\[
+I(f):=\prod_{p\in P}p^{v_p(f)}
+\]
+den \ei{Inhalt} von $f$.
+
+Ist beispielsweise $R=\ZZZ$, und $P\subset\NNN$ die Menge der Primzahlen, dann
+ist f\"ur $f\in\ZZZ[X]$ der Inhalt $I(f)$ gerade der gr\"o\ss te gemeinsame
+Teiler der Koeffizienten von $f$.
+
+Der Inhalt $I(f)$ h\"angt von der Wahl von $P$ ab, und ist nur bis auf
+Einheiten eindeutig bestimmt.
+
+Ist $0\ne a\in K$ und $0\ne f\in K[X]$, dann gilt $I(af)=I(a)I(f)$. Hieraus
+folgt $I(\frac{1}{I(f)}f)=\frac{1}{I(f)}I(f)=1$. Es gibt also $\gamma\in K$
+mit $f=\gamma g$, so dass $I(g)=1$ gilt. Polynome mit Inhalt $1$ nennt man
+\ei{primitiv}. Man beachte, dass ein primitives Polynom Koeffizienten aus $R$
+hat.
+
+\begin{Satz}[Gau\ss\ Lemma]
+  Seien $0\ne f,g\in K[X]$. Dann gilt $I(fg)=I(f)I(g)$.
+\end{Satz}
+\begin{proof}[Beweis]
+  Schreibe $f=\alpha f_1$, $g=\beta g_1$ mit $\alpha,\beta\in K$ und $f_1,g_1$
+  primitiv. Wegen $I(\alpha\beta)=I(\alpha)I(\beta)$ bleibt zu zeigen, dass
+  auch $f_1g_1$ primitiv ist. Wegen $f_1g_1\in R[X]$ ist das gleichbedeutend
+  damit, das $f_1g_1$ f\"ur jedes Primelement $p\in R$ einen nicht durch $p$
+  teilbaren Koeffizienten hat. Der Faktorring $\bar{R}=R/(p)$ ist ein
+  Integrit\"atsbereich. Der nat\"urliche Homomorphismus $\bar{ }:R\to R/(p)$
+  setzt sich fort zu einem Homomorphismus $\bar{ }:R[X]\to\bar{R}[X]$. W\"aren
+  alle Koeffizienten von $f_1g_1$ durch $p$ teilbar, dann folgte
+  $\overline{f_1g_1}=0$, also $\bar{f_1}\bar{g_1}=0$. Da $\bar{R}$ ein
+  Integrit\"atsbereich ist, folgt ohne Einschr\"ankung $\bar f_1=0$. Das
+  bedeutet aber, dass alle Koeffizienten von $f_1$ durch $p$ teilbar sind, im
+  Widerspruch zu $I(f_1)=1$.
+\end{proof}
+Das Gau\ss\ Lemma hat eine Reihe von Konsequenzen. Wenn zum Beispiel ein
+Polynom $f\in R[X]$ in Faktoren aus $K[X]$ zerf\"allt, dann bekommt man im
+wesentlichen eine gleiche Faktorisierung \"uber $R$. Genauer gilt.
+\begin{Korollar}
+  Sei $f=gh$ mit $f\in R[X]$ und $g,h\in K[X]$. Setze $\gamma_g=I(g)$,
+  $\gamma_h=I(h)$, also $g=\gamma_g g_1$, $h=\gamma_h h_1$ mit $g_1,h_1$
+  primitiv. Dann gilt $f=(\gamma_g\gamma_h)g_1h_1$ mit $\gamma_g\gamma_h\in
+  R$. Insbesondere gilt: Ist ein primitives Polynom irreduzibel in $R[X]$,
+  dann ist es auch irreduzibel in $K[X]$.
+\end{Korollar}
+Eine wichtige Folgerung ist
+\begin{Korollar}
+  Sei $R$ ein faktorieller Ring. Dann ist $R[X]$ faktoriell. Die Primelemente
+  von $R[X]$ bestehen aus den Primelementen von $R$, zusammen mit den
+  irreduziblen und primitiven Polynomen aus $R[X]$.
+\end{Korollar}
+\begin{proof}[Beweis]
+  Wir m\"ussen zeigen, dass jedes irreduzible Element $f\in R[X]$ prim ist,
+  und die angebene Form besitzt. Wir schreiben $f=\gamma g$ mit $\gamma\in R$
+  und $g$ primitiv. Da $f$ irreduzibel ist, ist entweder $g$ irreduzibel und
+  $\gamma$ eine Einheit, oder $g$ ein konstantes Polynom, und wegen $I(g)=1$
+  eine Einheit, und $\gamma$ ein Primelement.
+  
+  Es bleibt zu zeigen, dass $f$ prim ist. Sei also $f$ ein irreduzibles
+  Element in $R[X]$, und ein Teiler von $uv$ mit $u,v\in R[X]$. Wir
+  unterscheiden zwei F\"alle: $f$ ist ein Primelement aus $R$. Dann ist $I(f)$
+  auch prim in $R$, und $I(f)$ teilt $I(u)I(v)$. Ohne Einschr\"ankung ist dann
+  $I(f)$ ein Teiler von $I(u)$. Dann ist aber $I(\frac{u}{f})\in R$, also
+  $\frac{u}{f}\in R[X]$, und somit $f\mid u$.
+  
+  Im zweiten Fall ist $f$ irreduzibel und primitiv. Wegen obigen Korollars ist
+  $f$ auch irreduzibel in $K[X]$, also auch ein Primelement in $K[X]$, da
+  $K[X]$ faktoriell ist. In $K[X]$ ist also $f$ ein Teiler von $uv$, also auch
+  von $u$ oder $v$. Sei $v=hf$ mit $h\in K[X]$. Wegen $I(v)=I(h)I(f)=I(h)$
+  gilt $h\in R[X]$, somit ist $u$ in $R[X]$ durch $f$ teilbar, und die
+  Behauptung folgt.
+\end{proof}
+Durch $K[X_1,X_2,\dots,X_n]:=K[X_1,X_2,\dots,X_{n-1}][X_n]$ definiert man
+iterativ einen Polynomring in $n$ Variablen. Ein Folge des obigen Satzes ist
+\begin{Korollar}
+  Sei $K$ ein K\"orper. Dann ist der Polynomring $K[X_1,X_2,\dots,X_n]$ in $n$
+  Variablen faktoriell.
+\end{Korollar}
+\begin{Bemerkung*}
+  Der Polynomring $K[X_1,X_2,\dots,X_n]$ ist f\"ur $n\ge2$ kein
+  Hauptidealring, z.B.\ weil das von $X_1,\dots,X_n$ erzeugte Ideal kein
+  Hauptideal ist.
+\end{Bemerkung*}
+\subsection{Kryptographie}
+Eine wichtige moderne Anwendung der Algebra ist die vertrauliche \"Ubertragung
+von Nachrichten. W\"ahrend das fr\"uher fast nur milit\"arisch verwendet
+wurde, w\"are unser heutiger Alltag ohne kryptographische Methoden nicht
+denkbar. Das Bezahlen mit Geld- oder Kreditkarten, Mobilfunktelefonie, Kauf
+und Verkauf \"uber das Internet, elektronische Steuererkl\"arung und vieles
+mehr basiert auf kryptographischen Methoden. Dabei geht es stets darum, dass
+zwei Partner $S$ und $E$ Nachrichten austauschen, und diese vorher so
+verschl\"usseln, dass nur der Partner sie entschl\"usseln kann. Bei den
+modernen Anwendungen kommt noch eine weitere wichtige Forderung hinzu: $S$ und
+$E$ sollten sich \textbf{\"offentlich} auf eine Methode einigen k\"onnen, also
+ohne erst mal \"uber einen sicheren Kanal einen Code festzulegen. Es sieht auf
+den ersten Blick sicher so aus, dass so etwas unm\"oglich ist, und bis in die
+70er Jahre glaubte man das auch. Dennoch ver\"offentlichten 1976 Diffee und
+Hellman eine raffinierte Idee, die diese beiden W\"unsche erf\"ullt. Eine
+Variante gaben 1977 \textbf{R}ivest, \textbf{S}hamir und \textbf{A}dleman an,
+das heute so genannten \ei{RSA-Verfahren}. Mittlerweile wei\ss\ man, dass
+beide diese Durchbr\"uche schon wenige Jahre vorher gefunden wurden, aber ihre
+Bedeutung nicht erkannt wurde, und zus\"atzlich noch zur Verschlusssache
+erkl\"art wurden. Das RSA-Verfahren z.B.\ entdeckte bereits 1973 der britische
+Mathematiker Clifford Cocks. Da beim RSA-Verfahren der Empf\"anger die
+Parameter zur Verschl\"usselung \"offentlich macht, nennt man die Methode auch
+ein \ei{public key cryptosystem}.
+
+Im folgenden bedeutet $a\equiv b\pmod{m}$ stets, dass $a-b$ durch $m$ teilbar
+ist. F\"ur $n\in\NNN$ sei $\varphi(n)$ die Ordnung der Einheitengruppe von
+$\ZZZ/n\ZZZ$. Ist $n=\prod p_i^{e_i}$, so wissen wir bereits, dass
+$\varphi(n)=\prod (p_i-1)p_i^{e_i-1}$.
+
+Zur Vorbereitung beweisen wir ein kleines
+\begin{Lemma}
+  Sei $n\in\NNN$ quadratfrei, und $k\in\NNN$. F\"ur alle $a\in\ZZZ/n\ZZZ$ gilt
+  dann $a^{k\varphi(n)+1}=a$.
+\end{Lemma}
+\begin{proof}[Beweis]
+  Sei $A\in\ZZZ$ ein Repr\"asentant von $a$. Sei $p\mid n$. Falls $p\mid A$,
+  dann gilt nat\"urlich $A^{k\varphi(n)+1}\equiv A\pmod{p}$. Im Fall $p\nmid
+  A$ gilt $A^{p-1}\equiv 1\pmod{p}$, also $A^{k\varphi(n)}\equiv 1\pmod{p}$,
+  da $p-1$ ein Teiler von $\varphi(n)$ ist. Es folgt $A^{k\varphi(n)+1}\equiv
+  A\pmod{p}$. Daher ist $A^{k\varphi(n)+1}-A$ durch alle Primteiler von $n$
+  teilbar, und die Behauptung folgt aus der Quadratfreiheit von $n$.
+\end{proof}
+\paragraph{Das RSA-Verfahren.}
+Im folgenden beschreiben wir das RSA-Verfahren. Ein Sender $S$ m\"ochte einem
+Empf\"anger $E$ eine Nachricht schicken. Dazu w\"ahlt $E$ zwei gro\ss e
+verschiedene Primzahlen $p$ und $q$, und setzt $n=pq$. Ferner w\"ahlt $E$ eine
+nat\"urliche Zahl $s\le\varphi(n)$, die teilerfremd zu $\varphi(n)$ ist.  Da
+$s$ teilerfremd ist zu $\varphi(n)$, ist $s$ in $\ZZZ/\varphi(n)\ZZZ$
+invertierbar, es gibt also $t\in\ZZZ$ mit $st\equiv1\pmod{\varphi(n)}$.  Das
+Paar $(n,s)$ macht $E$ \"offentlich (zum Beispiel auf seiner privaten
+Homepage), die Primfaktoren $p$ und $q$ von $n$ sowie $t$ h\"alt $E$ geheim.
+Aus Sicherheitsgr\"unden kann $E$ sogar $p$ und $q$ nach der Berechnung von
+$t$ l\"oschen.
+
+$S$ verwendet zum Versenden seiner Nachricht als ``W\"orter'' die Elemente aus
+dem Restklassenring $\ZZZ/n\ZZZ$, sowohl f\"ur den Klartext, als auch f\"ur
+die Verschl\"usselung. Das Klartextwort $a\in\ZZZ/n\ZZZ$ verschl\"usselt $S$
+hierbei zu $a^s$, der Empf\"anger $E$ (und jeder, der die Nachricht eventuell
+mitliest) erh\"alt also $b=a^s$. Der Empf\"anger $E$ berechnet nun $b^t$ in
+$\ZZZ/n\ZZZ$.
+
+Wegen des Lemmas gilt in $\ZZZ/n\ZZZ$ also
+\[
+b^t=a^{st}=a,
+\]
+$E$ erh\"alt also den Klartext $a$ zur\"uck.
+
+Warum nun h\"alt man das Verfahren bei geeigneter Wahl der Parameter f\"ur
+sicher? Ein Zuh\"oher, der das Wort $b=a^s$ abf\"angt, und auch $n$ und $s$
+kennt, m\"usste $t$ kennen um $a$ aus $b$ zu rekonstruieren. Wegen
+$st\equiv1\pmod{\varphi(n)}$ kann man $t$ bestimmen, wenn man $\varphi(n)$
+kennt. Umgekehrt vermutet man, konnte das aber noch nicht beweisen, dass es
+keine bessere Methode gibt $t$ zu bestimmen als vorher erst mal $\varphi(n)$
+zu ermitteln. Wegen $\varphi(n)=\varphi(pq)=(p-1)(q-1)=n-p-q+1$ ist die
+Bestimmung von $\varphi(n)$ \"aquivalent zur Bestimmung von $p$ und $q$, also
+der Faktorisierung von $n$.
+
+Man kennt bis heute keine Methode, allgemein Zahlen mit \"uber $150$ Ziffern
+(Dezimaldarstellung) zu faktorisieren, auch dann nicht, wenn man schon a
+priori wie in unserem Fall wei\ss, dass genau zwei Primfaktoren auftreten.
+
+Andererseits kann man heutzutage von Zahlen mit einigen tausend Stellen
+schnell entscheiden, ob sie Primzahlen sind. Diese Methoden beruhen nicht
+darauf, dass man versucht, die gegebene Zahl zu faktorisieren, sondern
+benutzen z.B.\ die Tatsache, dass $n\in\NNN$ genau dann prim ist, wenn die
+Einheitengruppe von $\ZZZ/n\ZZZ$ die Ordnung $n-1$ hat.
+
+Beim RSA-Verfahren sind Potenzen $a^s$ und $b^t$ mit eventuell sehr gro\ss en
+Exponenten zu berechnen. Allgemein kann man in einem Monoid eine Potenz $r^n$
+mit deutlich weniger als $n-1$ Multiplikationen berechnen: Dazu schreibt man
+$n$ in der Bin\"arentwicklung, also $n=\sum 2^{e_i}$ mit verschiedenen
+$e_i\in\NNN_0$. Dabei ist $2^{e_i}\le n$, also $e_i\le\log n/\log 2$. Die
+Potenz $r^{2^e}$ l\"asst sich durch $e$-faches Quadrieren berechnen, und wegen
+$r^n=\prod r^{2^{e_i}}$ l\"asst sich $r^n$ im wesentlichen mit h\"ochstens
+$2\log n/\log 2$ Multiplikationen bestimmen.
+
+Diese einfache Beobachtung liefert im \"ubrigen auch einen schnellen Test, mit
+dem man in den meisten F\"allen schnell feststellen kann, wenn eine Zahl nicht
+prim ist: F\"ur Primzahlen $p$ gilt ja $a^{p-1}\equiv 1\pmod{p}$, wenn $a$
+nicht durch $p$ teilbar ist. M\"ochte man eine Zahl $n$ auf Primeigenschaft
+testen, dann \"uberpr\"uft man, ob $a^{n-1}\equiv 1\pmod{n}$ gilt z.B.\ f\"ur
+$a=2$. Ist das nicht der Fall, dann kann $n$ keine Primzahl sein. Ist es
+jedoch der Fall, dann kann man weitere Werte f\"ur $a$ ausprobieren. Leider
+gibt es Nicht-Primzahlen $n$, die $a^{n-1}\equiv 1\pmod{n}$ f\"ur alle zu $n$
+teilerfremde $a\in\ZZZ$ erf\"ullen, das kleinste Beispiel ist $561=3\cdot
+11\cdot 17$.
+
+
+\section{K\"orper}
+\printindex \bibliographystyle{myalpha}
+%\bibliographystyle{alpha}
+%\bibliographystyle{myplain2}
+%\bibliographystyle{amsplain}
+\bibliography{mybib}
+\end{document}

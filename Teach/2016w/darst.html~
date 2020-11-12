@@ -1,0 +1,83 @@
+1<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="de">
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>Darstellungstheorie</TITLE>
+<link rel="stylesheet" type="text/css" media="all" href="../../pm.css">
+</HEAD>
+<BODY CLASS="both">
+    <p><a href="darst_en.html">[English version]</a></p>
+<H1>Darstellungstheorie endlicher Gruppen</H1>
+<H2>(im Rahmen des Moduls 10-M=VGDS: <em>Gruppen und ihre
+    Darstellungen</em>)</H2>
+<H2>Wintersemester 2016/17</H2>
+<H3>Vorlesung: Di, Mi 10:15-11:45 in SE 40</H3>
+<H3>&Uuml;bungen: Mo 16:15-17:45 in SE 40</H3>
+Die Darstellungstheorie verwendet Methoden der Linearen Algebra und
+Zahlentheorie zur Untersuchung endlicher Gruppen. Ist <I>G</I> eine
+Gruppe und <I>V</I> ein endlich-dimensionaler Vektorraum, dann heißt
+ein Homomorphismus <I>G&rarr;GL(V)</I> <em>Darstellung
+  von <i>G</i></em>.
+
+Darstellungen treten oft auf nat&uuml;rliche Weise auf, oder sie lassen
+sich häufig als externes Hilfsmittel benutzen um S&auml;tze &uuml;ber
+abstrakte endliche Gruppen zu beweisen. Numerische Invarianten der
+irreduziblen Darstellungen erlauben es manchmal, Fragen &uuml;ber
+ansonsten sehr komplizierte Gruppen zu bearbeiten.
+
+Einige klassische Beispiele, die wir unter anderem in der Vorlesung behandeln
+werden, sind:
+<UL>
+<LI> <em>Burnsides <I>p<sup>a</sup>q<sup>b</sup></I>-Theorem:</em> Eine endliche
+Gruppe, deren Ordnung nur durch zwei Primzahlen teilbar ist, ist
+aufl&ouml;sbar.
+<LI> <em>Satz von Frobenius &uuml;ber Frobeniusgruppen:</em> Hat jedes
+  Element (außer dem Einselement) einer transitiven endlichen
+  Permutationsgruppe h&ouml;chstens einen Fixpunkt, dann bildet die
+  Menge der fixpunktfreien Elemente (zusammen mit dem Einselement)
+  eine Untergruppe. Hierf&uuml;r geben wir einen aktuellen Beweis von
+  Knapp/Schmid, der in Lehrb&uuml;chern noch nicht zu finden ist.
+<LI> <em>Satz von Brauer über Definitionskörper:</em> Sei <i>G</i>
+  eine endliche Untergruppe von <i>GL<sub>n</sub>(&#8450;)</i>. Ist <i>m</i> der
+  Exponent von <i>G</i> und <i>K</i> der Körper der <i>m</i>-ten
+  Einheitswurzeln, dann ist <i>G</i> konjugiert zu einer Untergruppe
+  von <i>GL<sub>n</sub>(K)</i>.
+</UL>
+<H3>Literatur</H3>
+<UL>
+<LI>M.J. Collins: Representations and Characters of Finite Groups,
+  1990, Cambr. Univ. Press.
+<LI>M. Geck:
+  <a href="https://www.buchhandel.de/buch/Algebra-Gruppen-Ringe-Koerper-9783936413151">
+     Algebra: Gruppen, Ringe, Körper; mit einer Einführung in die
+     Darstellungstheorie endlicher Gruppen, </a>edition delkhofen.
+<LI>B. Huppert: Character Theory of Finite Groups, 1998, de Gruyter.
+<LI>I. M. Isaacs: Character Theory of Finite Groups, 1976, Academic
+Press.
+<LI>G. James, M. Liebeck: Representations and Characters of Groups,
+  2001, Cambr. Univ. Press.
+<LI>P. Müller: <a href="../char.pdf">Darstellungstheorie endlicher
+    Gruppen</a>, unvollständiges Skript.
+<LI>J.-P. Serre: Linear Representations of Finite Groups, 1977,
+Springer.
+</UL>
+<HR>
+<H3>Übungsblätter</H3>
+<A HREF="blatt1.pdf"><B>Blatt 1</B></A>,
+<A HREF="blatt2.pdf"><B>Blatt 2</B></A>,
+<A HREF="blatt3.pdf"><B>Blatt 3</B></A>,
+<A HREF="blatt4.pdf"><B>Blatt 4</B></A>,
+<A HREF="blatt5.pdf"><B>Blatt 5</B></A>,
+<A HREF="blatt6.pdf"><B>Blatt 6</B></A>,
+<A HREF="blatt7.pdf"><B>Blatt 7</B></A><!--,
+<A HREF="blatt6.pdf"><B>Blatt 6</B></A><!--,
+<A HREF="blatt6.pdf"><B>Blatt 6</B></A><!--,
+-->
+<HR>
+<A HREF="../../index.html"><B>Back</B></A><B> to Homepage.</B>
+<HR>
+<p>
+<a href="../../impressum.html">Impressum + Datenschutz</a></p>
+</body>
+</html>

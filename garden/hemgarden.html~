@@ -1,0 +1,15 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN"
+        "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html>
+<head>
+<TITLE>Daylily Pictures</TITLE>
+</head>
+<body>
+<H1>Daylily Pictures</H1>
+<IMG SRC="Pictures/garten03_1_web.jpg" height=705 width=1036 alt="Gartenbild 1">
+<IMG SRC="Pictures/garten03_4_web.jpg" height=921 width=637 alt="Gartenbild 2">
+<HR>
+<A HREF="garden.html"><B>Going up</B></A><BR>
+<A HREF="index.html"><B>Back</B></A><B> to Homepage</B>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<HTML>
+<HEAD>
+<TITLE>The Rational Function Analogue ...</TITLE>
+</HEAD>
+<BODY>
+<H1>The rational function analogue of a question of Schur and
+exceptionality of permutation representations</H1>
+
+<P>In 1923 Schur considered the problem of which polynomials
+  <I>f(X)</I> with integer coefficients induce bijections on the
+  residue fields <I>Z/pZ</I> for infinitely many primes <I>p</I>. His
+  conjecture, that such polynomials are compositions of linear and
+  Dickson polynomials, was proved by M. Fried in 1970. Here we
+  investigate the analogous question for rational functions, and also
+  we allow the base field to be any number field. As a result, there
+  are many more rational functions for which the analogous property
+  holds. The new infinite series come from rational isogenies or
+  endomorphisms of elliptic curves. Besides them, there are finitely
+  many sporadic examples which do not fit in any of the series we
+  obtain.</P>
+
+ <P> The Galois theoretic translation, based on Chebotarev's density
+  theorem, leads to a certain property of permutation groups, called
+  exceptionality.  One can reduce to primitive exceptional groups.
+  While it is impossible to describe explicitly all primitive
+  exceptional permutation groups, we provide certain reduction
+  results, and obtain a classification in the almost simple case.</P>
+
+<P>The fact that these permutation groups arise as monodromy groups of
+  covers of Riemann spheres <I>f:P(C)->P(C)</I>, where <I>f</I> is the
+  rational function we investigate, provides genus <I>0</I>
+  systems. These are generating systems of permutation groups with a
+  certain combinatorial property. This condition, combined with the
+  classification and reduction results of exceptional permutation
+  groups, eventually gives a precise geometric classification of
+  possible candidates of rational functions which satisfy the
+  arithmetic property from above. Up to this point, we make frequent
+  use of the classification of the finite simple groups.</P>
+
+<P>Except for finitely many cases, these remaining candidates are
+  connected to isogenies or endomorphisms of elliptic curves. Thus we
+  use results about elliptic curves, modular curves, complex
+  multiplication, and the techniques used in the inverse regular
+  Galois problem to settle these finer arithmetic questions.</P>
+
+<H2>Download:</H2>
+<UL>
+<LI><A HREF="gms.dvi">dvi</A>
+<LI><A HREF="gms.pdf">pdf</A>
+</UL>
+<HR>
+<P>
+<A HREF="../index.html">Back</A> to Homepage.
+</P>
+</BODY>
+</HTML>

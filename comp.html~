@@ -1,0 +1,84 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+        "http://www.w3.org/TR/html4/strict.dtd">
+<html lang="en">
+<HEAD>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>Computer/Internet related</TITLE>
+<link rel="stylesheet" type="text/css" media="all" href="pm.css">
+</HEAD>
+<BODY CLASS="both">
+  <H1>Computer and Internet related Stuff</H1>
+  <h2>Books</h2>
+  <ul>
+    <li><a href="http://openbook.rheinwerk-verlag.de/javainsel9/index.htm#_top">Java
+	ist auch eine Insel</a>
+      </ul>
+<H2>Webtools</H2>
+<UL>
+<LI><a href="http://www.google.com/">Google</a>
+<LI><A HREF="http://www.htmlhelp.com/">HTML Help by WDG</A>
+<LI><A HREF="http://www.htmlhelp.com/tools/validator/">WDG HTML
+Validator</A>
+<LI><A HREF="http://validator.w3.org/">W3C MarkUp Validation
+    Service</A>
+<LI><A HREF="http://jigsaw.w3.org/css-validator/">CSS Validation Service</A>
+<LI>SELFHTML: <A HREF="http://de.selfhtml.org/">Web</A>
+  and <A HREF="file:///usr/share/doc/selfhtml/html/index.htm">local</A>
+<LI><A HREF="https://webmail.uni-wuerzburg.de">Webmail Uni-Wue</A>
+</UL>
+<H2>TeX, LaTeX, AMS-LaTeX</H2>
+<UL>
+<LI><A HREF="http://detexify.kirelabs.org/classify.html">Detexify - LaTeX symbol classifier</A>
+<LI><A HREF="file:///usr/share/doc/texlive-doc-en">Texlive Documentation (local)</A>
+<LI><A HREF="http://www.ctan.org/">CTAN</A>
+</UL>
+<H2>Linux</H2>
+<UL>
+<LI><H3>(K)ubuntu</H3>
+<UL>
+<LI><a href="http://www.ubuntu.com/">Ubuntu</a>, <a href="http://www.kubuntu.org/">Kubuntu</a>
+<LI>Ubuntu-Guide: <a href="http://ubuntuguide.org/wiki">Web</a> and <a href="file:///home/mueller/Adm/ubuntuguide.org/wiki/Ubuntu%3ALucid">local</a>
+<LI>Kubuntu-Guide: <a href="http://ubuntuguide.org/wiki/Kubuntu_Precise">Web</a> and <a href="file:///home/mueller/Adm/kubuntuguide.org/Lucid">local</a>
+<LI><a href="http://wiki.ubuntuusers.de/Startseite">ubuntuusers</a>
+</UL>
+<LI><H3>Opensuse</H3>
+<UL>
+<LI>Opensuse.org <a href="http://www.opensuse.org/en">english</a>, <a href="http://www.opensuse.org/de">german</a>
+<LI><a href="http://software.opensuse.org/search">openSUSE software search</a>
+<LI><a href="http://de.susewiki.org/index.php?title=Hauptseite">SUSE Wiki</a>
+</UL>
+<LI><H3>Misc</H3>
+<UL>
+  <LI><a href="http://localhost:631/">Cups local administration</a>
+    <LI><a href="http://printerhost:631/">Drucker Institut</a>
+<LI><a href="http://fritz.box">Fritz!Box</a>
+<LI><a href="http://www.linux-user.de">LinuxUser (Magazin)</a>
+<LI><A HREF="http://www.knopper.net/knoppix/">Knoppix</A>
+<LI><A HREF="http://www.tldp.org/">The Linux Documentation Project</A>
+<LI><a href="http://www.tldp.org/HOWTO/Hardware-HOWTO/">Linux Hardware
+    Compatibility HOWTO</a>
+<LI><a href="http://www.linuxwireless.co.uk/">Linux Wireless .co.uk</a>
+<LI><a href="http://www.de.linwiki.org/index.php/Linuxfibel">Linuxfibel</a>
+<LI><A HREF="http://www.tuxhardware.de/">Tuxhardware</a>
+</UL>
+</UL>
+<H2>Notebooks</H2>
+<UL>
+<LI><A HREF="http://tuxmobil.org/">UniX with Mobile Computers</A>
+<LI><A HREF="http://www.linux-on-laptops.com/">Linux on Laptops</A>
+</UL>
+<H2>Various</H2>
+<UL>
+<LI><A HREF="http://www.subito-doc.de/">Subito</A>
+<LI><A HREF="http://djvu.org/any2djvu/">Any2DjVu Server</A>
+<LI><A HREF="http://www.djvuzone.org/">DjVu Zone</A>
+<LI><A HREF="http://www.scantips.com/">A few scanning tips</A>
+</UL>
+<HR>
+<A HREF="index.html"><B>Back</B></A><B> to Homepage.</B>
+<HR>
+<HR>
+<p>
+<a href="impressum.html">Impressum + Datenschutz</a></p>
+</body>
+</html>

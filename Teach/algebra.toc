@@ -1,0 +1,91 @@
+\contentsline {section}{\numberline {1}Einf\active@dq \dq@prtct {u}hrung}{3}
+\contentsline {paragraph}{Klassische Beispiele}{3}
+\contentsline {paragraph}{Moderne Beispiele}{3}
+\contentsline {section}{\numberline {2}Gruppen}{4}
+\contentsline {subsection}{\numberline {2.1}Definitionen, Beispiele}{4}
+\contentsline {paragraph}{Beispiele von Halbgruppen}{4}
+\contentsline {paragraph}{Einfache Folgerungen f\"ur eine Gruppe $G$}{4}
+\contentsline {paragraph}{Beispiele von Gruppen}{5}
+\contentsline {subsection}{\numberline {2.2}Untergruppen und zyklische Gruppen}{5}
+\contentsline {paragraph}{Beispiele}{5}
+\contentsline {paragraph}{Beispiele zyklischer Gruppen}{6}
+\contentsline {subsection}{\numberline {2.3}Nebenklassen}{7}
+\contentsline {subsection}{\numberline {2.4}Normalteiler und Faktorgruppen}{8}
+\contentsline {paragraph}{Beispiele}{9}
+\contentsline {subsection}{\numberline {2.5}Symmetrische und alternierende Gruppen}{10}
+\contentsline {paragraph}{Beispiele}{10}
+\contentsline {subsection}{\numberline {2.6}Homomorphismen}{14}
+\contentsline {paragraph}{Einfache Folgerungen}{14}
+\contentsline {paragraph}{Beispiele von Homomorphismen}{15}
+\contentsline {subsection}{\numberline {2.7}Gruppenoperationen}{17}
+\contentsline {paragraph}{Beispiele}{17}
+\contentsline {subsection}{\numberline {2.8}Produkte}{21}
+\contentsline {paragraph}{Beispiele von Produkten}{23}
+\contentsline {paragraph}{Beispiele semidirekter Gruppen}{24}
+\contentsline {subsection}{\numberline {2.9}Endliche abelsche Gruppen}{25}
+\contentsline {paragraph}{Beispiele}{27}
+\contentsline {subsection}{\numberline {2.10}Der Satz von Jordan-H\"older}{28}
+\contentsline {paragraph}{Beispiele von Kompositionsfaktoren}{29}
+\contentsline {paragraph}{Beispiele aufl\"osbarer Gruppen}{31}
+\contentsline {subsection}{\numberline {2.11}Die S\"atze von Sylow}{31}
+\contentsline {subsection}{\numberline {2.12}Gruppen kleiner Ordnung}{34}
+\contentsline {subsubsection}{\numberline {2.12.1}$\delimiter 69640972 G\delimiter 86418188 =pq$, $p<q$ Primzahlen.}{35}
+\contentsline {subsubsection}{\numberline {2.12.2}$\delimiter 69640972 G\delimiter 86418188 =1001=7\cdot 11\cdot 13$.}{35}
+\contentsline {subsubsection}{\numberline {2.12.3}$\delimiter 69640972 G\delimiter 86418188 =pqr$, $p<q<r$ Primzahlen.}{36}
+\contentsline {subsubsection}{\numberline {2.12.4}$\delimiter 69640972 G\delimiter 86418188 =p^aq^b$, $p<q$ Primzahlen, $0\le a,b\le 2$.}{36}
+\contentsline {subsubsection}{\numberline {2.12.5}Aufl\"osbarkeit von $G$ f\"ur $\delimiter 69640972 G\delimiter 86418188 <60$.}{37}
+\contentsline {section}{\numberline {3}Ringe}{38}
+\contentsline {subsection}{\numberline {3.1}Definitionen, Beispiele}{38}
+\contentsline {paragraph}{Beispiele von Ringen}{39}
+\contentsline {subsection}{\numberline {3.2}Homomorphismen und Ideale}{40}
+\contentsline {subsection}{\numberline {3.3}Chinesischer Restsatz}{42}
+\contentsline {subsection}{\numberline {3.4}Anwendungen der Kongruenzrechnung}{44}
+\contentsline {subsection}{\numberline {3.5}Maximale Ideale}{45}
+\contentsline {paragraph}{Beispiele maximaler Ideale}{45}
+\contentsline {subsection}{\numberline {3.6}Primideale}{45}
+\contentsline {subsection}{\numberline {3.7}Polynome}{46}
+\contentsline {subsection}{\numberline {3.8}Einheitengruppe von $\@mathbb Z/n\@mathbb Z$}{49}
+\contentsline {subsection}{\numberline {3.9}Quotientenk\"orper}{51}
+\contentsline {subsection}{\numberline {3.10}Teilbarkeit}{52}
+\contentsline {paragraph}{Beispiel f\"ur Versagen der eindeutigen Zerlegung in irreduzible Faktoren}{52}
+\contentsline {subsection}{\numberline {3.11}Inhalt von Polynomen, Lemma von Gau\ss }{54}
+\contentsline {subsection}{\numberline {3.12}Das Irreduzibilit\"atskriterium von Eisenstein}{56}
+\contentsline {paragraph}{Beispiele}{57}
+\contentsline {subsection}{\numberline {3.13}Kryptographie}{57}
+\contentsline {paragraph}{Das RSA-Verfahren.}{58}
+\contentsline {section}{\numberline {4}K\"orper}{59}
+\contentsline {subsection}{\numberline {4.1}K\"orpererweiterungen, K\"orpergrade und Homomorphismen}{60}
+\contentsline {paragraph}{Beispiele}{60}
+\contentsline {subsection}{\numberline {4.2}Algebraische und transzendente Elemente}{61}
+\contentsline {paragraph}{Beispiele von K\"orpererweiterungen}{62}
+\contentsline {subsection}{\numberline {4.3}Konstruktion mit Zirkel und Lineal}{63}
+\contentsline {subsubsection}{\numberline {4.3.1}W\"urfelverdoppelung}{67}
+\contentsline {subsubsection}{\numberline {4.3.2}Winkeldreiteilung}{67}
+\contentsline {subsubsection}{\numberline {4.3.3}Regul\"are $n$-Ecke}{68}
+\contentsline {subsection}{\numberline {4.4}Algebraische K\"orpererweiterungen}{68}
+\contentsline {subsubsection}{\numberline {4.4.1}Algebraischer Abschluss}{70}
+\contentsline {subsubsection}{\numberline {4.4.2}Fortsetzung von Homomorphismen}{71}
+\contentsline {subsubsection}{\numberline {4.4.3}Zerf\"allungsk\"orper}{72}
+\contentsline {subsubsection}{\numberline {4.4.4}Separabilit\"at}{73}
+\contentsline {subsubsection}{\numberline {4.4.5}Der Satz vom primitiven Element}{76}
+\contentsline {subsubsection}{\numberline {4.4.6}Normale K\"orpererweiterungen}{77}
+\contentsline {subsection}{\numberline {4.5}Galoistheorie}{78}
+\contentsline {subsubsection}{\numberline {4.5.1}Der Hauptsatz der Galoistheorie}{78}
+\contentsline {subsubsection}{\numberline {4.5.2}$\@mathbb C$ ist algebraisch abgeschlossen}{82}
+\contentsline {subsubsection}{\numberline {4.5.3}Spuren und Normen}{83}
+\contentsline {subsubsection}{\numberline {4.5.4}Lineare Unabh\"angigkeit von Charakteren}{84}
+\contentsline {subsubsection}{\numberline {4.5.5}Zyklische Erweiterungen}{84}
+\contentsline {subsubsection}{\numberline {4.5.6}Einheitswurzeln und Kreisteilungspolynome}{86}
+\contentsline {subsubsection}{\numberline {4.5.7}Aufl\"osbarkeit durch Radikale}{87}
+\contentsline {subsubsection}{\numberline {4.5.8}Zirkel- und Linealkonstruktion regul\"arer $n$-Ecke}{90}
+\contentsline {subsubsection}{\numberline {4.5.9}Endliche K\"orper}{91}
+\contentsline {subsubsection}{\numberline {4.5.10}Primzahlen in $m\@mathbb N+1$ und abelsche Galoisgruppen \"uber $\@mathbb Q$}{93}
+\contentsline {subsection}{\numberline {4.6}Quadratische Reste}{94}
+\contentsline {paragraph}{Ein Beispiel}{99}
+\contentsline {subsection}{\numberline {4.7}Symmetrische Polynome}{99}
+\contentsline {subsection}{\numberline {4.8}Diskriminanten}{101}
+\contentsline {paragraph}{Beispiele}{102}
+\contentsline {subsection}{\numberline {4.9}Elementare Integrierbarkeit}{103}
+\contentsline {subsubsection}{\numberline {4.9.1}Holomorphe und meromorphe Funktionen}{104}
+\contentsline {subsubsection}{\numberline {4.9.2}Differentialk\"orper}{105}
+\contentsline {subsubsection}{\numberline {4.9.3}Die S\"atze von Liouville}{108}
