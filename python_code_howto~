@@ -1,0 +1,33 @@
+### Beseitige html-Konstrukte wie in K.<i> = QuadraticField(-1) ...
+
+import html
+
+code = """F.<i> = QuadraticField(-1)"""
+
+escaped = html.escape(code)
+
+html_output = f'<pre><code class="language-python">{escaped}</code></pre>'
+
+tmp = open('tmp.html', 'w')
+tmp.write(html_output)
+tmp.close()
+
+
+################################################################
+
+Template fuer den Code in html-Datei:
+
+<!-- In your <head> -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" rel="stylesheet" />
+
+<!-- Your code -->
+<pre><code class="language-python">
+def fibonacci(n):
+    if n <= 1:
+        return n
+    return fibonacci(n-1) + fibonacci(n-2)
+</code></pre>
+
+<!-- Before closing </body> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/components/prism-python.min.js"></script>
