@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Verification script</title>
-    <link rel="stylesheet" type="text/css" href="../../pm.css">
+    <!--<link rel="stylesheet" type="text/css" href="../../pm.css">-->
     <link href="../../themes/prism.css" rel="stylesheet" />
     <script src="https://sagecell.sagemath.org/static/embedded_sagecell.js"></script>
 <script>sagecell.makeSagecell({"inputLocation": ".sage"});</script>
 </head>
 <body>
-  <H3>Verification script for the paper <em>On transitive sets of derangements in primitive groups</em></H3>
+  <h3>Verification script for the paper <em>On transitive sets of derangements in primitive groups</em></h3>
   This page provides the SageMath script which confirms the
-  computational parts of the arxiv preprint <a href="https://arxiv.org/abs/2304.08459/">On transitive sets of derangements in primitive groups</a>. You can
-  <UL>
-    <LI> Download the SageMath
+  computational parts of the arXiv preprint <a href="https://arxiv.org/abs/2304.08459/">On transitive sets of derangements in primitive groups</a>. You can
+  <ul>
+    <li> Download the SageMath
       script <a href="verify_mat8.sage">verify_mat8.sage</a></li>
-    <LI> Run and view the code in <a href="https://sagecell.sagemath.org/">SageCell</a>. To do so, just click the <b>Evaluate</b> button below:
+    <li> Run and view the code in <a href="https://sagecell.sagemath.org/">SageCell</a>. To do so, just click the <b>Evaluate</b> button below:
       <div class="sage">
   <script type="text/x-sage">F.<w> = GF(8, modulus=[1, 1, 0, 1])
 e = matrix.identity(F, 8)
@@ -44,8 +45,8 @@ print('All claims verified')
 # Uncomment to optionally check that a and b indeed generate 3D(4,2):
 # assert MatrixGroup([a, b]).structure_description() == '3D(4,2)'
 </script>
-    </div></LI>
-    <LI> Only view the code (copy and paste should work):
+    </div></li>
+    <li> Only view the code (copy and paste should work):
 <pre><code class="language-python">F.&lt;w&gt; = GF(8, modulus=[1, 1, 0, 1])
 e = matrix.identity(F, 8)
 xr1_ij = [(1, 2), (3, 4), (3, 5), (3, 6), (4, 6), (5, 6), (7, 8)]
@@ -73,9 +74,9 @@ print(&#x27;All claims verified&#x27;)
 # Uncomment to optionally check that a and b indeed generate 3D(4,2):
 # assert MatrixGroup([a, b]).structure_description() == &#x27;3D(4,2)&#x27;
 </code></pre>
-    </LI>
-  </UL>
-  <p><a href="../../index.html">Back to top</a></p>
+    </li>
+  </ul>
+  <p><a href="../../index.html">To start page</a></p>
   <script src="../../prism.js"></script>
 </body>
 </html>
