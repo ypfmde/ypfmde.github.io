@@ -11,7 +11,7 @@
 <body>
   <H3>Verification script for the paper <em>On Euler's magic matrices of sizes 3 and 8</em></H3>
   This page provides the SageMath script which confirms the
-  computational parts of the arxiv preprint <a href="https://arxiv.org/abs/2504.16260/">On Euler's magic matrices of sizes 3 and 8</a>. You can
+  computational parts of the paper <em>On Euler's magic matrices of sizes 3 and 8</em> [<a href="https://arxiv.org/abs/2504.16260/">arxiv preprint</a>] [<a href="doiA-aa250422-2-8.pdf">Online First version</a>]. You can
   <UL>
     <LI> Download the SageMath
       script <a href="euler_verify.sage">euler_verify.sage</a></li>
@@ -120,7 +120,7 @@ for M in [M5_1, M5_2, M5_3, M5_4, M5_5]:
 </script>
     </div></LI>
     <LI> Only view the code (copy and paste should work):
-<pre><code class="language-python"><pre><code class="language-python"></code></pre><pre><code class="language-python">################ Helper functions ################
+<pre><code class="language-python">################ Helper functions ################
 
 def is_magic(M):
     n = M.nrows()
@@ -220,7 +220,7 @@ M5_5 = matrix([(-392, -336, -21, 282, 210),
                (-192, 14, -546, -168, -165)])
 for M in [M5_1, M5_2, M5_3, M5_4, M5_5]:
     print(is_magic(M) and len({z^2 for z in M.list()}) == 24)
-</code></pre></code></pre>
+</code></pre>
     </LI>
   </UL>
   <p><a href="../../index.html">Back to top</a></p>
