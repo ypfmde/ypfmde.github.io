@@ -1,17 +1,193 @@
-body { 
-    font-size:1.2em
-}
-/* table { font-size:1.2em} */
-a:link,a:active {
-	   text-decoration: none
-       }
-a:hover { 
-    /*background: aqua; */
-    text-decoration: underline
+/* Base typography */
+
+body {
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  color: #111;
+  max-width: 42rem;
+  margin: 2rem auto;
+  padding: 0 1rem;
 }
 
-a:visited {
-    color:purple; 
-    text-decoration: none
+/* Headings */
+
+h2 {
+  margin-top: 2rem;
+  font-size: 1.25rem;
 }
-.cellright { text-align: right; }
+
+h3 {
+  font-size: 1.1rem;
+  font-weight: 600;
+}
+
+/* Links: global baseline */
+
+a {
+  color: #0055aa;
+  text-decoration: none;
+}
+
+/* Hover + focus underline */
+
+a:hover,
+a:focus-visible {
+  text-decoration: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.15em;
+}
+
+/* Keyboard focus (explicit and visible) */
+
+a:focus-visible {
+  outline: 2px solid #ffbf47;
+  outline-offset: 2px;
+}
+
+/* Contact block links (name + institutions) */
+
+h3 a {
+  font-weight: 600;
+}
+
+/* Research navigation list */
+
+ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+ul li {
+  margin: 0.4rem 0;
+}
+
+/* Navigation-style links */
+
+ul li a {
+  font-weight: 500;
+  border-bottom: 1px solid transparent;
+}
+
+ul li a:hover,
+ul li a:focus-visible {
+  border-bottom-color: currentColor;
+  text-decoration: none;
+}
+
+/* Minor typographic tweaks */
+
+b {
+  font-weight: 600;
+}
+
+a[href$=".asc"] {
+  font-weight: 500;
+}
+
+/* Publications: default underline for inline links */
+
+p a,
+li a {
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.15em;
+}
+
+ul li a {
+  text-decoration: none;
+}
+
+li a {
+  white-space: nowrap;
+}
+
+li a:hover,
+li a:focus-visible {
+  text-decoration-thickness: 0.12em;
+}
+
+p a {
+  font-weight: 500;
+}
+
+p a[href="index.html"] {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+p a[href="index.html"]:hover,
+p a[href="index.html"]:focus-visible {
+  text-decoration: underline;
+}
+
+
+/* ---------- General prose (applies to this page and publications) ---------- */
+
+p {
+  max-width: 42rem;
+}
+
+/* Inline links in prose */
+
+p a,
+li a {
+  text-decoration-line: underline;
+  text-decoration-thickness: 0.08em;
+  text-underline-offset: 0.15em;
+}
+
+/* Navigation link back to index */
+
+p a[href$="index.html"] {
+  text-decoration: none;
+  font-weight: 500;
+}
+
+p a[href$="index.html"]:hover,
+p a[href$="index.html"]:focus-visible {
+  text-decoration: underline;
+}
+
+/* ---------- Lists ---------- */
+
+ul {
+  margin-left: 1.2rem;
+}
+
+li {
+  margin: 0.6rem 0;
+}
+
+/* ---------- Code blocks (Prism + plain <pre>) ---------- */
+
+pre {
+  margin: 1rem 0;
+  padding: 0.75rem;
+  overflow-x: auto;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Do not override Prism colors */
+pre code {
+  background: none;
+}
+
+/* ---------- SageCell container ---------- */
+
+.sage {
+  margin: 1rem 0;
+}
+
+/* Prevent SageCell from stretching page width */
+.sage textarea,
+.sage iframe {
+  max-width: 100%;
+}
+
+/* ---------- Headings ---------- */
+
+h3 {
+  margin-top: 1.5rem;
+  max-width: 42rem;
+}

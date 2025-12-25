@@ -1,0 +1,17 @@
+body { 
+    font-size:1.2em
+}
+/* table { font-size:1.2em} */
+a:link,a:active {
+	   text-decoration: none
+       }
+a:hover { 
+    /*background: aqua; */
+    text-decoration: underline
+}
+
+a:visited {
+    color:purple; 
+    text-decoration: none
+}
+.cellright { text-align: right; }
