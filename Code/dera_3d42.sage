@@ -1,0 +1,26 @@
+F.<w> = GF(8, modulus=[1, 1, 0, 1])
+e = matrix.identity(F, 8)
+xr1_ij = [(1, 2), (3, 4), (3, 5), (3, 6), (4, 6), (5, 6), (7, 8)]
+n_ij = [(1, 3), (2, 1), (3, 7), (4, 5), (5, 4), (6, 2), (7, 8), (8, 6)]
+xr1 = e + matrix(F, 8, {(i-1, j-1): 1 for i, j in xr1_ij})
+n = matrix(F, 8, {(i-1, j-1): 1 for i, j in n_ij})
+a = xr1 * n
+b = matrix.diagonal(F, [w^z for z in [4, 3, 3, 1, 6, 4, 4, 3]])
+x = b * (a^2 * b^2 * a)^2 * b^-2 * a * b^-2
+t = a^-3 * b * (b * a)^2 * b^-2 * a^2 * b
+y = t^-1 * x * t                                 # one part of (1)
+s = a * b^-1 * a * b
+d = x * s * y * s * a * y * s^2 * t
+S = [s^i for i in range(13)]
+Y = [y^i for i in range(4)]
+H = [u * v for u in S for v in Y]
+assert d^-1 * x * d == y * x                     # other part of (1)
+assert y^-1 * x * y == x^-1                      # (2)
+assert x^2 == y^2                                # (3)
+assert s != e and s^13 == e                      # (4)
+assert y^-1 * s * y == s^8                       # (5)
+assert x not in H                                # (6)
+assert all(h in Y or (h * x)^13 == e for h in H) # (7)
+print('All claims verified')
+# Uncomment to optionally check that a and b indeed generate 3D(4,2):
+# assert MatrixGroup([a, b]).structure_description() == '3D(4,2)'
