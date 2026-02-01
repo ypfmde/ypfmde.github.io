@@ -50,9 +50,16 @@ template = '''<!DOCTYPE html>
 </head>
 <body>
   <h1>Galerie aller 396 Formen mit diesen Teilen:</h1>
-  <img src="Data/teile_bunt.png" loading="lazy" alt="Image doof" style="display: block; margin: 0 auto; width: 100%; max-width: 100%;">
-  <h2>Anklicken eines Bildes liefert 3D-Animation, welches sich mit der linken
-Maustaste rotieren lässt, und dem Scroll-Rad vergrößern/verkleinern lässt</h2>
+  <img src="Data/teile.png" loading="lazy" alt="Image doof" style="display: block; margin: 0 auto; width: 100%; max-width: 100%;">
+  <h2>Anklicken eines Bildes liefert 3D-Animation</h2>
+  <dl>
+  <dt><strong>Rotation</strong></dt>
+  <dd>linke Maustaste ziehen (oder ein Finger schieben auf Smartphone)</dd>
+  <dt><strong>Vergrößern/verkleinern</strong></dt>
+  <dd>Scrollrad (oder zwei Finger auseinander/zueinander schieben auf Smartphone)</dd>
+  <dt><strong>Verschieben</strong></dt>
+  <dd>rechte Maustaste ziehen (oder mit zwei Fingern schieben auf Smartphone)</dd>
+  </dl>
     <div class="gallery">
 xxx
     </div>
