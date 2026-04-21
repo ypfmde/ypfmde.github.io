@@ -4,3 +4,7 @@ git push -u origin main
 
 
 tidy -indent -wrap 0 publications.html > p.html
+
+oder
+
+tidy -indent publications.html > p.html
