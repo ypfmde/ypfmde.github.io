@@ -42,10 +42,13 @@ m6 = ((a^2*b*d + b*c^2*d - a*c*d)*X + (-a^2*d)*Y
       + (2*b^2*c*d - a*b*d)*Z + 2*a^2*b^2 - a*b*c + a^2)
 
 M = matrix([[X, Y, Z], [m1, m2, m3], [m4, m5, m6]])
-delta = 2 * a^2 * (b^2 + c^2 + 1) * (2*a*b*c - a^2 + b^2)
+detM = 2 * a^2 * (a^2 + d^2) * (a^2 - b^2 - 2*a*b*c)
 
-assert M.det()%(X^2 + Y^2 + Z^2 - 1)%(a^2 + b^2 + c^2 + d^2 + 1) == delta
+q1 = X^2 + Y^2 + Z^2 - 1
+q2 = a^2 + b^2 + c^2 + d^2 + 1
 
+assert q2.divides((M.det() - detM)%q1)
+	  
 #### Verifying Theorem 1.3 ####
 
 K.<w> = QuadraticField(-7)
@@ -79,9 +82,12 @@ m6 = ((a^2*b*d + b*c^2*d - a*c*d)*X + (-a^2*d)*Y
       + (2*b^2*c*d - a*b*d)*Z + 2*a^2*b^2 - a*b*c + a^2)
 
 M = matrix([[X, Y, Z], [m1, m2, m3], [m4, m5, m6]])
-delta = 2 * a^2 * (b^2 + c^2 + 1) * (2*a*b*c - a^2 + b^2)
+detM = 2 * a^2 * (a^2 + d^2) * (a^2 - b^2 - 2*a*b*c)
 
-assert M.det()%(X^2 + Y^2 + Z^2 - 1)%(a^2 + b^2 + c^2 + d^2 + 1) == delta
+q1 = X^2 + Y^2 + Z^2 - 1
+q2 = a^2 + b^2 + c^2 + d^2 + 1
+
+assert q2.divides((M.det() - detM)%q1)
 
 #### Verifying Theorem 1.3 ####
 
